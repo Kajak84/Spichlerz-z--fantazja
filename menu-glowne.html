@@ -59,7 +59,6 @@
       width: 100px;
       opacity: 0.8;
     }
-    /* Przełącznik językowy */
     .language-switcher {
       position: fixed;
       top: 10px;
@@ -161,144 +160,128 @@
 
   <img src="logo.jpg" alt="Logo" class="logo" />
 
-  <script src="i18n.js"></script>
   <script>
-    Object.assign(translations.pl, {
-      pageTitle: "Danie Główne – Menu",
-      backToCategories: "⬅️ Powrót do kategorii",
-      home: "🏠 Strona główna",
-      mainDishes: "Dania Główne",
-      sandacz_name: "Sandacz",
-      sandacz_desc: "filet smażony, porcaj 200/300 g w/w wagi",
-      kotlet_name: "Kotlet ze schabu po warmińsku",
-      kotlet_desc: "z kurkami, * zestaw 400 g",
-      devolaile_name: "Devolaile z masłem",
-      devolaile_desc: "* zestaw 400 g",
-      zrazy_name: "Zrazy wołowe w sosie grzybowym",
-      zrazy_desc: "kluski, buraczki 400 g",
-      poledwiczki_name: "Polędwiczki wieprzowe z podgrzybkami",
-      poledwiczki_desc: "* zestaw 400 g",
-      filet_name: "Filet kurczaka grillowany",
-      filet_desc: "* zestaw 400 g",
-      placki_z_ziemniakow_name: "Placki ziemniaczane",
-      placki_z_ziemniakow_desc: "z farszem po zbujecku 400 g",
-      placki_z_jogurtem_name: "Placki ziemniaczane",
-      placki_z_jogurtem_desc: "z jogurtem, 4 szt 250g",
-      danie_dla_dzieci_name: "Danie dla dzieci",
-      danie_dla_dzieci_desc: "filet drobiowy, frytki literki, marchewka, 280 g",
-      note: "* w skład zestawu wchodzą frytki lub ziemniaki, zestaw surówek"
-    });
-
-    Object.assign(translations.en, {
-      pageTitle: "Main Dishes – Menu",
-      backToCategories: "⬅️ Back to categories",
-      home: "🏠 Home",
-      mainDishes: "Main Dishes",
-      sandacz_name: "Pike-perch",
-      sandacz_desc: "fried fillet, portion 200/300 g approx.",
-      kotlet_name: "Pork cutlet Warmian style",
-      kotlet_desc: "with chanterelles, * set 400 g",
-      devolaile_name: "Devolaile with butter",
-      devolaile_desc: "* set 400 g",
-      zrazy_name: "Beef roulades in mushroom sauce",
-      zrazy_desc: "dumplings, beets 400 g",
-      poledwiczki_name: "Pork tenderloin with bay boletes",
-      poledwiczki_desc: "* set 400 g",
-      filet_name: "Grilled chicken fillet",
-      filet_desc: "* set 400 g",
-      placki_z_ziemniakow_name: "Potato pancakes",
-      placki_z_ziemniakow_desc: "stuffed in Zbujecko style 400 g",
-      placki_z_jogurtem_name: "Potato pancakes",
-      placki_z_jogurtem_desc: "with yogurt, 4 pcs 250g",
-      danie_dla_dzieci_name: "Kids dish",
-      danie_dla_dzieci_desc: "chicken fillet, letter fries, carrot, 280 g",
-      note: "* set includes fries or potatoes, and salad set"
-    });
-
-    Object.assign(translations.de, {
-      pageTitle: "Hauptgerichte – Menü",
-      backToCategories: "⬅️ Zurück zu den Kategorien",
-      home: "🏠 Startseite",
-      mainDishes: "Hauptgerichte",
-      sandacz_name: "Zander",
-      sandacz_desc: "gebratenes Filet, Portion 200/300 g ca.",
-      kotlet_name: "Schweinekotelett auf Warmiener Art",
-      kotlet_desc: "mit Pfifferlingen, * Set 400 g",
-      devolaile_name: "Devolaile mit Butter",
-      devolaile_desc: "* Set 400 g",
-      zrazy_name: "Rinderrouladen in Pilzsauce",
-      zrazy_desc: "Knödel, Rote Beete 400 g",
-      poledwiczki_name: "Schweinefilet mit Maronenröhrlingen",
-      poledwiczki_desc: "* Set 400 g",
-      filet_name: "Gegrillte Hähnchenbrust",
-      filet_desc: "* Set 400 g",
-      placki_z_ziemniakow_name: "Kartoffelpuffer",
-      placki_z_ziemniakow_desc: "mit Füllung nach Zbujecko-Art 400 g",
-      placki_z_jogurtem_name: "Kartoffelpuffer",
-      placki_z_jogurtem_desc: "mit Joghurt, 4 Stk. 250g",
-      danie_dla_dzieci_name: "Kindergericht",
-      danie_dla_dzieci_desc: "Hähnchenfilet, Buchstabenpommes, Karotten, 280 g",
-      note: "* das Set beinhaltet Pommes oder Kartoffeln und Salatset"
-    });
-
-    Object.assign(translations.ua, {
-      pageTitle: "Основні страви – Меню",
-      backToCategories: "⬅️ Повернутися до категорій",
-      home: "🏠 Головна",
-      mainDishes: "Основні страви",
-      sandacz_name: "Судак",
-      sandacz_desc: "смажений філе, порція 200/300 г приблизно",
-      kotlet_name: "Свинина по-вармінськи",
-      kotlet_desc: "з лисичками, * набір 400 г",
-      devolaile_name: "Деволяй з маслом",
-      devolaile_desc: "* набір 400 г",
-      zrazy_name: "Яловичі зрази з грибним соусом",
-      zrazy_desc: "кльоцки, бурячки 400 г",
-      poledwiczki_name: "Свинина з підберезниками",
-      poledwiczki_desc: "* набір 400 г",
-      filet_name: "Куряче філе на грилі",
-      filet_desc: "* набір 400 г",
-      placki_z_ziemniakow_name: "Картопляні млинці",
-      placki_z_ziemniakow_desc: "з начинкою по-збуженськи 400 г",
-      placki_z_jogurtem_name: "Картопляні млинці",
-      placki_z_jogurtem_desc: "з йогуртом, 4 шт 250г",
-      danie_dla_dzieci_name: "Страва для дітей",
-      danie_dla_dzieci_desc: "куряче філе, картопля-фрі букви, морква, 280 г",
-      note: "* набір включає картоплю фрі або варену та набір салатів"
-    });
-
-    // Proste i18n.js (minimalna wersja)
     const translations = {
-      pl: {},
-      en: {},
-      de: {},
-      ua: {}
+      pl: {
+        pageTitle: "Danie Główne – Menu",
+        backToCategories: "⬅️ Powrót do kategorii",
+        home: "🏠 Strona główna",
+        mainDishes: "Dania Główne",
+        sandacz_name: "Sandacz",
+        sandacz_desc: "filet smażony, porcaj 200/300 g w/w wagi",
+        kotlet_name: "Kotlet ze schabu po warmińsku",
+        kotlet_desc: "z kurkami, * zestaw 400 g",
+        devolaile_name: "Devolaile z masłem",
+        devolaile_desc: "* zestaw 400 g",
+        zrazy_name: "Zrazy wołowe w sosie grzybowym",
+        zrazy_desc: "kluski, buraczki 400 g",
+        poledwiczki_name: "Polędwiczki wieprzowe z podgrzybkami",
+        poledwiczki_desc: "* zestaw 400 g",
+        filet_name: "Filet kurczaka grillowany",
+        filet_desc: "* zestaw 400 g",
+        placki_z_ziemniakow_name: "Placki ziemniaczane",
+        placki_z_ziemniakow_desc: "z farszem po zbujecku 400 g",
+        placki_z_jogurtem_name: "Placki ziemniaczane",
+        placki_z_jogurtem_desc: "z jogurtem, 4 szt 250g",
+        danie_dla_dzieci_name: "Danie dla dzieci",
+        danie_dla_dzieci_desc: "filet drobiowy, frytki literki, marchewka, 280 g",
+        note: "* w skład zestawu wchodzą frytki lub ziemniaki, zestaw surówek"
+      },
+      en: {
+        pageTitle: "Main Dishes – Menu",
+        backToCategories: "⬅️ Back to categories",
+        home: "🏠 Home",
+        mainDishes: "Main Dishes",
+        sandacz_name: "Pike-perch",
+        sandacz_desc: "fried fillet, portion approx. 200/300 g",
+        kotlet_name: "Pork schnitzel Warmian style",
+        kotlet_desc: "with chanterelle mushrooms, * set 400 g",
+        devolaile_name: "Devolaile with butter",
+        devolaile_desc: "* set 400 g",
+        zrazy_name: "Beef roulades in mushroom sauce",
+        zrazy_desc: "dumplings, beetroot 400 g",
+        poledwiczki_name: "Pork tenderloin with boletus mushrooms",
+        poledwiczki_desc: "* set 400 g",
+        filet_name: "Grilled chicken fillet",
+        filet_desc: "* set 400 g",
+        placki_z_ziemniakow_name: "Potato pancakes",
+        placki_z_ziemniakow_desc: "with stuffing Zbujecko style 400 g",
+        placki_z_jogurtem_name: "Potato pancakes",
+        placki_z_jogurtem_desc: "with yogurt, 4 pcs 250g",
+        danie_dla_dzieci_name: "Kids dish",
+        danie_dla_dzieci_desc: "chicken fillet, letter fries, carrots, 280 g",
+        note: "* set includes fries or potatoes, salad set"
+      },
+      de: {
+        pageTitle: "Hauptgerichte – Menü",
+        backToCategories: "⬅️ Zurück zu den Kategorien",
+        home: "🏠 Startseite",
+        mainDishes: "Hauptgerichte",
+        sandacz_name: "Zander",
+        sandacz_desc: "gebratene Filets, Portion ca. 200/300 g",
+        kotlet_name: "Schweineschnitzel auf Warmia-Art",
+        kotlet_desc: "mit Pfifferlingen, * Set 400 g",
+        devolaile_name: "Devolaile mit Butter",
+        devolaile_desc: "* Set 400 g",
+        zrazy_name: "Rinderrouladen in Pilzsauce",
+        zrazy_desc: "Knödel, Rote Beete 400 g",
+        poledwiczki_name: "Schweinefilet mit Maronenröhrlingen",
+        poledwiczki_desc: "* Set 400 g",
+        filet_name: "Gegrillte Hähnchenbrust",
+        filet_desc: "* Set 400 g",
+        placki_z_ziemniakow_name: "Kartoffelpuffer",
+        placki_z_ziemniakow_desc: "mit Füllung nach Zbujecko-Art 400 g",
+        placki_z_jogurtem_name: "Kartoffelpuffer",
+        placki_z_jogurtem_desc: "mit Joghurt, 4 Stk. 250g",
+        danie_dla_dzieci_name: "Kindergericht",
+        danie_dla_dzieci_desc: "Hähnchenfilet, Buchstabenpommes, Karotten, 280 g",
+        note: "* das Set beinhaltet Pommes oder Kartoffeln und Salatset"
+      },
+      ua: {
+        pageTitle: "Основні страви – Меню",
+        backToCategories: "⬅️ Повернутися до категорій",
+        home: "🏠 Головна",
+        mainDishes: "Основні страви",
+        sandacz_name: "Судак",
+        sandacz_desc: "смажений філе, порція 200/300 г приблизно",
+        kotlet_name: "Свинина по-вармінськи",
+        kotlet_desc: "з лисичками, * набір 400 г",
+        devolaile_name: "Деволяй з маслом",
+        devolaile_desc: "* набір 400 г",
+        zrazy_name: "Яловичі зрази з грибним соусом",
+        zrazy_desc: "кльоцки, бурячки 400 г",
+        poledwiczki_name: "Свинина з підберезниками",
+        poledwiczki_desc: "* набір 400 г",
+        filet_name: "Куряче філе на грилі",
+        filet_desc: "* набір 400 г",
+        placki_z_ziemniakow_name: "Картопляні млинці",
+        placki_z_ziemniakow_desc: "з начинкою по-збуженськи 400 г",
+        placki_z_jogurtem_name: "Картопляні млинці",
+        placki_z_jogurtem_desc: "з йогуртом, 4 шт 250г",
+        danie_dla_dzieci_name: "Страва для дітей",
+        danie_dla_dzieci_desc: "куряче філе, картопля-фрі букви, морква, 280 г",
+        note: "* набір включає картоплю фрі або варену та набір салатів"
+      }
     };
 
     function translatePage(lang) {
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
         if (translations[lang] && translations[lang][key]) {
-          if(el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-            el.placeholder = translations[lang][key];
-          } else if(el.tagName === "TITLE") {
-            document.title = translations[lang][key];
-          } else {
-            el.textContent = translations[lang][key];
-          }
+          el.textContent = translations[lang][key];
         }
       });
+      document.title = translations[lang]?.pageTitle || "Menu";
       document.documentElement.lang = lang;
-      localStorage.setItem('lang', lang);
+      localStorage.setItem("lang", lang);
     }
 
     function setLanguage(lang) {
       translatePage(lang);
     }
 
-    // Inicjalizacja języka na podstawie localStorage lub domyślnie polski
-    const savedLang = localStorage.getItem('lang') || 'pl';
     window.onload = () => {
+      const savedLang = localStorage.getItem("lang") || "pl";
       translatePage(savedLang);
     };
   </script>
