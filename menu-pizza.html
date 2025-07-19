@@ -1,43 +1,98 @@
-<!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Pizza – Menu</title>
-  <style>
+<meta charset="UTF-8">
+  <header>
+    <h1>Spichlerz z Fantazją</h1>
+   </header>
+<title>Pizza – Menu</title>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e4d09b;
+      margin: 0;
+      padding: 0 20px 40px;
+    }
+    h1 {
+      text-align: center;
+      background-color: #030100;
+      color: white;
+      padding: 20px;
+      margin-top: 0;
+    }
+    img {
+      display: block;
+      max-width: 500px;
+      margin: 50px auto;
+      border-radius: 16px;
+    }
     body { font-family: Arial,sans-serif; background:#e4d09b; margin:0; padding:0 20px 40px }
     h1 { text-align:center; background:#030100; color:#fff; padding:20px; margin-top:0 }
     img { display:block; max-width:500px; margin:50px auto; border-radius:16px }
     .menu-section { max-width:900px; margin:20px auto }
-    .menu-item {
+.menu-item {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 20px;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+      font-size: 1.1em;
       display:grid;
       grid-template-columns:2fr 1fr 1fr 1fr;
       gap:15px; padding:10px 0; border-bottom:1px solid #ddd; font-size:1.1em;
-    }
+}
+    .menu-item .name {
+      font-weight: bold;
     .name { font-weight:bold }
     .ingredients { font-style:italic; color:#555 }
     .button-bar { display:flex; justify-content:center; gap:10px; margin:20px 0 }
     .back-button {
       padding:10px 20px; background:#0f0700; color:#fff; text-decoration:none; border-radius:8px;
-    }
+}
+    .menu-section {
+      max-width: 900px;
+      margin: 0 auto;
     .language-switcher {
       position:absolute; top:10px; right:20px;
-    }
+}
+    .button-bar {
+      display: flex;
+      gap: 10px;
+      margin: 20px;
     .language-switcher button {
       font-size:24px; border:none; background:transparent; cursor:pointer; margin-left:8px;
-    }
+}
+
+    .back-button {
+  display: inline-block;
+  margin: 20px;
+  padding: 10px 20px;
+  background: #0f0700;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+ .logo {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 100px;
+      opacity: 0.8;
     .logo {
       position:fixed; bottom:10px; right:10px; width:100px; opacity:0.8;
-    }
-  </style>
+}
+</style>
 </head>
 <body>
 
+    <div class="button-bar">
+    <a href="menu.html" class="back-button">⬅️ Powrót do kategorii</a>
+    <a href="index.html" class="back-button">🏠 Strona główna</a>
   <div class="language-switcher">
     <button onclick="chg('pl')">🇵🇱</button>
     <button onclick="chg('en')">🇬🇧</button>
     <button onclick="chg('de')">🇩🇪</button>
     <button onclick="chg('uk')">🇺🇦</button>
-  </div>
+</div>
 
   <div class="button-bar">
     <a class="back-button"
@@ -56,12 +111,17 @@
     </a>
   </div>
 
+  <h1>🍕 Pizza</h1>
   <h1 data-pl="🍕 Pizza" data-en="🍕 Pizza" data-de="🍕 Pizza" data-uk="🍕 Піца">🍕 Pizza</h1>
-  <img src="menu-img/pizza.jpg" alt="Pizza">
+<img src="menu-img/pizza.jpg" alt="Pizza">
 
-  <div class="menu-section">
+<div class="menu-section">
     <!-- Przykładowe pozycje -->
-    <div class="menu-item">
+<div class="menu-item">
+      <div class="name">Pizza Margherita</div>
+      <div class="ingredients">sos pomidorowy, ser, oregano</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">28zł / 43zł</div>
       <div class="name" data-pl="Pizza Margherita" data-en="Pizza Margherita" data-de="Pizza Margherita" data-uk="Піца Маргарита">Pizza Margherita</div>
       <div class="ingredients"
            data-pl="sos pomidorowy, ser, oregano"
@@ -70,9 +130,23 @@
            data-uk="томатний соус, сир, орегано">sos pomidorowy, ser, oregano</div>
       <div class="amount" data-pl="32 cm / 40 cm" data-en="32 cm / 40 cm" data-de="32 cm / 40 cm" data-uk="32 см / 40 см">32 cm / 40 cm</div>
       <div class="price">28 zł / 43 zł</div>
-    </div>
-
+</div>
+    
+ <div class="menu-section">  
     <div class="menu-item">
+      <div class="name">Pizza Pieczarkowa</div>
+      <div class="ingredients">sos pomodorowy, ser, pieczarki, oregano</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">31zł / 45zł</div>
+    </div>
+ </div>
+
+ <div class="menu-section">   
+<div class="menu-item">
+      <div class="name">Pizza Foccacia</div>
+      <div class=:ingredients">oliwa, sól morska,suszone pomidory</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">26zł / 36zł</div>
       <div class="name" data-pl="Pizza Pieczarkowa" data-en="Mushroom Pizza" data-de="Champignon‑Pizza" data-uk="Піца з грибами">Pizza Pieczarkowa</div>
       <div class="ingredients"
            data-pl="sos pomidorowy, ser, pieczarki, oregano"
@@ -81,20 +155,159 @@
            data-uk="томатний соус, сир, печериці, орегано">sos pomidorowy, ser, pieczarki, oregano</div>
       <div class="amount" data-pl="32 cm / 40 cm" data-en="32 cm / 40 cm" data-de="32 cm / 40 cm" data-uk="32 см / 40 см">32 cm / 40 cm</div>
       <div class="price">31 zł / 45 zł</div>
-    </div>
+</div>
+ </div>
 
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Cztery sery</div>
+      <div class="ingredients">sos pomidorowy, ser żółty, fettina, ser błękitny lazur, camembert, pomidor szuszony, oliwki</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">38zł / 55zł</div>
+    </div>
     <!-- Resztę pizz dodaj analogicznie – identyczne tłumaczenia atrybutów -->
-  </div>
+</div>
+    
 
   <img src="logo.jpg" alt="Logo" class="logo">
 
-  <script>
-    function chg(lang){
-      document.querySelectorAll('[data-pl]').forEach(el=>{
-        el.textContent = el.dataset[lang] || el.textContent;
-      });
-    }
-  </script>
-
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Brokułowa</div>
+      <div class="ingredients">sos pomidorowy, ser, brokuły, szynka,ser fettina</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">35zł / 52zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Salami</div>
+      <div class="ingredients">sos pomidorowy, ser,pieczarki, salami, oliwki</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">35zł / 52zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Swojska</div>
+      <div class="ingredients">sos pomidorowy, ser, pieczarki, kiełbasa, papryka, cebula</div> 
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">35zł / 52zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Szynak</div>
+      <div class="ingredients">sos pomidorowy, ser, pieczarki, szynka, papryka</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">35zł / 52zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Bolońska</div>
+      <div class="ingredients">sos pomidorowy, ser, papryka, pieczarki, mięso po bolońsku</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">35zł / 52zł</div>
+    </div>
+  </div>  
+  
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Wegetariańska</div>
+      <div class="ingredients">sos, ser, pieczarki, papryka, cebula, ogórek konserwowy, groszek, kukurydza</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">35zł / 52zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Bekon</div>
+      <div class="ingredients">sos, ser, pieczarki, boczek, papryka</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">35zł / 52zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Hot peperoni - Diavolo </div>
+      <div class="ingredients"> sos, ser, cebula, salami peperoni, papryka chili/ yalapenos</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">38zł / 55zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Carbonara </div>
+      <div class="ingredients">sos biały, ser, pieczarki, pomidor, boczek, cebula</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">38zł / 55zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Hawaii </div>
+      <div class="ingredients">sos, ser, pieczrki, papryka, szynka, ananas, brzoskwinia</div> 
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">40cm / 58zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Stary Rzeźnik </div>
+      <div clas="ingredients">sos, ser, kiełbasa, boczek, oliwki, czosnek, papryka</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">40zł / 58zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Farmerska </div>
+      <div class="ingredients">sos, ser, kurczak, kukurydza, papryka peperoni, cebula</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">40zł / 58zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Gyros </div>
+      <div class="ingredients">sos, ser, mięso gyrosowe, feta, papryka, cebula</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">40zł / 58zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Wiejska </div>
+      <div class="ingredients">sos, ser, pieczarki, papryka, cebula, ogórek korniszon, pomidor, mięso smażone</div>
+      <div class="amount">32cm / 40cm</div>
+      <div class="price">40zł / 58zł</div>
+    </div>
+  </div>
+    
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Pizza Calzone pieróg </div>
+      <div class="ingredients"> sos, ser, pieczrki, papryka, cebula, + dwa dodatki mięsne</div>
+      <div class="amount">32cm</div>
+      <div class="price">42zł</div>
+    </div>
+  </div>
+      
+  <img src="logo.jpg" alt="Logo" class="logo">
+    
+      
 </body>
 </html>
