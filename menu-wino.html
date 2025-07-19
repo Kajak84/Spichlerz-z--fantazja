@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <header>
+    <h1>Spichlerz z Fantazją</h1>
+   </header>
+  <title>Wino – Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e4d09b;
+      margin: 0;
+      padding: 0 20px 40px;
+      position: relative;
+      min-height: 100vh;
+    }
+    h1 {
+      text-align: center;
+      background-color: #070300;
+      color: white;
+      padding: 20px;
+      margin-top: 0;
+    }
+     img {
+      display: block;
+      max-width: 500px;
+      margin: 20px auto;
+      border-radius: 16px;   }
+    .menu-item {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 20px;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+      font-size: 1.1em;
+    }
+    .menu-item .name {
+      font-weight: bold;
+    }
+    .menu-section {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .button-bar {
+      display: flex;
+      gap: 10px;
+      margin: 20px;
+    }
+    .back-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #070300;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+    .logo {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 100px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="button-bar">
+    <a href="menu.html" class="back-button">⬅️ Powrót do kategorii</a>
+    <a href="index.html" class="back-button">🏠 Strona główna</a>
+  </div>
+
+  <h1>🍷 Wino</h1>
+  <img src="menu-img/wino.jpg" alt="Wino">
+
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Borgobruno</div>
+      <div class="amount">40 ml / butelka</div>
+      <div class="price">14 zł / 245 zł</div>
+    </div>
+
+    <div class="menu-item">
+      <div class="name">La Sasteria</div>
+      <div class="amount">40 ml / butelka</div>
+      <div class="price">13 zł / 227,50 zł</div>
+    </div>
+  </div>
+
+  <img src="logo.png" alt="Logo" class="logo">
+  
+</body>
+</html>

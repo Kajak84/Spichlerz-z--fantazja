@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  
+   <header>
+    <h1>Spichlerz z Fantazją</h1>
+   </header>
+  <style>
+
+    
+
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background-color: #e4d09b;
+      text-align: center;
+    }
+    h1 {
+      background-color: #050200;
+      color: white;
+      padding: 20px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+    .category {
+      text-decoration: none;
+      color: black;
+      transition: transform 0.2s ease;
+    }
+    .category:hover {
+      transform: scale(1.03);
+    }
+    .category img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .label {
+      margin-top: 10px;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    .back-button {
+    display: inline-block;
+    margin: 20px;
+     padding: 10px 20px;
+     background: #050200;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+         }
+    .button-bar {
+      display: flex;
+      gap: 10px;
+      margin: 20px;
+         }
+    .menu-image {
+     width: 300xp;      /* szerokość wszystkich obrazków menu */
+     height: 200xp;     /* wysokość - możesz ustawić tak samo lub auto */
+     object-fit: fill; /* dopasowanie obrazka, przycina jeśli trzeba */
+     border-radius: 500px;
+     display: block;
+     margin: 20px auto;
+        }
+    .logo {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 100px;
+      opacity: 0.8;
+    }
+
+  </style>
+</head>
+<body>
+
+    <div class="button-bar">
+    <a href="menu.html" class="back-button">⬅️ Powrót do kategorii</a>
+    <a href="index.html" class="back-button">🏠 Strona główna</a>
+  </div>
+
+
+  <h1>Nasze Menu – Wybierz kategorię</h1>
+
+  <div class="gallery">
+    <a href="menu-pizza.html" class="menu-image">
+      <img src="menu-img/pizza.jpg" alt="Pizza">
+      <div class="label">🍕 Pizza</div>
+    </a>
+
+    <a href="menu-glowne.html" class="menu-image">
+      <img src="menu-img/danie.jpg" alt="Dania główne">
+      <div class="label">🍽 Dania główne</div>
+    </a>
+
+    <a href="menu-piwo.html" class="menu-image">
+      <img src="menu-img/piwo.jpg" alt="Piwo">
+      <div class="label">🍺 Piwo</div>
+    </a>
+
+    <a href="menu-wino.html" class="menu-image">
+      <img src="menu-img/wino.jpg" alt="Wino">
+      <div class="label">🍷 Wino</div>
+    </a>
+
+    <a href="menu-napoje.html" class="menu-image">
+      <img src="menu-img/napoje.jpg" alt="Napoje">
+      <div class="label">🥤 Napoje</div>
+    </a>
+     <a href="menu-rum.html" class="menu-image">
+      <img src="menu-img/rum.jpg" alt="Rum">
+      <div class="label"> 🥃 Rum</div>
+    </a>
+
+  <a href="menu-whisky.html" class="menu-image">
+      <img src="menu-img/whisky.jpg" alt="Whisky">
+      <div class="label"> 🥃 Whisky</div>
+    </a>
+
+    <a href="menu-wodka.html" class="menu-image">
+      <img src="menu-img/wodka.jpg" alt="Wodka">
+      <div class="label"> 🥛 Wódka</div>
+    </a>
+
+     <a href="menu-przekaski.html" class="menu-image">
+      <img src="menu-img/przekaski.jpg" alt="Przekaski">
+      <div class="label"> 🍟 Przekąski</div>
+    </a>
+    
+  <a href="menu-dodatki.html" class="menu-image">
+      <img src="menu-img/dodatki.jpg" alt="Dodatki">
+      <div class="label"> 🧂 Dodatki</div>
+    </a>
+    
+  
+<img src="logo.jpg" alt="Logo" class="logo">
+</body>
+</html>

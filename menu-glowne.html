@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <header>
+    <h1>Spichlerz z Fantazją</h1>
+   </header>
+  <title>Danie Główne – Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e4d09b;
+      margin: 0;
+      padding: 0 20px 40px;
+    }
+    h1 {
+      text-align: center;
+      background-color: #030100;
+      color: white;
+      padding: 20px;
+      margin-top: 0;
+    }
+    img {
+      display: block;
+      max-width: 500px;
+      margin: 50px auto;
+      border-radius: 16px;
+    }
+    .menu-item {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 20px;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+      font-size: 1.1em;
+    }
+    .menu-item .name {
+      font-weight: bold;
+    }
+    .menu-section {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .button-bar {
+      display: flex;
+      gap: 10px;
+      margin: 20px;
+    }
+
+    .back-button {
+  display: inline-block;
+  margin: 20px;
+  padding: 10px 20px;
+  background: #0f0700;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+.logo {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 100px;
+      opacity: 0.8;
+    }
+
+  </style>
+</head>
+<body>
+
+    <div class="button-bar">
+    <a href="menu.html" class="back-button">⬅️ Powrót do kategorii</a>
+    <a href="index.html" class="back-button">🏠 Strona główna</a>
+  </div>
+
+
+  <h1> 🍲 Dania Główne</h1>
+  <img src="menu-img/danie.jpg" alt="Danie główne">
+
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Sandacz</div>
+      <div class="amount">filet smażony, porcaj 200/300 g w/w wagi</div>
+      <div class="price">100 g / 18 zł</div>
+    </div>
+
+    <div class="menu-item">
+      <div class="name">Kotlet ze schabu po warmińsku</div>
+      <div class="amount">z kurkami, * zestaw 400 g</div>
+      <div class="price">44 zł</div>
+    </div>
+
+    <div class="menu-item">
+      <div class="name">Devolaile z masłem </div>
+      <div class="amount">* zestaw 400 g </div>
+      <div class="price">42 zł</div>
+    </div>
+  </div>
+
+  <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Zrazy wołowe w sosie grzybowym</div>
+      <div class="amount">kluski, buraczki 400 g</div>
+      <div class="price">44 zł</div>
+    </div>
+
+
+    <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Polędwiczki wieprzowe z podgrzybkami</div>
+      <div class="amount">* zestaw 400 g</div>
+      <div class="price">42 zł</div>
+    </div>
+
+    <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Filet kurczaka grilowany</div>
+      <div class="amount"> * zestaw 400 g</div>
+      <div class="price">40 zł</div>
+    </div>
+
+    <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Placki ziemniaczane </div>
+      <div class="amount">z farszem po zbujecku 400 g</div>
+      <div class="price">40 zł</div>
+    </div>
+
+    <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Placki ziemniaczane</div>
+      <div class="amount">z jogurtem, 4 szt 250g</div>
+      <div class="price">36 zł</div>
+    </div>
+
+    <div class="menu-section">
+    <div class="menu-item">
+      <div class="name">Danie dla dzieci</div>
+      <div class="amount">filet drobiowy, frytki literki, marchewka, 280 g</div>
+      <div class="price">33 zł</div>
+    </div>
+
+     * w skład zestawu wchodzą frytki lub ziemniaki, zestaw surówek
+
+  <img src="logo.jpg" alt="Logo" class="logo">
+</body>
+</html>
