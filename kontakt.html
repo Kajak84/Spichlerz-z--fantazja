@@ -2,137 +2,113 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kontakt – Spichlerz z Fantazją</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #fefaf6;
-      color: #3d2b1f;
-      text-align: center;
-    }
-
-    header {
-      background-color: #050200;
-      color: white;
-      padding: 20px 0;
-    }
-
-    .logo img {
-      width: 180px;
-      margin-top: 20px;
-    }
-
-    .contact-info {
-      margin: 30px auto;
-      max-width: 600px;
-      font-size: 1.1em;
-      line-height: 1.8;
-    }
-
-    a {
-      color: #080400;
-      text-decoration: none;
-    }
-
-    iframe {
-      width: 90%;
-      max-width: 800px;
-      height: 450px;
-      border: none;
-      border-radius: 10px;
-      margin: 30px auto;
-      display: block;
-    }
-
-    footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #888;
-      padding-bottom: 20px;
-    }
-
-    .btn-back {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #080400;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-    }
-
-    .btn-back:hover {
-      background-color: #070300;
-    }
-
     .language-switcher {
-      position: fixed;
+      position: absolute;
       top: 10px;
       right: 10px;
-      z-index: 999;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 8px 12px;
-      border-radius: 10px;
+      z-index: 1000;
     }
     .language-switcher img {
       width: 32px;
-      margin: 0 5px;
+      margin-left: 8px;
       cursor: pointer;
-      opacity: 0.8;
-      transition: opacity 0.3s;
+      border-radius: 4px;
+      transition: transform 0.2s;
     }
     .language-switcher img:hover {
-      opacity: 1;
+      transform: scale(1.1);
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fef3e2;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #000;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    section {
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
     }
   </style>
 </head>
 <body>
-  
-  <!-- 🔄 Przełącznik językowy -->
+
   <div class="language-switcher">
-    <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
-    <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
-    <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
-    <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
+    <img src="flags/pl.svg" alt="PL" onclick="setLanguage('pl')">
+    <img src="flags/gb.svg" alt="EN" onclick="setLanguage('en')">
+    <img src="flags/de.svg" alt="DE" onclick="setLanguage('de')">
+    <img src="flags/ua.svg" alt="UA" onclick="setLanguage('ua')">
   </div>
 
   <header>
-    <h1 data-i18n="title">Spichlerz z Fantazją</h1>
-    <p data-i18n="subtitle">Kontakt</p>
+    <h1 data-i18n="contactTitle">Kontakt</h1>
+    <p data-i18n="contactSubtitle">Zapraszamy do kontaktu z nami</p>
   </header>
 
-  <div class="logo">
-    <img src="logo.jpg" alt="Kontakt logo">
-  </div>
+  <section>
+    <h2 data-i18n="visitUs">Odwiedź nas</h2>
+    <p data-i18n="address">ul. Portowa 6, 14-500 Braniewo</p>
 
-  <div class="contact-info">
-    <p><strong>📍 Adres:</strong> ul. Portowa 6, 14-500 Braniewo</p>
-    <p><strong> 📱Telefon:</strong> <a href="tel:+48509492090">509 492 090</a></p>
-    <p><strong>☎️ Telefon:</strong> <a href="tel:552432554">55 243 25 54 </a></p>
-    <p><strong>🌐 Facebook:</strong> <a href="https://www.facebook.com/SpichlerzZFantazja" target="_blank">facebook.com/SpichlerzZFantazja</a></p>
-    <p><strong>🕒 Godziny otwarcia:</strong><br>
-      Poniedziałek – Sobota: 11:00–22:30<br>
-      Niedziela: 11:00–22:30
-    </p>
-  </div>
+    <h2 data-i18n="writeUs">Napisz do nas</h2>
+    <p>E-mail: kontakt@spichlerz.pl</p>
+    <p data-i18n="phone">Telefon: 123 456 789</p>
+  </section>
 
-  <h2>📌 Znajdziesz nas tutaj:</h2>
+  <script>
+    const translations = {
+      pl: {
+        contactTitle: "Kontakt",
+        contactSubtitle: "Zapraszamy do kontaktu z nami",
+        visitUs: "Odwiedź nas",
+        address: "ul. Portowa 6, 14-500 Braniewo",
+        writeUs: "Napisz do nas",
+        phone: "Telefon: 123 456 789"
+      },
+      en: {
+        contactTitle: "Contact",
+        contactSubtitle: "Feel free to reach out to us",
+        visitUs: "Visit us",
+        address: "6 Portowa Street, 14-500 Braniewo",
+        writeUs: "Write to us",
+        phone: "Phone: +48 123 456 789"
+      },
+      de: {
+        contactTitle: "Kontakt",
+        contactSubtitle: "Kontaktieren Sie uns gerne",
+        visitUs: "Besuchen Sie uns",
+        address: "Portowa 6, 14-500 Braniewo",
+        writeUs: "Schreiben Sie uns",
+        phone: "Telefon: +48 123 456 789"
+      },
+      ua: {
+        contactTitle: "Контакт",
+        contactSubtitle: "Зв'яжіться з нами",
+        visitUs: "Відвідайте нас",
+        address: "вул. Портова 6, 14-500 Бранево",
+        writeUs: "Напишіть нам",
+        phone: "Телефон: +48 123 456 789"
+      }
+    };
 
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2323.5105272383016!2d19.819773575828417!3d54.38329699663478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e2ce1ee2ca9d57%3A0xcb7f4978ecbbd5be!2sRestauracja%20Spichlerz%20Z%20Fantazj%C4%85!5e0!3m2!1spl!2spl!4v1752757926377!5m2!1spl!2spl" 
-    allowfullscreen="" 
-    loading="lazy" 
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-
-  <a class="btn-back" href="index.html">← Powrót na stronę główną</a>
-
-  <footer>
-    &copy; 2025 Spichlerz z Fantazją – Braniewo
-  </footer>
-
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+    }
+  </script>
 </body>
 </html>
