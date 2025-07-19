@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kontakt – Spichlerz z Fantazją</title>
+  <title data-i18n="pageTitle">Kontakt – Spichlerz z Fantazją</title>
   <style>
     body {
       margin: 0;
@@ -62,36 +62,67 @@
       border: none;
       border-radius: 5px;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .btn-back:hover {
       background-color: #070300;
     }
+
+    /* Przełącznik językowy */
+    .language-switcher {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 8px 12px;
+      border-radius: 10px;
+      display: flex;
+      gap: 6px;
+    }
+    .language-switcher img {
+      width: 32px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    .language-switcher img:hover {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
 
+  <!-- Przełącznik językowy -->
+  <div class="language-switcher">
+    <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
+    <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
+    <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
+    <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
+  </div>
+
   <header>
-    <h1>Spichlerz z Fantazją</h1>
-    <p>Kontakt</p>
+    <h1 data-i18n="headerTitle">Spichlerz z Fantazją</h1>
+    <p data-i18n="contact">Kontakt</p>
   </header>
 
   <div class="logo">
-    <img src="logo.jpg" alt="Kontakt logo">
+    <img src="logo.jpg" alt="Kontakt logo" />
   </div>
 
   <div class="contact-info">
-    <p><strong>📍 Adres:</strong> ul. Portowa 6, 14-500 Braniewo</p>
-    <p><strong> 📱Telefon:</strong> <a href="tel:+48509492090">509 492 090</a></p>
-    <p><strong>☎️ Telefon:</strong> <a href="tel:552432554">55 243 25 54 </a></p>
-    <p><strong>🌐 Facebook:</strong> <a href="https://www.facebook.com/SpichlerzZFantazja" target="_blank">facebook.com/SpichlerzZFantazja</a></p>
-    <p><strong>🕒 Godziny otwarcia:</strong><br>
-      Poniedziałek – Sobota: 11:00–22:30<br>
-      Niedziela: 11:00–22:30
+    <p><strong>📍 <span data-i18n="addressLabel">Adres:</span></strong> ul. Portowa 6, 14-500 Braniewo</p>
+    <p><strong>📱 <span data-i18n="phoneMobileLabel">Telefon:</span></strong> <a href="tel:+48509492090">509 492 090</a></p>
+    <p><strong>☎️ <span data-i18n="phoneLabel">Telefon:</span></strong> <a href="tel:552432554">55 243 25 54</a></p>
+    <p><strong>🌐 <span data-i18n="facebookLabel">Facebook:</span></strong> <a href="https://www.facebook.com/SpichlerzZFantazja" target="_blank">facebook.com/SpichlerzZFantazja</a></p>
+    <p><strong>🕒 <span data-i18n="openingHoursLabel">Godziny otwarcia:</span></strong><br />
+      <span data-i18n="openingHoursWeekdays">Poniedziałek – Sobota: 11:00–22:30</span><br />
+      <span data-i18n="openingHoursSunday">Niedziela: 11:00–22:30</span>
     </p>
   </div>
 
-  <h2>📌 Znajdziesz nas tutaj:</h2>
+  <h2>📌 <span data-i18n="findUsHere">Znajdziesz nas tutaj:</span></h2>
 
   <iframe 
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2323.5105272383016!2d19.819773575828417!3d54.38329699663478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e2ce1ee2ca9d57%3A0xcb7f4978ecbbd5be!2sRestauracja%20Spichlerz%20Z%20Fantazj%C4%85!5e0!3m2!1spl!2spl!4v1752757926377!5m2!1spl!2spl" 
@@ -100,11 +131,80 @@
     referrerpolicy="no-referrer-when-downgrade">
   </iframe>
 
-  <a class="btn-back" href="index.html">← Powrót na stronę główną</a>
+  <a class="btn-back" href="index.html" data-i18n="backToHome">← Powrót na stronę główną</a>
 
   <footer>
     &copy; 2025 Spichlerz z Fantazją – Braniewo
   </footer>
 
+  <script src="i18n.js"></script>
+  <script>
+    // Dodaj tłumaczenia do i18n
+    Object.assign(translations.pl, {
+      pageTitle: "Kontakt – Spichlerz z Fantazją",
+      headerTitle: "Spichlerz z Fantazją",
+      contact: "Kontakt",
+      addressLabel: "Adres:",
+      phoneMobileLabel: "Telefon:",
+      phoneLabel: "Telefon:",
+      facebookLabel: "Facebook:",
+      openingHoursLabel: "Godziny otwarcia:",
+      openingHoursWeekdays: "Poniedziałek – Sobota: 11:00–22:30",
+      openingHoursSunday: "Niedziela: 11:00–22:30",
+      findUsHere: "Znajdziesz nas tutaj:",
+      backToHome: "← Powrót na stronę główną"
+    });
+
+    Object.assign(translations.en, {
+      pageTitle: "Contact – Spichlerz z Fantazją",
+      headerTitle: "Spichlerz z Fantazją",
+      contact: "Contact",
+      addressLabel: "Address:",
+      phoneMobileLabel: "Mobile phone:",
+      phoneLabel: "Phone:",
+      facebookLabel: "Facebook:",
+      openingHoursLabel: "Opening hours:",
+      openingHoursWeekdays: "Monday – Saturday: 11:00–22:30",
+      openingHoursSunday: "Sunday: 11:00–22:30",
+      findUsHere: "Find us here:",
+      backToHome: "← Back to home"
+    });
+
+    Object.assign(translations.de, {
+      pageTitle: "Kontakt – Spichlerz z Fantazją",
+      headerTitle: "Spichlerz z Fantazją",
+      contact: "Kontakt",
+      addressLabel: "Adresse:",
+      phoneMobileLabel: "Mobiltelefon:",
+      phoneLabel: "Telefon:",
+      facebookLabel: "Facebook:",
+      openingHoursLabel: "Öffnungszeiten:",
+      openingHoursWeekdays: "Montag – Samstag: 11:00–22:30",
+      openingHoursSunday: "Sonntag: 11:00–22:30",
+      findUsHere: "Sie finden uns hier:",
+      backToHome: "← Zurück zur Startseite"
+    });
+
+    Object.assign(translations.ua, {
+      pageTitle: "Контакт – Spichlerz z Fantazją",
+      headerTitle: "Spichlerz z Fantazją",
+      contact: "Контакт",
+      addressLabel: "Адреса:",
+      phoneMobileLabel: "Мобільний телефон:",
+      phoneLabel: "Телефон:",
+      facebookLabel: "Фейсбук:",
+      openingHoursLabel: "Години роботи:",
+      openingHoursWeekdays: "Понеділок – Субота: 11:00–22:30",
+      openingHoursSunday: "Неділя: 11:00–22:30",
+      findUsHere: "Знайдете нас тут:",
+      backToHome: "← Повернутися на головну"
+    });
+
+    // Załaduj zapisany język lub domyślnie polski
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'pl';
+      setLanguage(savedLang);
+    });
+  </script>
 </body>
 </html>
