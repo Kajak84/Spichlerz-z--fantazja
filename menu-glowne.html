@@ -10,6 +10,7 @@
       margin: 0;
       padding: 0 20px 40px;
       text-align: center;
+      color: #3d2b1f;
     }
     h1 {
       background-color: #030100;
@@ -51,6 +52,11 @@
       text-decoration: none;
       border-radius: 8px;
       cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+    .back-button:hover {
+      background: #291a07;
     }
     .logo {
       position: fixed;
@@ -68,27 +74,37 @@
       padding: 8px 12px;
       border-radius: 10px;
       display: flex;
-      gap: 6px;
+      gap: 8px;
+      font-weight: bold;
+      user-select: none;
+      font-family: Arial, sans-serif;
+      font-size: 0.9em;
+      align-items: center;
     }
     .language-switcher img {
-      width: 32px;
+      width: 28px;
+      height: 20px;
       cursor: pointer;
-      opacity: 0.8;
-      transition: opacity 0.3s;
+      border-radius: 4px;
+      border: 2px solid transparent;
+      transition: border-color 0.3s;
     }
     .language-switcher img:hover {
-      opacity: 1;
+      border-color: #aaa;
+    }
+    .language-switcher img.active {
+      border-color: #3d2b1f;
     }
   </style>
 </head>
 <body>
 
-  <!-- Przełącznik języków -->
-  <div class="language-switcher">
-    <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
-    <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
-    <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
-    <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
+  <!-- Przełącznik języka z flagami -->
+  <div class="language-switcher" role="navigation" aria-label="Language switcher">
+    <img src="https://flagcdn.com/w40/pl.png" alt="Polski" id="lang-pl" onclick="setLanguage('pl')" />
+    <img src="https://flagcdn.com/w40/gb.png" alt="English" id="lang-en" onclick="setLanguage('en')" />
+    <img src="https://flagcdn.com/w40/de.png" alt="Deutsch" id="lang-de" onclick="setLanguage('de')" />
+    <img src="https://flagcdn.com/w40/ua.png" alt="Українська" id="lang-ua" onclick="setLanguage('ua')" />
   </div>
 
   <div class="button-bar">
@@ -188,54 +204,54 @@
         note: "* w skład zestawu wchodzą frytki lub ziemniaki, zestaw surówek"
       },
       en: {
-        pageTitle: "Main Dishes – Menu",
+        pageTitle: "Main Courses – Menu",
         backToCategories: "⬅️ Back to categories",
         home: "🏠 Home",
-        mainDishes: "Main Dishes",
+        mainDishes: "Main Courses",
         sandacz_name: "Pike-perch",
-        sandacz_desc: "fried fillet, portion approx. 200/300 g",
-        kotlet_name: "Pork schnitzel Warmian style",
-        kotlet_desc: "with chanterelle mushrooms, * set 400 g",
+        sandacz_desc: "fried fillet, portion 200/300 g as specified",
+        kotlet_name: "Pork schnitzel Warmia style",
+        kotlet_desc: "with chanterelles, * set 400 g",
         devolaile_name: "Devolaile with butter",
         devolaile_desc: "* set 400 g",
         zrazy_name: "Beef roulades in mushroom sauce",
-        zrazy_desc: "dumplings, beetroot 400 g",
-        poledwiczki_name: "Pork tenderloin with boletus mushrooms",
+        zrazy_desc: "dumplings, beets 400 g",
+        poledwiczki_name: "Pork tenderloin with bay boletes",
         poledwiczki_desc: "* set 400 g",
         filet_name: "Grilled chicken fillet",
         filet_desc: "* set 400 g",
         placki_z_ziemniakow_name: "Potato pancakes",
-        placki_z_ziemniakow_desc: "with stuffing Zbujecko style 400 g",
+        placki_z_ziemniakow_desc: "with stuffing po zbujecku 400 g",
         placki_z_jogurtem_name: "Potato pancakes",
-        placki_z_jogurtem_desc: "with yogurt, 4 pcs 250g",
-        danie_dla_dzieci_name: "Kids dish",
+        placki_z_jogurtem_desc: "with yogurt, 4 pcs 250 g",
+        danie_dla_dzieci_name: "Kids' meal",
         danie_dla_dzieci_desc: "chicken fillet, letter fries, carrots, 280 g",
-        note: "* set includes fries or potatoes, salad set"
+        note: "* the set includes fries or potatoes, salad set"
       },
       de: {
-        pageTitle: "Hauptgerichte – Menü",
+        pageTitle: "Hauptgerichte – Speisekarte",
         backToCategories: "⬅️ Zurück zu den Kategorien",
         home: "🏠 Startseite",
         mainDishes: "Hauptgerichte",
         sandacz_name: "Zander",
-        sandacz_desc: "gebratene Filets, Portion ca. 200/300 g",
-        kotlet_name: "Schweineschnitzel auf Warmia-Art",
+        sandacz_desc: "gebratene Filet, Portion 200/300 g wie angegeben",
+        kotlet_name: "Schweinekotelett auf Warmia-Art",
         kotlet_desc: "mit Pfifferlingen, * Set 400 g",
         devolaile_name: "Devolaile mit Butter",
         devolaile_desc: "* Set 400 g",
         zrazy_name: "Rinderrouladen in Pilzsauce",
         zrazy_desc: "Knödel, Rote Beete 400 g",
-        poledwiczki_name: "Schweinefilet mit Maronenröhrlingen",
+        poledwiczki_name: "Schweinefilet mit Steinpilzen",
         poledwiczki_desc: "* Set 400 g",
         filet_name: "Gegrillte Hähnchenbrust",
         filet_desc: "* Set 400 g",
         placki_z_ziemniakow_name: "Kartoffelpuffer",
-        placki_z_ziemniakow_desc: "mit Füllung nach Zbujecko-Art 400 g",
+        placki_z_ziemniakow_desc: "mit Füllung po zbujecku 400 g",
         placki_z_jogurtem_name: "Kartoffelpuffer",
-        placki_z_jogurtem_desc: "mit Joghurt, 4 Stk. 250g",
-        danie_dla_dzieci_name: "Kindergericht",
-        danie_dla_dzieci_desc: "Hähnchenfilet, Buchstabenpommes, Karotten, 280 g",
-        note: "* das Set beinhaltet Pommes oder Kartoffeln und Salatset"
+        placki_z_jogurtem_desc: "mit Joghurt, 4 Stk 250 g",
+        danie_dla_dzieci_name: "Kindermenü",
+        danie_dla_dzieci_desc: "Hähnchenfilet, Buchstaben Pommes, Karotten, 280 g",
+        note: "* das Set enthält Pommes oder Kartoffeln, Salatset"
       },
       ua: {
         pageTitle: "Основні страви – Меню",
@@ -243,47 +259,56 @@
         home: "🏠 Головна",
         mainDishes: "Основні страви",
         sandacz_name: "Судак",
-        sandacz_desc: "смажений філе, порція 200/300 г приблизно",
-        kotlet_name: "Свинина по-вармінськи",
+        sandacz_desc: "смажений філе, порція 200/300 г",
+        kotlet_name: "Шніцель зі свинини по вармінськи",
         kotlet_desc: "з лисичками, * набір 400 г",
-        devolaile_name: "Деволяй з маслом",
+        devolaile_name: "Деволай з маслом",
         devolaile_desc: "* набір 400 г",
-        zrazy_name: "Яловичі зрази з грибним соусом",
+        zrazy_name: "Яловичі зрази в грибному соусі",
         zrazy_desc: "кльоцки, бурячки 400 г",
-        poledwiczki_name: "Свинина з підберезниками",
+        poledwiczki_name: "Свинина з підгрибками",
         poledwiczki_desc: "* набір 400 г",
         filet_name: "Куряче філе на грилі",
         filet_desc: "* набір 400 г",
-        placki_z_ziemniakow_name: "Картопляні млинці",
-        placki_z_ziemniakow_desc: "з начинкою по-збуженськи 400 г",
-        placki_z_jogurtem_name: "Картопляні млинці",
-        placki_z_jogurtem_desc: "з йогуртом, 4 шт 250г",
-        danie_dla_dzieci_name: "Страва для дітей",
-        danie_dla_dzieci_desc: "куряче філе, картопля-фрі букви, морква, 280 г",
-        note: "* набір включає картоплю фрі або варену та набір салатів"
+        placki_z_ziemniakow_name: "Картопляні деруни",
+        placki_z_ziemniakow_desc: "з начинкою по-збуєцьки 400 г",
+        placki_z_jogurtem_name: "Картопляні деруни",
+        placki_z_jogurtem_desc: "з йогуртом, 4 шт 250 г",
+        danie_dla_dzieci_name: "Дитяча страва",
+        danie_dla_dzieci_desc: "куряче філе, картопля фрі літерами, морква, 280 г",
+        note: "* у набір входять картопля фрі або картопля, набір салатів"
       }
     };
 
-    function translatePage(lang) {
+    function setLanguage(lang) {
+      // Zapisz do localStorage
+      localStorage.setItem('lang', lang);
+
+      // Zamień teksty
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
         if (translations[lang] && translations[lang][key]) {
           el.textContent = translations[lang][key];
         }
       });
-      document.title = translations[lang]?.pageTitle || "Menu";
-      document.documentElement.lang = lang;
-      localStorage.setItem("lang", lang);
+      // Tytuł strony
+      if (translations[lang] && translations[lang].pageTitle) {
+        document.title = translations[lang].pageTitle;
+      }
+
+      // Aktywny język - obramowanie flagi
+      document.querySelectorAll(".language-switcher img").forEach(img => {
+        img.classList.remove("active");
+      });
+      const activeFlag = document.getElementById("lang-" + lang);
+      if(activeFlag) activeFlag.classList.add("active");
     }
 
-    function setLanguage(lang) {
-      translatePage(lang);
-    }
-
-    window.onload = () => {
-      const savedLang = localStorage.getItem("lang") || "pl";
-      translatePage(savedLang);
-    };
+    // Przy ładowaniu strony ustaw język z localStorage lub domyślnie pl
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedLang = localStorage.getItem('lang') || 'pl';
+      setLanguage(savedLang);
+    });
   </script>
 </body>
 </html>
