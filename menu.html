@@ -76,37 +76,40 @@
       width: 100px;
       opacity: 0.8;
     }
-    .language-switcher {
+    /* 🔽 Styl przełącznika języka */
+    .language-switer {
       position: fixed;
-      top: 10px;
-      right: 10px;
+      top: 10xp;
+      right: 10xp;
       z-index: 999;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 8px 12px;
-      border-radius: 10px;
-      display: flex;
-      gap: 6px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 6xp 10xp;
+      border-radius: 0 2xp 6xp rgba(0,0,0,0,0.2);
     }
+
     .language-switcher img {
-      width: 32px;
+      wigth: 28xp;
+      margin: 0 5xp;
       cursor: pointer;
       opacity: 0.8;
       transition: opacity 0.3s;
     }
+
     .language-switcher img:hover {
       opacity: 1;
     }
-  </style>
+     </style>
 </head>
 <body>
 
-  <!-- Przełącznik językowy -->
+  <!-- 🔁 Przełącznik języka -->
   <div class="language-switcher">
     <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
     <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
     <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
     <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
   </div>
+  
 
   <div class="button-bar">
     <a href="menu.html" class="back-button" data-i18n="backToCategories">⬅️ Powrót do kategorii</a>
@@ -236,11 +239,23 @@
       extras: "🧂 Додатки"
     });
 
-    // Po załadowaniu strony ustaw język z localStorage lub domyślnie pl
+     // 🔄 Ustawienie języka po załadowaniu strony
     document.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('lang') || 'pl';
-      setLanguage(savedLang);
+      const lang = localStorage.getItem('lang') || 'pl';
+      setLanguage(lang);
     });
+
+    // 🌍 Zmiana języka
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      localStorage.setItem('lang', lang); // zapisz wybór
+    }
   </script>
 </body>
 </html>
