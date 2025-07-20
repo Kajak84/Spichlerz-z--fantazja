@@ -1,19 +1,18 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-  <header>
-    <h1>Spichlerz z Fantazją</h1>
-   </header>
-<title>Pizza – Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<title> data-i18n="pageTitle">Pizza – Menu</title>
 <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #e4d09b;
       margin: 0;
       padding: 0 20px 40px;
+      text-align: center;
+      color: #3d2b1f;
     }
     h1 {
-      text-align: center;
       background-color: #030100;
       color: white;
       padding: 20px;
@@ -25,60 +24,48 @@
       margin: 50px auto;
       border-radius: 16px;
     }
-    body { font-family: Arial,sans-serif; background:#e4d09b; margin:0; padding:0 20px 40px }
-    h1 { text-align:center; background:#030100; color:#fff; padding:20px; margin-top:0 }
-    img { display:block; max-width:500px; margin:50px auto; border-radius:16px }
-    .menu-section { max-width:900px; margin:20px auto }
-    .menu-item {
+  .menu-item {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
       gap: 20px;
       padding: 10px 0;
       border-bottom: 1px solid #ddd;
       font-size: 1.1em;
-      display:grid;
-      grid-template-columns:2fr 1fr 1fr 1fr;
-      gap:15px; padding:10px 0; border-bottom:1px solid #ddd; font-size:1.1em;
-}
+      max-width: 900px;
+      margin: 0 auto 20px;
+      text-align: left;
+    }
     .menu-item .name {
       font-weight: bold;
-    .name { font-weight:bold }
-    .ingredients { font-style:italic; color:#555 }
-    .button-bar { display:flex; justify-content:center; gap:10px; margin:20px 0 }
-    .back-button {
-      padding:10px 20px; background:#0f0700; color:#fff; text-decoration:none; border-radius:8px;
-}
-    .menu-section {
-      max-width: 900px;
-      margin: 0 auto;
-    .language-switcher {
-      position:absolute; top:10px; right:20px;
-}
+    }
     .button-bar {
       display: flex;
       gap: 10px;
-      margin: 20px;
-    
-
+      justify-content: center;
+      margin: 20px 0;
+    }
     .back-button {
-  display: inline-block;
-  margin: 20px;
-  padding: 10px 20px;
-  background: #0f0700;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-}
- .logo {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #0f0700;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+    .back-button:hover {
+      background: #291a07;
+    }
+    .logo {
       position: fixed;
       bottom: 10px;
       right: 10px;
       width: 100px;
-      opacity: 0.8; 
- }
-
-      /* 🔽 Styl przełącznika języka */
-    .language-switcher {
+      opacity: 0.8;
+    }
+  .language-switcher {
       position: fixed;
       top: 10px;
       right: 10px;
@@ -86,9 +73,8 @@
       background: rgba(255, 255, 255, 0.9);
       padding: 6px 10px;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
-
     .language-switcher img {
       width: 28px;
       margin: 0 5px;
@@ -96,14 +82,13 @@
       opacity: 0.8;
       transition: opacity 0.3s;
     }
-
     .language-switcher img:hover {
       opacity: 1;
     }
     </style>
 </head>
 <body>
-
+    
   <!-- 🔁 Przełącznik języka -->
   <div class="language-switcher">
     <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
@@ -113,21 +98,9 @@
   </div>
    
 
-  <div class="button-bar">
-    <a class="back-button"
-       data-pl="⬅️ Powrót do kategorii"
-       data-en="⬅️ Back to categories"
-       data-de="⬅️ Zurück zur Kategorie"
-       data-uk="⬅️ Повернутися до категорій">
-      ⬅️ Powrót do kategorii
-    </a>
-    <a class="back-button"
-       data-pl="🏠 Strona główna"
-       data-en="🏠 Home"
-       data-de="🏠 Startseite"
-       data-uk="🏠 Головна сторінка">
-      🏠 Strona główna
-    </a>
+   <div class="button-bar">
+    <a href="menu.html" class="back-button" data-i18n="backToCategories">⬅️ Powrót do kategorii</a>
+    <a href="index.html" class="back-button" data-i18n="home">🏠 Strona główna</a>
   </div>
 
   
