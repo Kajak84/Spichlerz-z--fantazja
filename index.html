@@ -1,44 +1,142 @@
-<!DOCTYPE html>
-<html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spichlerz z Fantazją</title>
   <title data-i18n="title">Spichlerz z Fantazją</title>
-  <link rel="stylesheet" href="style.css" />
+<style>
+body { font-family: Arial, sans-serif; margin: 0; background-color: #e4d09b; }
+header { background-color: #000; color: white; padding: 20px; text-align: center; }
+@@ -23,42 +23,116 @@
+.social-links a { margin: 0 10px; }
+.social-links img { vertical-align: middle; opacity: 0.8; transition: opacity .3s; width: 32px; }
+.social-links img:hover { opacity: 1; }
+    .language-switcher {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+    .language-switcher img {
+      width: 32px;
+      margin: 0 5px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    .language-switcher img:hover {
+      opacity: 1;
+    }
+</style>
 </head>
 <body>
+
+  <!-- 🔄 Przełącznik językowy -->
   <div class="language-switcher">
     <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
     <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
     <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
     <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
   </div>
-  <header>
+
+<header>
+    <h1>Spichlerz z Fantazją</h1>
+    <p>Tradycja, smak i atmosfera w samym sercu Braniewa</p>
     <h1 data-i18n="title">Spichlerz z Fantazją</h1>
     <p data-i18n="subtitle">Tradycja, smak i atmosfera w samym sercu Braniewa</p>
-  </header>
-  <section class="hero">
-    <img src="img/wnetrze.jpg" alt="Wnętrze restauracji" />
-    <a href="menu.html"><img src="img/menu.jpg" alt="Menu" /></a>
-    <a href="kontakt.html"><img src="img/kontakt.jpg" alt="Kontakt" /></a>
+</header>
+
+<section class="hero">
+<img src="img/wnetrze.jpg" alt="Wnętrze restauracji" />
+<a href="menu.html"><img src="img/menu.jpg" alt="Menu" /></a>
+<a href="kontakt.html"><img src="img/kontakt.jpg" alt="Kontakt" /></a>
+    <img src="img/wydarzenia.jpg" alt="Wydarzenia" />
     <a href="wydarzenia.html"><img src="img/wydarzenia.jpg" alt="Wydarzenia" /></a>
-  </section>
-  <section class="about">
+</section>
+
+<section class="about">
+    <h2>O nas</h2>
+    <p>Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością... </p>
     <h2 data-i18n="aboutTitle">O nas</h2>
     <p data-i18n="aboutText">Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...</p>
   </section>
+
   <section id="qr">
     <h2 data-i18n="scan">📲 Zeskanuj, aby zobaczyć menu</h2>
     <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichlerz-z--fantazja%2Fmenu.html" alt="Kod QR do menu" width="250" />
-  </section>
-  <img src="logo.jpg" alt="Logo restauracji" class="logo">
+</section>
+
+ 
+<section style="text-align:center; padding:40px; background:#fff;">
+  <h2>📲 Zeskanuj, aby zobaczyć menu</h2>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichlerz-z--fantazja%2Fmenu.html" alt="Kod QR do menu" width="250" />
+</section>
+  <img src="logo.jpg" alt="Logo restauracji Spichlerz z Fantazją" class="logo">
+
+<img src="logo.jpg" alt="Logo" class="logo">
+  
+   <footer>
   <footer>
-    <div class="social-links">
+<div class="social-links">
+      <a href="https://www.facebook.com/fantazjabraniewo" target="_blank" rel="noopener"><img src="assets/icons/facebook.svg" alt="Facebook"></a>
+      <a href="https://www.instagram.com/explore/locations/1247060145409077/restauracja-spichlerz-z-fantazja/" target="_blank" rel="noopener"><img src="assets/icons/instagram.svg" alt="Instagram"></a>
       <a href="https://www.facebook.com/fantazjabraniewo" target="_blank" rel="noopener" aria-label="Facebook"><img src="assets/icons/facebook.svg" alt="Facebook"></a>
       <a href="https://www.instagram.com/explore/locations/1247060145409077/restauracja-spichlerz-z-fantazja/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/icons/instagram.svg" alt="Instagram"></a>
-    </div>
+</div>
+    <p>© 2025 Spichlerz z Fantazją – ul. Portowa 6, Braniewo</p>
     <p data-i18n="footer">© 2025 Spichlerz z Fantazją – ul. Portowa 6, Braniewo</p>
-  </footer>
-  <script src="js/translation.js"></script>
+</footer>
+
+   
+  <!-- 🔧 Skrypt tłumaczeń -->
+  <script>
+    const translations = {
+      pl: {
+        title: "Spichlerz z Fantazją",
+        subtitle: "Tradycja, smak i atmosfera w samym sercu Braniewa",
+        aboutTitle: "O nas",
+        aboutText: "Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...",
+        scan: "📲 Zeskanuj, aby zobaczyć menu",
+        footer: "© 2025 Spichlerz z Fantazją – ul. Portowa 6, Braniewo"
+      },
+      en: {
+        title: "Granary with Imagination",
+        subtitle: "Tradition, flavor and atmosphere in the heart of Braniewo",
+        aboutTitle: "About us",
+        aboutText: "“Granary with Imagination” is a unique place combining history with modernity...",
+        scan: "📲 Scan to view the menu",
+        footer: "© 2025 Granary with Imagination – Portowa 6, Braniewo"
+      },
+      de: {
+        title: "Speicher mit Fantasie",
+        subtitle: "Tradition, Geschmack und Atmosphäre im Herzen von Braniewo",
+        aboutTitle: "Über uns",
+        aboutText: "Das Restaurant „Speicher mit Fantasie“ ist ein besonderer Ort, der Geschichte mit Moderne verbindet...",
+        scan: "📲 Scannen, um das Menü zu sehen",
+        footer: "© 2025 Speicher mit Fantasie – Portowa 6, Braniewo"
+      },
+      ua: {
+        title: "Комора з фантазією",
+        subtitle: "Традиції, смак та атмосфера в самому серці Бранево",
+        aboutTitle: "Про нас",
+        aboutText: "Ресторан «Комора з фантазією» — це унікальне місце, де поєднується історія з сучасністю...",
+        scan: "📲 Скануйте, щоб переглянути меню",
+        footer: "© 2025 Комора з фантазією – вул. Портова 6, Бранево"
+      }
+    };
+
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+    }
+  </script>
+
 </body>
 </html>
