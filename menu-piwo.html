@@ -167,6 +167,220 @@
 
  <img src="logo.jpg" alt="Logo" class="logo">
 
- 
+
+  <script>
+  // 🔄 Ustawienie języka po załadowaniu strony
+  document.addEventListener('DOMContentLoaded', () => {
+    const lang = localStorage.getItem('lang') || 'pl';
+    setLanguage(lang);
+  });
+function setLanguage(lang) {
+  localStorage.setItem('lang', lang);
+
+  // Przetłumacz teksty statyczne
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = translations[lang]?.[key] || translations['pl'][key];
+  });
+
+  // Przetłumacz menu
+  const items = document.querySelectorAll('.menu-item');
+  items.forEach((item, index) => {
+    const nameEl = item.querySelector('.name');
+    const ingredientsEl = item.querySelector('.ingredients');
+    if (menuTranslations[lang] && menuTranslations[lang][index]) {
+      nameEl.textContent = menuTranslations[lang][index].name;
+      ingredientsEl.textContent = menuTranslations[lang][index].ingredients;
+    }
+  });
+}
+
+    <script>
+  // 🔄 Ustawienie języka po załadowaniu strony
+  document.addEventListener('DOMContentLoaded', () => {
+    const lang = localStorage.getItem('lang') || 'pl';
+    setLanguage(lang);
+  });
+function setLanguage(lang) {
+  localStorage.setItem('lang', lang);
+
+  // Przetłumacz teksty statyczne
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = translations[lang]?.[key] || translations['pl'][key];
+  });
+
+  // Przetłumacz menu
+  const items = document.querySelectorAll('.menu-item');
+  items.forEach((item, index) => {
+    const nameEl = item.querySelector('.name');
+    const ingredientsEl = item.querySelector('.ingredients');
+    if (menuTranslations[lang] && menuTranslations[lang][index]) {
+      nameEl.textContent = menuTranslations[lang][index].name;
+      ingredientsEl.textContent = menuTranslations[lang][index].ingredients;
+    }
+  });
+}
+    
+ const menuTranslations = {
+   pl:[
+   {
+  "warka_name": "Warka beczkowe",
+  "warka_desc": "400ml / 300ml",
+  "warka_price": "12zł / 9zł",
+
+  "specjal_name": "Specjal beczkowe",
+  "specjal_desc": "400ml / 300ml",
+  "specjal_price": "12zł / 9zł",
+
+  "heineken_name": "Heineken, Heineken 0%",
+  "heineken_desc": "500ml",
+  "heineken_price": "14zł",
+
+  "desperados_name": "Desperados (6 wariantów smaków)",
+  "desperados_desc": "400ml",
+  "desperados_price": "13zł",
+
+  "zywiec_mix_name": "Żywiec APA, IPA, Białe, Białe 0%",
+  "zywiec_mix_desc": "500ml",
+  "zywiec_mix_price": "13zł",
+
+  "zywiec_flavored_name": "Żywiec 0%: Mięta, Cytryna, Lipa & Pigwa, Bez & Jabłko",
+  "zywiec_flavored_desc": "500ml",
+  "zywiec_flavored_price": "12zł",
+
+  "braniewo_name": "Braniewo export butelka",
+  "braniewo_desc": "500ml",
+  "braniewo_price": "12zł"
+}
+
+     ],
+     en:[
+   {
+  "warka_name": "Warka draft",
+  "warka_desc": "400ml / 300ml",
+  "warka_price": "12 PLN / 9 PLN",
+
+  "specjal_name": "Specjal draft",
+  "specjal_desc": "400ml / 300ml",
+  "specjal_price": "12 PLN / 9 PLN",
+
+  "heineken_name": "Heineken, Heineken 0%",
+  "heineken_desc": "500ml",
+  "heineken_price": "14 PLN",
+
+  "desperados_name": "Desperados (6 flavor variants)",
+  "desperados_desc": "400ml",
+  "desperados_price": "13 PLN",
+
+  "zywiec_mix_name": "Żywiec APA, IPA, Wheat, Wheat 0%",
+  "zywiec_mix_desc": "500ml",
+  "zywiec_mix_price": "13 PLN",
+
+  "zywiec_flavored_name": "Żywiec 0%: Mint, Lemon, Linden & Quince, Elderberry & Apple",
+  "zywiec_flavored_desc": "500ml",
+  "zywiec_flavored_price": "12 PLN",
+
+  "braniewo_name": "Braniewo export (bottle)",
+  "braniewo_desc": "500ml",
+  "braniewo_price": "12 PLN"
+}
+],
+de:[
+  {
+  "warka_name": "Warka vom Fass",
+  "warka_desc": "400ml / 300ml",
+  "warka_price": "12 PLN / 9 PLN",
+
+  "specjal_name": "Specjal vom Fass",
+  "specjal_desc": "400ml / 300ml",
+  "specjal_price": "12 PLN / 9 PLN",
+
+  "heineken_name": "Heineken, Heineken 0%",
+  "heineken_desc": "500ml",
+  "heineken_price": "14 PLN",
+
+  "desperados_name": "Desperados (6 Geschmacksrichtungen)",
+  "desperados_desc": "400ml",
+  "desperados_price": "13 PLN",
+
+  "zywiec_mix_name": "Żywiec APA, IPA, Weizen, Weizen 0%",
+  "zywiec_mix_desc": "500ml",
+  "zywiec_mix_price": "13 PLN",
+
+  "zywiec_flavored_name": "Żywiec 0%: Minze, Zitrone, Linde & Quitte, Holunder & Apfel",
+  "zywiec_flavored_desc": "500ml",
+  "zywiec_flavored_price": "12 PLN",
+
+  "braniewo_name": "Braniewo Export (Flasche)",
+  "braniewo_desc": "500ml",
+  "braniewo_price": "12 PLN"
+}
+],
+   ua:[
+     {
+  "warka_name": "Warka розливне",
+  "warka_desc": "400мл / 300мл",
+  "warka_price": "12 зл / 9 зл",
+
+  "specjal_name": "Specjal розливне",
+  "specjal_desc": "400мл / 300мл",
+  "specjal_price": "12 зл / 9 зл",
+
+  "heineken_name": "Heineken, Heineken 0%",
+  "heineken_desc": "500мл",
+  "heineken_price": "14 зл",
+
+  "desperados_name": "Desperados (6 смакових варіантів)",
+  "desperados_desc": "400мл",
+  "desperados_price": "13 зл",
+
+  "zywiec_mix_name": "Żywiec APA, IPA, Пшеничне, Пшеничне 0%",
+  "zywiec_mix_desc": "500мл",
+  "zywiec_mix_price": "13 зл",
+
+  "zywiec_flavored_name": "Żywiec 0%: М’ята, Лимон, Липа та Айва, Бузина та Яблуко",
+  "zywiec_flavored_desc": "500мл",
+  "zywiec_flavored_price": "12 зл",
+
+  "braniewo_name": "Braniewo експорт (пляшка)",
+  "braniewo_desc": "500мл",
+  "braniewo_price": "12 зл"
+}
+],
+ };
+
+  const translations = {
+    pl: {
+      Pizza: 'Pizza',
+      backToCategories: '⬅️ Powrót do kategorii',
+      home: '🏠 Strona główna',
+       pizza_margherita_name: 'Pizza Margherita',
+    pizza_margherita_ingredients: 'sos pomidorowy, ser, oregano',
+    },
+    en: {
+      Pizza: 'Pizza',
+      backToCategories: '⬅️ Back to categories',
+      home: '🏠 Home',
+       pizza_margherita_name: 'Margherita Pizza',
+    pizza_margherita_ingredients: 'tomato sauce, cheese, oregano',
+    },
+    de: {
+      Pizza: 'Pizza',
+      backToCategories: '⬅️ Zurück zu den Kategorien',
+      home: '🏠 Startseite',
+      pizza_margherita_name: 'Pizza Margherita',
+    pizza_margherita_ingredients: 'Tomatensauce, Käse, Oregano',
+    },
+    ua: {
+      Pizza: 'Піца',
+      backToCategories: '⬅️ Повернутися до категорій',
+      home: '🏠 Головна',
+      pizza_margherita_name: 'Піца Маргарита',
+    pizza_margherita_ingredients: 'томатний соус, сир, орегано',
+    },
+  }; 
+   
+
 </body>
 </html>
