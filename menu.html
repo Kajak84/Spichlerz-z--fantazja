@@ -6,69 +6,64 @@
   <title data-i18n="menuCategoriesTitle">Nasze Menu – Wybierz kategorię</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       background-color: #e4d09b;
       text-align: center;
     }
+
     h1 {
       background-color: #050200;
       color: white;
       padding: 20px;
     }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       padding: 30px;
     }
-    .category {
+
+    .menu-image {
       text-decoration: none;
       color: black;
+      cursor: pointer;
       transition: transform 0.2s ease;
     }
-    .category:hover {
+
+    .menu-image:hover {
       transform: scale(1.03);
     }
-    .category img {
+
+    .menu-image img {
       width: 100%;
       border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+
     .label {
       margin-top: 10px;
       font-weight: bold;
       font-size: 1.1em;
     }
-    .back-button {
-      display: inline-block;
-      margin: 20px;
-      padding: 10px 20px;
-      background: #050200;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-    }
+
     .button-bar {
       display: flex;
       gap: 10px;
       justify-content: center;
       margin: 20px;
     }
-    .menu-image {
-      border-radius: 16px;
-      display: block;
-      cursor: pointer;
+
+    .back-button {
+      padding: 10px 20px;
+      background: #050200;
+      color: white;
       text-decoration: none;
-      color: black;
+      border-radius: 8px;
     }
-    .menu-image img {
-      width: 100%;
-      height: auto;
-      border-radius: 16px;
-      object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+
     .logo {
       position: fixed;
       bottom: 10px;
@@ -76,20 +71,22 @@
       width: 100px;
       opacity: 0.8;
     }
-    /* 🔽 Styl przełącznika języka */
-    .language-switer {
+
+    /* 🔽 Styl przełącznika języka – poprawiony */
+    .language-switcher {
       position: fixed;
-      top: 10xp;
-      right: 10xp;
+      top: 10px;
+      right: 10px;
       z-index: 999;
       background: rgba(255, 255, 255, 0.9);
-      padding: 6xp 10xp;
-      border-radius: 0 2xp 6xp rgba(0,0,0,0,0.2);
+      padding: 6px 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
 
     .language-switcher img {
-      wigth: 28xp;
-      margin: 0 5xp;
+      width: 28px;
+      margin: 0 5px;
       cursor: pointer;
       opacity: 0.8;
       transition: opacity 0.3s;
@@ -98,7 +95,7 @@
     .language-switcher img:hover {
       opacity: 1;
     }
-     </style>
+  </style>
 </head>
 <body>
 
@@ -109,7 +106,6 @@
     <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
     <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
   </div>
-  
 
   <div class="button-bar">
     <a href="menu.html" class="back-button" data-i18n="backToCategories">⬅️ Powrót do kategorii</a>
@@ -123,47 +119,38 @@
       <img src="menu-img/pizza.jpg" alt="Pizza" />
       <div class="label" data-i18n="pizza">🍕 Pizza</div>
     </a>
-
     <a href="menu-glowne.html" class="menu-image">
       <img src="menu-img/danie.jpg" alt="Dania główne" />
       <div class="label" data-i18n="mainDishes">🍽 Dania główne</div>
     </a>
-
     <a href="menu-piwo.html" class="menu-image">
       <img src="menu-img/piwo.jpg" alt="Piwo" />
       <div class="label" data-i18n="beer">🍺 Piwo</div>
     </a>
-
     <a href="menu-wino.html" class="menu-image">
       <img src="menu-img/wino.jpg" alt="Wino" />
       <div class="label" data-i18n="wine">🍷 Wino</div>
     </a>
-
     <a href="menu-napoje.html" class="menu-image">
       <img src="menu-img/napoje.jpg" alt="Napoje" />
       <div class="label" data-i18n="drinks">🥤 Napoje</div>
     </a>
-
     <a href="menu-rum.html" class="menu-image">
       <img src="menu-img/rum.jpg" alt="Rum" />
       <div class="label" data-i18n="rum">🥃 Rum</div>
     </a>
-
     <a href="menu-whisky.html" class="menu-image">
       <img src="menu-img/whisky.jpg" alt="Whisky" />
       <div class="label" data-i18n="whisky">🥃 Whisky</div>
     </a>
-
     <a href="menu-wodka.html" class="menu-image">
       <img src="menu-img/wodka.jpg" alt="Wódka" />
       <div class="label" data-i18n="vodka">🥛 Wódka</div>
     </a>
-
     <a href="menu-przekaski.html" class="menu-image">
       <img src="menu-img/przekaski.jpg" alt="Przekąski" />
       <div class="label" data-i18n="snacks">🍟 Przekąski</div>
     </a>
-
     <a href="menu-dodatki.html" class="menu-image">
       <img src="menu-img/dodatki.jpg" alt="Dodatki" />
       <div class="label" data-i18n="extras">🧂 Dodatki</div>
@@ -172,80 +159,76 @@
 
   <img src="logo.jpg" alt="Logo" class="logo" />
 
-  <script src="i18n.js"></script>
+  <!-- 🔧 Skrypt tłumaczeń -->
   <script>
-    // Dodaj tłumaczenia specyficzne dla tej strony
-    Object.assign(translations.pl, {
-      menuCategoriesTitle: "Nasze Menu – Wybierz kategorię",
-      backToCategories: "⬅️ Powrót do kategorii",
-      home: "🏠 Strona główna",
-      pizza: "🍕 Pizza",
-      mainDishes: "🍽 Dania główne",
-      beer: "🍺 Piwo",
-      wine: "🍷 Wino",
-      drinks: "🥤 Napoje",
-      rum: "🥃 Rum",
-      whisky: "🥃 Whisky",
-      vodka: "🥛 Wódka",
-      snacks: "🍟 Przekąski",
-      extras: "🧂 Dodatki"
-    });
+    const translations = {
+      pl: {
+        menuCategoriesTitle: "Nasze Menu – Wybierz kategorię",
+        backToCategories: "⬅️ Powrót do kategorii",
+        home: "🏠 Strona główna",
+        pizza: "🍕 Pizza",
+        mainDishes: "🍽 Dania główne",
+        beer: "🍺 Piwo",
+        wine: "🍷 Wino",
+        drinks: "🥤 Napoje",
+        rum: "🥃 Rum",
+        whisky: "🥃 Whisky",
+        vodka: "🥛 Wódka",
+        snacks: "🍟 Przekąski",
+        extras: "🧂 Dodatki"
+      },
+      en: {
+        menuCategoriesTitle: "Our Menu – Choose a category",
+        backToCategories: "⬅️ Back to categories",
+        home: "🏠 Home",
+        pizza: "🍕 Pizza",
+        mainDishes: "🍽 Main dishes",
+        beer: "🍺 Beer",
+        wine: "🍷 Wine",
+        drinks: "🥤 Drinks",
+        rum: "🥃 Rum",
+        whisky: "🥃 Whisky",
+        vodka: "🥛 Vodka",
+        snacks: "🍟 Snacks",
+        extras: "🧂 Extras"
+      },
+      de: {
+        menuCategoriesTitle: "Unser Menü – Wähle eine Kategorie",
+        backToCategories: "⬅️ Zurück zu den Kategorien",
+        home: "🏠 Startseite",
+        pizza: "🍕 Pizza",
+        mainDishes: "🍽 Hauptgerichte",
+        beer: "🍺 Bier",
+        wine: "🍷 Wein",
+        drinks: "🥤 Getränke",
+        rum: "🥃 Rum",
+        whisky: "🥃 Whisky",
+        vodka: "🥛 Wodka",
+        snacks: "🍟 Snacks",
+        extras: "🧂 Beilagen"
+      },
+      ua: {
+        menuCategoriesTitle: "Наше меню – Оберіть категорію",
+        backToCategories: "⬅️ Повернутися до категорій",
+        home: "🏠 Головна",
+        pizza: "🍕 Піца",
+        mainDishes: "🍽 Основні страви",
+        beer: "🍺 Пиво",
+        wine: "🍷 Вино",
+        drinks: "🥤 Напої",
+        rum: "🥃 Ром",
+        whisky: "🥃 Віскі",
+        vodka: "🥛 Горілка",
+        snacks: "🍟 Закуски",
+        extras: "🧂 Додатки"
+      }
+    };
 
-    Object.assign(translations.en, {
-      menuCategoriesTitle: "Our Menu – Choose a category",
-      backToCategories: "⬅️ Back to categories",
-      home: "🏠 Home",
-      pizza: "🍕 Pizza",
-      mainDishes: "🍽 Main dishes",
-      beer: "🍺 Beer",
-      wine: "🍷 Wine",
-      drinks: "🥤 Drinks",
-      rum: "🥃 Rum",
-      whisky: "🥃 Whisky",
-      vodka: "🥛 Vodka",
-      snacks: "🍟 Snacks",
-      extras: "🧂 Extras"
-    });
-
-    Object.assign(translations.de, {
-      menuCategoriesTitle: "Unser Menü – Wähle eine Kategorie",
-      backToCategories: "⬅️ Zurück zu den Kategorien",
-      home: "🏠 Startseite",
-      pizza: "🍕 Pizza",
-      mainDishes: "🍽 Hauptgerichte",
-      beer: "🍺 Bier",
-      wine: "🍷 Wein",
-      drinks: "🥤 Getränke",
-      rum: "🥃 Rum",
-      whisky: "🥃 Whisky",
-      vodka: "🥛 Wodka",
-      snacks: "🍟 Snacks",
-      extras: "🧂 Beilagen"
-    });
-
-    Object.assign(translations.ua, {
-      menuCategoriesTitle: "Наше меню – Оберіть категорію",
-      backToCategories: "⬅️ Повернутися до категорій",
-      home: "🏠 Головна",
-      pizza: "🍕 Піца",
-      mainDishes: "🍽 Основні страви",
-      beer: "🍺 Пиво",
-      wine: "🍷 Вино",
-      drinks: "🥤 Напої",
-      rum: "🥃 Ром",
-      whisky: "🥃 Віскі",
-      vodka: "🥛 Горілка",
-      snacks: "🍟 Закуски",
-      extras: "🧂 Додатки"
-    });
-
-     // 🔄 Ustawienie języka po załadowaniu strony
     document.addEventListener('DOMContentLoaded', () => {
       const lang = localStorage.getItem('lang') || 'pl';
       setLanguage(lang);
     });
 
-    // 🌍 Zmiana języka
     function setLanguage(lang) {
       const elements = document.querySelectorAll('[data-i18n]');
       elements.forEach(el => {
@@ -254,7 +237,7 @@
           el.textContent = translations[lang][key];
         }
       });
-      localStorage.setItem('lang', lang); // zapisz wybór
+      localStorage.setItem('lang', lang);
     }
   </script>
 </body>
