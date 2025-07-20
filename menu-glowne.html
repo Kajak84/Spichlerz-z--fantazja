@@ -2,6 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title data-i18n="pageTitle">Danie Główne – Menu</title>
   <style>
     body {
@@ -71,40 +72,30 @@
       right: 10px;
       z-index: 999;
       background: rgba(255, 255, 255, 0.9);
-      padding: 8px 12px;
-      border-radius: 10px;
-      display: flex;
-      gap: 8px;
-      font-weight: bold;
-      user-select: none;
-      font-family: Arial, sans-serif;
-      font-size: 0.9em;
-      align-items: center;
+      padding: 6px 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
     .language-switcher img {
       width: 28px;
-      height: 20px;
+      margin: 0 5px;
       cursor: pointer;
-      border-radius: 4px;
-      border: 2px solid transparent;
-      transition: border-color 0.3s;
+      opacity: 0.8;
+      transition: opacity 0.3s;
     }
     .language-switcher img:hover {
-      border-color: #aaa;
-    }
-    .language-switcher img.active {
-      border-color: #3d2b1f;
+      opacity: 1;
     }
   </style>
 </head>
 <body>
 
-  <!-- Przełącznik języka z flagami -->
-  <div class="language-switcher" role="navigation" aria-label="Language switcher">
-    <img src="https://flagcdn.com/w40/pl.png" alt="Polski" id="lang-pl" onclick="setLanguage('pl')" />
-    <img src="https://flagcdn.com/w40/gb.png" alt="English" id="lang-en" onclick="setLanguage('en')" />
-    <img src="https://flagcdn.com/w40/de.png" alt="Deutsch" id="lang-de" onclick="setLanguage('de')" />
-    <img src="https://flagcdn.com/w40/ua.png" alt="Українська" id="lang-ua" onclick="setLanguage('ua')" />
+  <!-- 🔁 Przełącznik języka -->
+  <div class="language-switcher">
+    <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
+    <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
+    <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
+    <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
   </div>
 
   <div class="button-bar">
@@ -116,66 +107,66 @@
 
   <img src="menu-img/danie.jpg" alt="Danie główne" />
 
+  <!-- Menu items -->
   <div class="menu-item">
-    <div class="name" data-i18n="sandacz_name">Sandacz</div>
-    <div class="amount" data-i18n="sandacz_desc">filet smażony, porcaj 200/300 g w/w wagi</div>
+    <div class="name" data-i18n="sandacz_name"></div>
+    <div class="amount" data-i18n="sandacz_desc"></div>
     <div class="price">100 g / 18 zł</div>
   </div>
 
   <div class="menu-item">
-    <div class="name" data-i18n="kotlet_name">Kotlet ze schabu po warmińsku</div>
-    <div class="amount" data-i18n="kotlet_desc">z kurkami, * zestaw 400 g</div>
+    <div class="name" data-i18n="kotlet_name"></div>
+    <div class="amount" data-i18n="kotlet_desc"></div>
     <div class="price">44 zł</div>
   </div>
 
   <div class="menu-item">
-    <div class="name" data-i18n="devolaile_name">Devolaile z masłem</div>
-    <div class="amount" data-i18n="devolaile_desc">* zestaw 400 g</div>
+    <div class="name" data-i18n="devolaile_name"></div>
+    <div class="amount" data-i18n="devolaile_desc"></div>
     <div class="price">42 zł</div>
   </div>
 
   <div class="menu-item">
-    <div class="name" data-i18n="zrazy_name">Zrazy wołowe w sosie grzybowym</div>
-    <div class="amount" data-i18n="zrazy_desc">kluski, buraczki 400 g</div>
+    <div class="name" data-i18n="zrazy_name"></div>
+    <div class="amount" data-i18n="zrazy_desc"></div>
     <div class="price">44 zł</div>
   </div>
 
   <div class="menu-item">
-    <div class="name" data-i18n="poledwiczki_name">Polędwiczki wieprzowe z podgrzybkami</div>
-    <div class="amount" data-i18n="poledwiczki_desc">* zestaw 400 g</div>
+    <div class="name" data-i18n="poledwiczki_name"></div>
+    <div class="amount" data-i18n="poledwiczki_desc"></div>
     <div class="price">42 zł</div>
   </div>
 
   <div class="menu-item">
-    <div class="name" data-i18n="filet_name">Filet kurczaka grillowany</div>
-    <div class="amount" data-i18n="filet_desc">* zestaw 400 g</div>
+    <div class="name" data-i18n="filet_name"></div>
+    <div class="amount" data-i18n="filet_desc"></div>
     <div class="price">40 zł</div>
   </div>
 
   <div class="menu-item">
-    <div class="name" data-i18n="placki_z_ziemniakow_name">Placki ziemniaczane</div>
-    <div class="amount" data-i18n="placki_z_ziemniakow_desc">z farszem po zbujecku 400 g</div>
+    <div class="name" data-i18n="placki_z_ziemniakow_name"></div>
+    <div class="amount" data-i18n="placki_z_ziemniakow_desc"></div>
     <div class="price">40 zł</div>
   </div>
 
   <div class="menu-item">
-    <div class="name" data-i18n="placki_z_jogurtem_name">Placki ziemniaczane</div>
-    <div class="amount" data-i18n="placki_z_jogurtem_desc">z jogurtem, 4 szt 250g</div>
+    <div class="name" data-i18n="placki_z_jogurtem_name"></div>
+    <div class="amount" data-i18n="placki_z_jogurtem_desc"></div>
     <div class="price">36 zł</div>
   </div>
 
   <div class="menu-item">
-    <div class="name" data-i18n="danie_dla_dzieci_name">Danie dla dzieci</div>
-    <div class="amount" data-i18n="danie_dla_dzieci_desc">filet drobiowy, frytki literki, marchewka, 280 g</div>
+    <div class="name" data-i18n="danie_dla_dzieci_name"></div>
+    <div class="amount" data-i18n="danie_dla_dzieci_desc"></div>
     <div class="price">33 zł</div>
   </div>
 
-  <p style="max-width: 900px; margin: 0 auto; text-align: left; font-style: italic; font-size: 0.9em;" data-i18n="note">
-    * w skład zestawu wchodzą frytki lub ziemniaki, zestaw surówek
-  </p>
+  <p style="max-width: 900px; margin: 0 auto; text-align: left; font-style: italic; font-size: 0.9em;" data-i18n="note"></p>
 
   <img src="logo.jpg" alt="Logo" class="logo" />
 
+  <!-- 🔧 Skrypt tłumaczeń -->
   <script>
     const translations = {
       pl: {
@@ -184,7 +175,7 @@
         home: "🏠 Strona główna",
         mainDishes: "Dania Główne",
         sandacz_name: "Sandacz",
-        sandacz_desc: "filet smażony, porcaj 200/300 g w/w wagi",
+        sandacz_desc: "filet smażony, porcja 200/300 g w/w wagi",
         kotlet_name: "Kotlet ze schabu po warmińsku",
         kotlet_desc: "z kurkami, * zestaw 400 g",
         devolaile_name: "Devolaile z masłem",
@@ -198,60 +189,60 @@
         placki_z_ziemniakow_name: "Placki ziemniaczane",
         placki_z_ziemniakow_desc: "z farszem po zbujecku 400 g",
         placki_z_jogurtem_name: "Placki ziemniaczane",
-        placki_z_jogurtem_desc: "z jogurtem, 4 szt 250g",
+        placki_z_jogurtem_desc: "z jogurtem, 4 szt 250 g",
         danie_dla_dzieci_name: "Danie dla dzieci",
         danie_dla_dzieci_desc: "filet drobiowy, frytki literki, marchewka, 280 g",
         note: "* w skład zestawu wchodzą frytki lub ziemniaki, zestaw surówek"
       },
       en: {
-        pageTitle: "Main Courses – Menu",
+        pageTitle: "Main Dishes – Menu",
         backToCategories: "⬅️ Back to categories",
         home: "🏠 Home",
-        mainDishes: "Main Courses",
-        sandacz_name: "Pike-perch",
-        sandacz_desc: "fried fillet, portion 200/300 g as specified",
-        kotlet_name: "Pork schnitzel Warmia style",
+        mainDishes: "Main Dishes",
+        sandacz_name: "Zander",
+        sandacz_desc: "fried fillet, portion 200/300 g",
+        kotlet_name: "Warmian-style pork chop",
         kotlet_desc: "with chanterelles, * set 400 g",
         devolaile_name: "Devolaile with butter",
         devolaile_desc: "* set 400 g",
-        zrazy_name: "Beef roulades in mushroom sauce",
-        zrazy_desc: "dumplings, beets 400 g",
-        poledwiczki_name: "Pork tenderloin with bay boletes",
+        zrazy_name: "Beef roulades with mushroom sauce",
+        zrazy_desc: "dumplings, beetroot 400 g",
+        poledwiczki_name: "Pork tenderloin with mushrooms",
         poledwiczki_desc: "* set 400 g",
         filet_name: "Grilled chicken fillet",
         filet_desc: "* set 400 g",
         placki_z_ziemniakow_name: "Potato pancakes",
-        placki_z_ziemniakow_desc: "with stuffing po zbujecku 400 g",
+        placki_z_ziemniakow_desc: "with mountaineer's filling 400 g",
         placki_z_jogurtem_name: "Potato pancakes",
         placki_z_jogurtem_desc: "with yogurt, 4 pcs 250 g",
-        danie_dla_dzieci_name: "Kids' meal",
-        danie_dla_dzieci_desc: "chicken fillet, letter fries, carrots, 280 g",
-        note: "* the set includes fries or potatoes, salad set"
+        danie_dla_dzieci_name: "Children’s meal",
+        danie_dla_dzieci_desc: "chicken fillet, alphabet fries, carrot, 280 g",
+        note: "* set includes fries or potatoes, salad set"
       },
       de: {
-        pageTitle: "Hauptgerichte – Speisekarte",
+        pageTitle: "Hauptgerichte – Menü",
         backToCategories: "⬅️ Zurück zu den Kategorien",
         home: "🏠 Startseite",
         mainDishes: "Hauptgerichte",
         sandacz_name: "Zander",
-        sandacz_desc: "gebratene Filet, Portion 200/300 g wie angegeben",
-        kotlet_name: "Schweinekotelett auf Warmia-Art",
+        sandacz_desc: "gebratenes Filet, Portion 200/300 g",
+        kotlet_name: "Schweinekotelett nach Ermländischer Art",
         kotlet_desc: "mit Pfifferlingen, * Set 400 g",
         devolaile_name: "Devolaile mit Butter",
         devolaile_desc: "* Set 400 g",
         zrazy_name: "Rinderrouladen in Pilzsauce",
-        zrazy_desc: "Knödel, Rote Beete 400 g",
-        poledwiczki_name: "Schweinefilet mit Steinpilzen",
+        zrazy_desc: "Klöße, Rote Bete 400 g",
+        poledwiczki_name: "Schweinefilet mit Pilzen",
         poledwiczki_desc: "* Set 400 g",
-        filet_name: "Gegrillte Hähnchenbrust",
+        filet_name: "Gegrilltes Hähnchenfilet",
         filet_desc: "* Set 400 g",
         placki_z_ziemniakow_name: "Kartoffelpuffer",
-        placki_z_ziemniakow_desc: "mit Füllung po zbujecku 400 g",
+        placki_z_ziemniakow_desc: "mit Räuberfüllung 400 g",
         placki_z_jogurtem_name: "Kartoffelpuffer",
-        placki_z_jogurtem_desc: "mit Joghurt, 4 Stk 250 g",
-        danie_dla_dzieci_name: "Kindermenü",
-        danie_dla_dzieci_desc: "Hähnchenfilet, Buchstaben Pommes, Karotten, 280 g",
-        note: "* das Set enthält Pommes oder Kartoffeln, Salatset"
+        placki_z_jogurtem_desc: "mit Joghurt, 4 Stk. 250 g",
+        danie_dla_dzieci_name: "Kindergericht",
+        danie_dla_dzieci_desc: "Hähnchenfilet, Buchstaben-Pommes, Karotten, 280 g",
+        note: "* das Set enthält Pommes oder Kartoffeln, Salatgarnitur"
       },
       ua: {
         pageTitle: "Основні страви – Меню",
@@ -259,56 +250,42 @@
         home: "🏠 Головна",
         mainDishes: "Основні страви",
         sandacz_name: "Судак",
-        sandacz_desc: "смажений філе, порція 200/300 г",
-        kotlet_name: "Шніцель зі свинини по вармінськи",
+        sandacz_desc: "смажене філе, порція 200/300 г",
+        kotlet_name: "Свинячий шніцель по-вармінськи",
         kotlet_desc: "з лисичками, * набір 400 г",
-        devolaile_name: "Деволай з маслом",
+        devolaile_name: "Деволяй з маслом",
         devolaile_desc: "* набір 400 г",
-        zrazy_name: "Яловичі зрази в грибному соусі",
-        zrazy_desc: "кльоцки, бурячки 400 г",
-        poledwiczki_name: "Свинина з підгрибками",
+        zrazy_name: "Яловичі зрази з грибним соусом",
+        zrazy_desc: "кльоцки, буряк 400 г",
+        poledwiczki_name: "Свинина з підберезниками",
         poledwiczki_desc: "* набір 400 г",
         filet_name: "Куряче філе на грилі",
         filet_desc: "* набір 400 г",
         placki_z_ziemniakow_name: "Картопляні деруни",
-        placki_z_ziemniakow_desc: "з начинкою по-збуєцьки 400 г",
+        placki_z_ziemniakow_desc: "з начинкою по-збійськи 400 г",
         placki_z_jogurtem_name: "Картопляні деруни",
         placki_z_jogurtem_desc: "з йогуртом, 4 шт 250 г",
         danie_dla_dzieci_name: "Дитяча страва",
-        danie_dla_dzieci_desc: "куряче філе, картопля фрі літерами, морква, 280 г",
-        note: "* у набір входять картопля фрі або картопля, набір салатів"
+        danie_dla_dzieci_desc: "куряче філе, фрі-букви, морква, 280 г",
+        note: "* набір включає картоплю фрі або варену, салат"
       }
     };
 
-    function setLanguage(lang) {
-      // Zapisz do localStorage
-      localStorage.setItem('lang', lang);
+    document.addEventListener("DOMContentLoaded", () => {
+      const lang = localStorage.getItem("lang") || "pl";
+      setLanguage(lang);
+    });
 
-      // Zamień teksty
-      document.querySelectorAll("[data-i18n]").forEach(el => {
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll("[data-i18n]");
+      elements.forEach((el) => {
         const key = el.getAttribute("data-i18n");
-        if (translations[lang] && translations[lang][key]) {
+        if (translations[lang][key]) {
           el.textContent = translations[lang][key];
         }
       });
-      // Tytuł strony
-      if (translations[lang] && translations[lang].pageTitle) {
-        document.title = translations[lang].pageTitle;
-      }
-
-      // Aktywny język - obramowanie flagi
-      document.querySelectorAll(".language-switcher img").forEach(img => {
-        img.classList.remove("active");
-      });
-      const activeFlag = document.getElementById("lang-" + lang);
-      if(activeFlag) activeFlag.classList.add("active");
+      localStorage.setItem("lang", lang);
     }
-
-    // Przy ładowaniu strony ustaw język z localStorage lub domyślnie pl
-    document.addEventListener("DOMContentLoaded", () => {
-      const savedLang = localStorage.getItem('lang') || 'pl';
-      setLanguage(savedLang);
-    });
   </script>
 </body>
 </html>
