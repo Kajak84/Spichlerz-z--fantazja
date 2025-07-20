@@ -1,386 +1,127 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Pizza – Menu</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #e4d09b;
-    margin: 0;
-    padding: 0 20px 40px;
-    text-align: center;
-    color: #3d2b1f;
-  }
-  h1 {
-    background-color: #030100;
-    color: white;
-    padding: 20px;
-    margin-top: 0;
-  }
-  img {
-    display: block;
-    max-width: 500px;
-    margin: 50px auto;
-    border-radius: 16px;
-  }
-  .menu-item {
-  display: grid;
-  grid-template-columns: 4fr 2fr 2fr 2fr;
-  gap: 20px;
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-  font-size: 1.1em;
-  max-width: 900px;
-  margin: 0 auto 20px;
-  text-align: left;
-}
-
-.size-price {
-  font-weight: bold;
-  color: #5a3e1b;
-}
-
-.name {
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-.ingredients {
-  font-style: italic;
-  color: #7a6a52;
-}
-
-  }
-  .button-bar {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin: 20px 0;
-  }
-  .back-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #0f0700;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.3s;
-  }
-  .back-button:hover {
-    background: #291a07;
-  }
-  .logo {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    width: 100px;
-    opacity: 0.8;
-  }
-  .language-switcher {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 999;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 6px 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  }
-  .language-switcher img {
-    width: 28px;
-    margin: 0 5px;
-    cursor: pointer;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-  }
-  .language-switcher img:hover {
-    opacity: 1;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu 🍺</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 40px auto; }
+    h1 { font-size: 2em; }
+    .menu-item { margin: 16px 0; }
+    .name { font-weight: bold; }
+    .ingredients { color: #555; }
+    .lang-switcher button {
+      margin: 4px;
+      padding: 6px 12px;
+      border: none;
+      background: #eee;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .lang-switcher button:hover {
+      background: #ddd;
+    }
+  </style>
 </head>
 <body>
 
-<!-- 🔁 Przełącznik języka -->
-<div class="language-switcher">
-  <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
-  <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
-  <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
-  <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
-</div>
+  <div class="lang-switcher">
+    <button onclick="setLanguage('pl')">🇵🇱 PL</button>
+    <button onclick="setLanguage('en')">🇬🇧 EN</button>
+    <button onclick="setLanguage('de')">🇩🇪 DE</button>
+  </div>
 
-<div class="button-bar">
-  <a href="menu.html" class="back-button" data-i18n="backToCategories">⬅️ Powrót do kategorii</a>
-  <a href="index.html" class="back-button" data-i18n="home">🏠 Strona główna</a>
-</div>
+  <h1>🍺 <span data-i18n="Piwo">Piwo</span></h1>
 
-
-  <h1> 🍺 < span data-i18n="Piwo">Piwo</span></h1>
-  
-  <img src="menu-img/piwo.jpg" alt="Piwo">
-
- <div class="menu-item">
+  <div id="menu">
+    <div class="menu-item">
       <div class="name">Warka beczkowe</div>
-      <div class="amount">400ml / 300ml</div>
-      <div class="price">12zł /9zł</div>
+      <div class="ingredients">400ml / 300ml – 12zł / 9zł</div>
     </div>
-
-  <div class="menu-item">
+    <div class="menu-item">
       <div class="name">Specjal beczkowe</div>
-      <div class="amount">400ml / 300ml</div>
-      <div class="price">12zł /9zł</div>
+      <div class="ingredients">400ml / 300ml – 12zł / 9zł</div>
     </div>
-
-  <div class="menu-item">
+    <div class="menu-item">
       <div class="name">Heineken, Heineken 0%</div>
-      <div class="amount">500ml</div>
-      <div class="price">14zł</div>
+      <div class="ingredients">500ml – 14zł</div>
     </div>
-
-  <div class="menu-item">
-      <div class="name">Desperados ( 6 wariantów smaków)</div>
-      <div class="amount">400ml</div>
-      <div class="price">13zł</div>
+    <div class="menu-item">
+      <div class="name">Żywiec</div>
+      <div class="ingredients">500ml – 14zł</div>
     </div>
-
-  <div class="menu-item">
-      <div class="name">Żywiec APA, IPA, BIAŁE, BIAŁE 0%</div>
-      <div class="amount">500ml</div>
-      <div class="price">13zł</div>
+    <div class="menu-item">
+      <div class="name">Złoty Bażant</div>
+      <div class="ingredients">500ml – 14zł</div>
     </div>
-
-  <div class="menu-item">
-      <div class="name">Żywiec 0%, Mięta, Lemon, Lipa&Pigwa, Bez&Jabłko</div>
-      <div class="amount">500ml</div>
-      <div class="price">12zł</div>
+    <div class="menu-item">
+      <div class="name">Desperados</div>
+      <div class="ingredients">400ml – 16zł</div>
     </div>
-
-  <div class="menu-item">
-      <div class="name">Braniewo export butelka </div>
-      <div class="amount">500ml</div>
-      <div class="price">12zł</div>
+    <div class="menu-item">
+      <div class="name">Somersby (jabłkowe, arbuz, mango)</div>
+      <div class="ingredients">400ml – 14zł</div>
     </div>
   </div>
 
- <img src="logo.jpg" alt="Logo" class="logo">
-
-
   <script>
-  // 🔄 Ustawienie języka po załadowaniu strony
-  document.addEventListener('DOMContentLoaded', () => {
-    const lang = localStorage.getItem('lang') || 'pl';
-    setLanguage(lang);
-  });
-function setLanguage(lang) {
-  localStorage.setItem('lang', lang);
+    const menuTranslations = {
+      pl: [
+        { name: "Warka beczkowe", ingredients: "400ml / 300ml – 12zł / 9zł" },
+        { name: "Specjal beczkowe", ingredients: "400ml / 300ml – 12zł / 9zł" },
+        { name: "Heineken, Heineken 0%", ingredients: "500ml – 14zł" },
+        { name: "Żywiec", ingredients: "500ml – 14zł" },
+        { name: "Złoty Bażant", ingredients: "500ml – 14zł" },
+        { name: "Desperados", ingredients: "400ml – 16zł" },
+        { name: "Somersby (jabłkowe, arbuz, mango)", ingredients: "400ml – 14zł" }
+      ],
+      en: [
+        { name: "Warka draft", ingredients: "400ml / 300ml – 12 PLN / 9 PLN" },
+        { name: "Specjal draft", ingredients: "400ml / 300ml – 12 PLN / 9 PLN" },
+        { name: "Heineken, Heineken 0%", ingredients: "500ml – 14 PLN" },
+        { name: "Żywiec", ingredients: "500ml – 14 PLN" },
+        { name: "Golden Pheasant", ingredients: "500ml – 14 PLN" },
+        { name: "Desperados", ingredients: "400ml – 16 PLN" },
+        { name: "Somersby (apple, watermelon, mango)", ingredients: "400ml – 14 PLN" }
+      ],
+      de: [
+        { name: "Warka vom Fass", ingredients: "400ml / 300ml – 12 PLN / 9 PLN" },
+        { name: "Specjal vom Fass", ingredients: "400ml / 300ml – 12 PLN / 9 PLN" },
+        { name: "Heineken, Heineken 0%", ingredients: "500ml – 14 PLN" },
+        { name: "Żywiec", ingredients: "500ml – 14 PLN" },
+        { name: "Zlatý Bažant", ingredients: "500ml – 14 PLN" },
+        { name: "Desperados", ingredients: "400ml – 16 PLN" },
+        { name: "Somersby (Apfel, Wassermelone, Mango)", ingredients: "400ml – 14 PLN" }
+      ]
+    };
 
-  // Przetłumacz teksty statyczne
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    el.textContent = translations[lang]?.[key] || translations['pl'][key];
-  });
+    const titleTranslations = {
+      pl: "Piwo",
+      en: "Beer",
+      de: "Bier"
+    };
 
-  // Przetłumacz menu
-  const items = document.querySelectorAll('.menu-item');
-  items.forEach((item, index) => {
-    const nameEl = item.querySelector('.name');
-    const ingredientsEl = item.querySelector('.ingredients');
-    if (menuTranslations[lang] && menuTranslations[lang][index]) {
-      nameEl.textContent = menuTranslations[lang][index].name;
-      ingredientsEl.textContent = menuTranslations[lang][index].ingredients;
+    function setLanguage(lang) {
+      localStorage.setItem('lang', lang);
+
+      const titleElement = document.querySelector('[data-i18n="Piwo"]');
+      titleElement.textContent = titleTranslations[lang] || "Piwo";
+
+      const items = document.querySelectorAll('.menu-item');
+      const translations = menuTranslations[lang];
+
+      items.forEach((item, index) => {
+        if (translations[index]) {
+          item.querySelector('.name').textContent = translations[index].name;
+          item.querySelector('.ingredients').textContent = translations[index].ingredients;
+        }
+      });
     }
-  });
-}
 
-    <script>
-  // 🔄 Ustawienie języka po załadowaniu strony
-  document.addEventListener('DOMContentLoaded', () => {
-    const lang = localStorage.getItem('lang') || 'pl';
-    setLanguage(lang);
-  });
-function setLanguage(lang) {
-  localStorage.setItem('lang', lang);
-
-  // Przetłumacz teksty statyczne
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    el.textContent = translations[lang]?.[key] || translations['pl'][key];
-  });
-
-  // Przetłumacz menu
-  const items = document.querySelectorAll('.menu-item');
-  items.forEach((item, index) => {
-    const nameEl = item.querySelector('.name');
-    const ingredientsEl = item.querySelector('.ingredients');
-    if (menuTranslations[lang] && menuTranslations[lang][index]) {
-      nameEl.textContent = menuTranslations[lang][index].name;
-      ingredientsEl.textContent = menuTranslations[lang][index].ingredients;
-    }
-  });
-}
-    
- const menuTranslations = {
-   pl:[
-   {
-  "warka_name": "Warka beczkowe",
-  "warka_desc": "400ml / 300ml",
-  "warka_price": "12zł / 9zł",
-
-  "specjal_name": "Specjal beczkowe",
-  "specjal_desc": "400ml / 300ml",
-  "specjal_price": "12zł / 9zł",
-
-  "heineken_name": "Heineken, Heineken 0%",
-  "heineken_desc": "500ml",
-  "heineken_price": "14zł",
-
-  "desperados_name": "Desperados (6 wariantów smaków)",
-  "desperados_desc": "400ml",
-  "desperados_price": "13zł",
-
-  "zywiec_mix_name": "Żywiec APA, IPA, Białe, Białe 0%",
-  "zywiec_mix_desc": "500ml",
-  "zywiec_mix_price": "13zł",
-
-  "zywiec_flavored_name": "Żywiec 0%: Mięta, Cytryna, Lipa & Pigwa, Bez & Jabłko",
-  "zywiec_flavored_desc": "500ml",
-  "zywiec_flavored_price": "12zł",
-
-  "braniewo_name": "Braniewo export butelka",
-  "braniewo_desc": "500ml",
-  "braniewo_price": "12zł"
-}
-
-     ],
-     en:[
-   {
-  "warka_name": "Warka draft",
-  "warka_desc": "400ml / 300ml",
-  "warka_price": "12 PLN / 9 PLN",
-
-  "specjal_name": "Specjal draft",
-  "specjal_desc": "400ml / 300ml",
-  "specjal_price": "12 PLN / 9 PLN",
-
-  "heineken_name": "Heineken, Heineken 0%",
-  "heineken_desc": "500ml",
-  "heineken_price": "14 PLN",
-
-  "desperados_name": "Desperados (6 flavor variants)",
-  "desperados_desc": "400ml",
-  "desperados_price": "13 PLN",
-
-  "zywiec_mix_name": "Żywiec APA, IPA, Wheat, Wheat 0%",
-  "zywiec_mix_desc": "500ml",
-  "zywiec_mix_price": "13 PLN",
-
-  "zywiec_flavored_name": "Żywiec 0%: Mint, Lemon, Linden & Quince, Elderberry & Apple",
-  "zywiec_flavored_desc": "500ml",
-  "zywiec_flavored_price": "12 PLN",
-
-  "braniewo_name": "Braniewo export (bottle)",
-  "braniewo_desc": "500ml",
-  "braniewo_price": "12 PLN"
-}
-],
-de:[
-  {
-  "warka_name": "Warka vom Fass",
-  "warka_desc": "400ml / 300ml",
-  "warka_price": "12 PLN / 9 PLN",
-
-  "specjal_name": "Specjal vom Fass",
-  "specjal_desc": "400ml / 300ml",
-  "specjal_price": "12 PLN / 9 PLN",
-
-  "heineken_name": "Heineken, Heineken 0%",
-  "heineken_desc": "500ml",
-  "heineken_price": "14 PLN",
-
-  "desperados_name": "Desperados (6 Geschmacksrichtungen)",
-  "desperados_desc": "400ml",
-  "desperados_price": "13 PLN",
-
-  "zywiec_mix_name": "Żywiec APA, IPA, Weizen, Weizen 0%",
-  "zywiec_mix_desc": "500ml",
-  "zywiec_mix_price": "13 PLN",
-
-  "zywiec_flavored_name": "Żywiec 0%: Minze, Zitrone, Linde & Quitte, Holunder & Apfel",
-  "zywiec_flavored_desc": "500ml",
-  "zywiec_flavored_price": "12 PLN",
-
-  "braniewo_name": "Braniewo Export (Flasche)",
-  "braniewo_desc": "500ml",
-  "braniewo_price": "12 PLN"
-}
-],
-   ua:[
-     {
-  "warka_name": "Warka розливне",
-  "warka_desc": "400мл / 300мл",
-  "warka_price": "12 зл / 9 зл",
-
-  "specjal_name": "Specjal розливне",
-  "specjal_desc": "400мл / 300мл",
-  "specjal_price": "12 зл / 9 зл",
-
-  "heineken_name": "Heineken, Heineken 0%",
-  "heineken_desc": "500мл",
-  "heineken_price": "14 зл",
-
-  "desperados_name": "Desperados (6 смакових варіантів)",
-  "desperados_desc": "400мл",
-  "desperados_price": "13 зл",
-
-  "zywiec_mix_name": "Żywiec APA, IPA, Пшеничне, Пшеничне 0%",
-  "zywiec_mix_desc": "500мл",
-  "zywiec_mix_price": "13 зл",
-
-  "zywiec_flavored_name": "Żywiec 0%: М’ята, Лимон, Липа та Айва, Бузина та Яблуко",
-  "zywiec_flavored_desc": "500мл",
-  "zywiec_flavored_price": "12 зл",
-
-  "braniewo_name": "Braniewo експорт (пляшка)",
-  "braniewo_desc": "500мл",
-  "braniewo_price": "12 зл"
-}
-],
- };
-
-  const translations = {
-    pl: {
-      Piwo: 'Piwo',
-      backToCategories: '⬅️ Powrót do kategorii',
-      home: '🏠 Strona główna',
-       
-    
-    },
-    en: {
-      Piwo: 'Beer',
-      backToCategories: '⬅️ Back to categories',
-      home: '🏠 Home',
-       pizza_margherita_name: 'Margherita Pizza',
-    pizza_margherita_ingredients: 'tomato sauce, cheese, oregano',
-    },
-    de: {
-      Piwo: 'Bier',
-      backToCategories: '⬅️ Zurück zu den Kategorien',
-      home: '🏠 Startseite',
-      
-   
-    },
-    ua: {
-      Piwo: 'пиво',
-      backToCategories: '⬅️ Повернутися до категорій',
-      home: '🏠 Головна',
-     
-    
-    },
-  }; 
-   
-
+    document.addEventListener('DOMContentLoaded', () => {
+      const lang = localStorage.getItem('lang') || 'pl';
+      setLanguage(lang);
+    });
+  </script>
 </body>
 </html>
