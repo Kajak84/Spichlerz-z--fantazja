@@ -241,6 +241,8 @@
   <div class="price">42zł</div>
 </div>
 
+  
+
 <img src="logo.jpg" alt="Logo" class="logo">
 
 <script>
@@ -249,15 +251,29 @@
     const lang = localStorage.getItem('lang') || 'pl';
     setLanguage(lang);
   });
+function setLanguage(lang) {
+  localStorage.setItem('lang', lang);
 
-  function setLanguage(lang) {
-    localStorage.setItem('lang', lang);
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      el.textContent = translations[lang]?.[key] || translations['pl'][key];
-    });
-  }
+  // Przetłumacz teksty statyczne
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = translations[lang]?.[key] || translations['pl'][key];
+  });
 
+  // Przetłumacz menu
+  const items = document.querySelectorAll('.menu-item');
+  items.forEach((item, index) => {
+    const nameEl = item.querySelector('.name');
+    const ingredientsEl = item.querySelector('.ingredients');
+    if (menuTranslations[lang] && menuTranslations[lang][index]) {
+      nameEl.textContent = menuTranslations[lang][index].name;
+      ingredientsEl.textContent = menuTranslations[lang][index].ingredients;
+    }
+  });
+}
+
+  
+  
   const translations = {
     pl: {
       Pizza: 'Pizza',
@@ -280,6 +296,93 @@
       home: '🏠 Головна',
     },
   };
+
+  const menuTranslations = {
+  pl: [
+    { name: "Pizza Margherita", ingredients: "sos pomidorowy, ser, oregano" },
+    { name: "Pizza Pieczarkowa", ingredients: "sos pomidorowy, ser, pieczarki, oregano" },
+    { name: "Pizza Foccacia", ingredients: "oliwa, sól morska, suszone pomidory" },
+    { name: "Pizza Cztery sery", ingredients: "sos pomidorowy, ser żółty, fettina, ser błękitny lazur, camembert, pomidor suszony, oliwki" },
+    { name: "Pizza Brokułowa", ingredients: "sos pomidorowy, ser, brokuły, szynka, ser fettina" },
+    { name: "Pizza Salami", ingredients: "sos pomidorowy, ser, pieczarki, salami, oliwki" },
+    { name: "Pizza Swojska", ingredients: "sos pomidorowy, ser, pieczarki, kiełbasa, papryka, cebula" },
+    { name: "Pizza Szynka", ingredients: "sos pomidorowy, ser, pieczarki, szynka, papryka" },
+    { name: "Pizza Bolońska", ingredients: "sos pomidorowy, ser, papryka, pieczarki, mięso po bolońsku" },
+    { name: "Pizza Wegetariańska", ingredients: "sos, ser, pieczarki, papryka, cebula, ogórek konserwowy, groszek, kukurydza" },
+    { name: "Pizza Bekon", ingredients: "sos, ser, pieczarki, boczek, papryka" },
+    { name: "Pizza Hot peperoni - Diavolo", ingredients: "sos, ser, cebula, salami peperoni, papryka chili / jalapenos" },
+    { name: "Pizza Carbonara", ingredients: "sos biały, ser, pieczarki, pomidor, boczek, cebula" },
+    { name: "Pizza Hawaii", ingredients: "sos, ser, pieczarki, papryka, szynka, ananas, brzoskwinia" },
+    { name: "Pizza Stary Rzeźnik", ingredients: "sos, ser, kiełbasa, boczek, oliwki, czosnek, papryka" },
+    { name: "Pizza Farmerska", ingredients: "sos, ser, kurczak, kukurydza, papryka peperoni, cebula" },
+    { name: "Pizza Gyros", ingredients: "sos, ser, mięso gyrosowe, feta, papryka, cebula" },
+    { name: "Pizza Wiejska", ingredients: "sos, ser, pieczarki, papryka, cebula, ogórek korniszon, pomidor, mięso smażone" },
+    { name: "Pizza Calzone pieróg", ingredients: "sos, ser, pieczarki, papryka, cebula, + dwa dodatki mięsne" }
+  ],
+  en: [
+    { name: "Pizza Margherita", ingredients: "tomato sauce, cheese, oregano" },
+    { name: "Mushroom Pizza", ingredients: "tomato sauce, cheese, mushrooms, oregano" },
+    { name: "Focaccia Pizza", ingredients: "olive oil, sea salt, sun-dried tomatoes" },
+    { name: "Four Cheese Pizza", ingredients: "tomato sauce, yellow cheese, fettina, blue cheese lazur, camembert, sun-dried tomato, olives" },
+    { name: "Broccoli Pizza", ingredients: "tomato sauce, cheese, broccoli, ham, fettina cheese" },
+    { name: "Salami Pizza", ingredients: "tomato sauce, cheese, mushrooms, salami, olives" },
+    { name: "Homemade Pizza", ingredients: "tomato sauce, cheese, mushrooms, sausage, pepper, onion" },
+    { name: "Ham Pizza", ingredients: "tomato sauce, cheese, mushrooms, ham, pepper" },
+    { name: "Bolognese Pizza", ingredients: "tomato sauce, cheese, pepper, mushrooms, Bolognese meat" },
+    { name: "Vegetarian Pizza", ingredients: "sauce, cheese, mushrooms, pepper, onion, pickled cucumber, peas, corn" },
+    { name: "Bacon Pizza", ingredients: "sauce, cheese, mushrooms, bacon, pepper" },
+    { name: "Hot Pepperoni - Diavolo Pizza", ingredients: "sauce, cheese, onion, pepperoni salami, chili / jalapenos pepper" },
+    { name: "Carbonara Pizza", ingredients: "white sauce, cheese, mushrooms, tomato, bacon, onion" },
+    { name: "Hawaii Pizza", ingredients: "sauce, cheese, mushrooms, pepper, ham, pineapple, peach" },
+    { name: "Old Butcher Pizza", ingredients: "sauce, cheese, sausage, bacon, olives, garlic, pepper" },
+    { name: "Farmer's Pizza", ingredients: "sauce, cheese, chicken, corn, pepperoni pepper, onion" },
+    { name: "Gyros Pizza", ingredients: "sauce, cheese, gyros meat, feta, pepper, onion" },
+    { name: "Country Pizza", ingredients: "sauce, cheese, mushrooms, pepper, onion, pickled cucumber, tomato, fried meat" },
+    { name: "Calzone Pie", ingredients: "sauce, cheese, mushrooms, pepper, onion, + two meat toppings" }
+  ],
+  de: [
+    { name: "Pizza Margherita", ingredients: "Tomatensauce, Käse, Oregano" },
+    { name: "Pilzpizza", ingredients: "Tomatensauce, Käse, Pilze, Oregano" },
+    { name: "Focaccia Pizza", ingredients: "Olivenöl, Meersalz, getrocknete Tomaten" },
+    { name: "Vier Käse Pizza", ingredients: "Tomatensauce, gelber Käse, Fettina, Blauschimmelkäse Lazur, Camembert, getrocknete Tomaten, Oliven" },
+    { name: "Brokkoli Pizza", ingredients: "Tomatensauce, Käse, Brokkoli, Schinken, Fettina Käse" },
+    { name: "Salami Pizza", ingredients: "Tomatensauce, Käse, Pilze, Salami, Oliven" },
+    { name: "Hausgemachte Pizza", ingredients: "Tomatensauce, Käse, Pilze, Wurst, Paprika, Zwiebel" },
+    { name: "Schinken Pizza", ingredients: "Tomatensauce, Käse, Pilze, Schinken, Paprika" },
+    { name: "Bolognese Pizza", ingredients: "Tomatensauce, Käse, Paprika, Pilze, Bolognese-Fleisch" },
+    { name: "Vegetarische Pizza", ingredients: "Sauce, Käse, Pilze, Paprika, Zwiebel, Gewürzgurke, Erbsen, Mais" },
+    { name: "Bacon Pizza", ingredients: "Sauce, Käse, Pilze, Speck, Paprika" },
+    { name: "Hot Pepperoni - Diavolo Pizza", ingredients: "Sauce, Käse, Zwiebel, Peperoni Salami, Chili / Jalapenos" },
+    { name: "Carbonara Pizza", ingredients: "weiße Sauce, Käse, Pilze, Tomate, Speck, Zwiebel" },
+    { name: "Hawaii Pizza", ingredients: "Sauce, Käse, Pilze, Paprika, Schinken, Ananas, Pfirsich" },
+    { name: "Alter Metzger Pizza", ingredients: "Sauce, Käse, Wurst, Speck, Oliven, Knoblauch, Paprika" },
+    { name: "Bauern Pizza", ingredients: "Sauce, Käse, Huhn, Mais, Peperoni Paprika, Zwiebel" },
+    { name: "Gyros Pizza", ingredients: "Sauce, Käse, Gyrosfleisch, Feta, Paprika, Zwiebel" },
+    { name: "Landpizza", ingredients: "Sauce, Käse, Pilze, Paprika, Zwiebel, Gewürzgurke, Tomate, gebratenes Fleisch" },
+    { name: "Calzone Pierogi", ingredients: "Sauce, Käse, Pilze, Paprika, Zwiebel, + zwei Fleischzutaten" }
+  ],
+  ua: [
+    { name: "Піца Маргарита", ingredients: "томатний соус, сир, орегано" },
+    { name: "Піца з печерицями", ingredients: "томатний соус, сир, печериці, орегано" },
+    { name: "Піца Фокачча", ingredients: "олія, морська сіль, сушені помідори" },
+    { name: "Піца Чотири сири", ingredients: "томатний соус, жовтий сир, фетина, блакитний сир Лазур, камамбер, сушений помідор, оливки" },
+    { name: "Піца з броколі", ingredients: "томатний соус, сир, броколі, шинка, сир фетина" },
+    { name: "Піца з салямі", ingredients: "томатний соус, сир, печериці, салямі, оливки" },
+    { name: "Домашня піца", ingredients: "томатний соус, сир, печериці, ковбаса, перець, цибуля" },
+    { name: "Піца з шинкою", ingredients: "томатний соус, сир, печериці, шинка, перець" },
+    { name: "Піца Болоньєзе", ingredients: "томатний соус, сир, перець, печериці, болоньєзьке м’ясо" },
+    { name: "Вегетаріанська піца", ingredients: "соус, сир, печериці, перець, цибуля, консервований огірок, горошок, кукурудза" },
+    { name: "Піца з беконом", ingredients: "соус, сир, печериці, бекон, перець" },
+    { name: "Піца Хот Пепероні - Діаволо", ingredients: "соус, сир, цибуля, салямі пепероні, перець чилі / халапеньйо" },
+    { name: "Піца Карбонара", ingredients: "білий соус, сир, печериці, помідор, бекон, цибуля" },
+    { name: "Піца Гаваї", ingredients: "соус, сир, печериці, перець, шинка, ананас, персик" },
+    { name: "Піца Старий М’ясник", ingredients: "соус, сир, ковбаса, бекон, оливки, часник, перець" },
+    { name: "Фермерська піца", ingredients: "соус, сир, курка, кукурудза, перець пепероні, цибуля" },
+    { name: "Піца Гірос", ingredients: "соус, сир, м’ясо гірос, фета, перець, цибуля" },
+    { name: "Піца Сільська", ingredients: "соус, сир, печериці, перець, цибуля, огірок корнішон, помідор, смажене м’ясо" },
+    { name: "Піца Кальцоне пірог", ingredients: "соус, сир, печериці, перець, цибуля, + два м’ясних додатки" }
+];
+
 </script>
 
 </body>
