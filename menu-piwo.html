@@ -1,127 +1,201 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menu 🍺</title>
-  <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 40px auto; }
-    h1 { font-size: 2em; }
-    .menu-item { margin: 16px 0; }
-    .name { font-weight: bold; }
-    .ingredients { color: #555; }
-    .lang-switcher button {
-      margin: 4px;
-      padding: 6px 12px;
-      border: none;
-      background: #eee;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .lang-switcher button:hover {
-      background: #ddd;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Menu – Piwo</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #e4d09b;
+    margin: 0;
+    padding: 0 20px 40px;
+    text-align: center;
+    color: #3d2b1f;
+  }
+  h1 {
+    background-color: #030100;
+    color: white;
+    padding: 20px;
+    margin-top: 0;
+  }
+  img {
+    display: block;
+    max-width: 500px;
+    margin: 50px auto;
+    border-radius: 16px;
+  }
+  .menu-item {
+    display: grid;
+    grid-template-columns: 6fr 2fr 2fr;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.1em;
+    max-width: 900px;
+    margin: 0 auto 20px;
+    text-align: left;
+  }
+  .name {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  .amount, .price {
+    font-weight: bold;
+    color: #5a3e1b;
+  }
+  .button-bar {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #0f0700;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+  }
+  .back-button:hover {
+    background: #291a07;
+  }
+  .logo {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 100px;
+    opacity: 0.8;
+  }
+  .language-switcher {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  .language-switcher img {
+    width: 28px;
+    margin: 0 5px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .language-switcher img:hover {
+    opacity: 1;
+  }
+</style>
 </head>
 <body>
+<div class="language-switcher">
+  <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
+  <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
+  <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
+  <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
+</div>
 
-  <div class="lang-switcher">
-    <button onclick="setLanguage('pl')">🇵🇱 PL</button>
-    <button onclick="setLanguage('en')">🇬🇧 EN</button>
-    <button onclick="setLanguage('de')">🇩🇪 DE</button>
-  </div>
+<div class="button-bar">
+  <a href="menu.html" class="back-button" data-i18n="backToCategories">⬅️ Powrót do kategorii</a>
+  <a href="index.html" class="back-button" data-i18n="home">🏠 Strona główna</a>
+</div>
 
-  <h1>🍺 <span data-i18n="Piwo">Piwo</span></h1>
+<h1>🍺 <span data-i18n="beer">Piwo</span></h1>
+<img src="menu-img/piwo.jpg" alt="Piwo">
 
-  <div id="menu">
-    <div class="menu-item">
-      <div class="name">Warka beczkowe</div>
-      <div class="ingredients">400ml / 300ml – 12zł / 9zł</div>
-    </div>
-    <div class="menu-item">
-      <div class="name">Specjal beczkowe</div>
-      <div class="ingredients">400ml / 300ml – 12zł / 9zł</div>
-    </div>
-    <div class="menu-item">
-      <div class="name">Heineken, Heineken 0%</div>
-      <div class="ingredients">500ml – 14zł</div>
-    </div>
-    <div class="menu-item">
-      <div class="name">Żywiec</div>
-      <div class="ingredients">500ml – 14zł</div>
-    </div>
-    <div class="menu-item">
-      <div class="name">Złoty Bażant</div>
-      <div class="ingredients">500ml – 14zł</div>
-    </div>
-    <div class="menu-item">
-      <div class="name">Desperados</div>
-      <div class="ingredients">400ml – 16zł</div>
-    </div>
-    <div class="menu-item">
-      <div class="name">Somersby (jabłkowe, arbuz, mango)</div>
-      <div class="ingredients">400ml – 14zł</div>
-    </div>
-  </div>
+<div id="menu-container"></div>
+<img src="logo.jpg" alt="Logo" class="logo">
 
-  <script>
-    const menuTranslations = {
-      pl: [
-        { name: "Warka beczkowe", ingredients: "400ml / 300ml – 12zł / 9zł" },
-        { name: "Specjal beczkowe", ingredients: "400ml / 300ml – 12zł / 9zł" },
-        { name: "Heineken, Heineken 0%", ingredients: "500ml – 14zł" },
-        { name: "Żywiec", ingredients: "500ml – 14zł" },
-        { name: "Złoty Bażant", ingredients: "500ml – 14zł" },
-        { name: "Desperados", ingredients: "400ml – 16zł" },
-        { name: "Somersby (jabłkowe, arbuz, mango)", ingredients: "400ml – 14zł" }
-      ],
-      en: [
-        { name: "Warka draft", ingredients: "400ml / 300ml – 12 PLN / 9 PLN" },
-        { name: "Specjal draft", ingredients: "400ml / 300ml – 12 PLN / 9 PLN" },
-        { name: "Heineken, Heineken 0%", ingredients: "500ml – 14 PLN" },
-        { name: "Żywiec", ingredients: "500ml – 14 PLN" },
-        { name: "Golden Pheasant", ingredients: "500ml – 14 PLN" },
-        { name: "Desperados", ingredients: "400ml – 16 PLN" },
-        { name: "Somersby (apple, watermelon, mango)", ingredients: "400ml – 14 PLN" }
-      ],
-      de: [
-        { name: "Warka vom Fass", ingredients: "400ml / 300ml – 12 PLN / 9 PLN" },
-        { name: "Specjal vom Fass", ingredients: "400ml / 300ml – 12 PLN / 9 PLN" },
-        { name: "Heineken, Heineken 0%", ingredients: "500ml – 14 PLN" },
-        { name: "Żywiec", ingredients: "500ml – 14 PLN" },
-        { name: "Zlatý Bažant", ingredients: "500ml – 14 PLN" },
-        { name: "Desperados", ingredients: "400ml – 16 PLN" },
-        { name: "Somersby (Apfel, Wassermelone, Mango)", ingredients: "400ml – 14 PLN" }
-      ]
-    };
+<script>
+const menuData = {
+  pl: [
+    { name: "Warka beczkowe", amount: "400ml / 300ml", price: "12zł / 9zł" },
+    { name: "Specjal beczkowe", amount: "400ml / 300ml", price: "12zł / 9zł" },
+    { name: "Heineken, Heineken 0%", amount: "500ml", price: "14zł" },
+    { name: "Desperados (6 wariantów smaków)", amount: "400ml", price: "13zł" },
+    { name: "Żywiec APA, IPA, BIAŁE, BIAŁE 0%", amount: "500ml", price: "13zł" },
+    { name: "Żywiec 0%: Mięta, Lemon, Lipa & Pigwa, Bez & Jabłko", amount: "500ml", price: "12zł" },
+    { name: "Braniewo export butelka", amount: "500ml", price: "12zł" }
+  ],
+  en: [
+    { name: "Warka draft", amount: "400ml / 300ml", price: "12 PLN / 9 PLN" },
+    { name: "Specjal draft", amount: "400ml / 300ml", price: "12 PLN / 9 PLN" },
+    { name: "Heineken, Heineken 0%", amount: "500ml", price: "14 PLN" },
+    { name: "Desperados (6 flavor variants)", amount: "400ml", price: "13 PLN" },
+    { name: "Żywiec APA, IPA, Wheat, Wheat 0%", amount: "500ml", price: "13 PLN" },
+    { name: "Żywiec 0%: Mint, Lemon, Linden & Quince, Elderberry & Apple", amount: "500ml", price: "12 PLN" },
+    { name: "Braniewo export (bottle)", amount: "500ml", price: "12 PLN" }
+  ],
+  de: [
+    { name: "Warka vom Fass", amount: "400ml / 300ml", price: "12 PLN / 9 PLN" },
+    { name: "Specjal vom Fass", amount: "400ml / 300ml", price: "12 PLN / 9 PLN" },
+    { name: "Heineken, Heineken 0%", amount: "500ml", price: "14 PLN" },
+    { name: "Desperados (6 Geschmacksrichtungen)", amount: "400ml", price: "13 PLN" },
+    { name: "Żywiec APA, IPA, Weizen, Weizen 0%", amount: "500ml", price: "13 PLN" },
+    { name: "Żywiec 0%: Minze, Zitrone, Linde & Quitte, Holunder & Apfel", amount: "500ml", price: "12 PLN" },
+    { name: "Braniewo Export (Flasche)", amount: "500ml", price: "12 PLN" }
+  ],
+  ua: [
+    { name: "Warka розливне", amount: "400мл / 300мл", price: "12 зл / 9 зл" },
+    { name: "Specjal розливне", amount: "400мл / 300мл", price: "12 зл / 9 зл" },
+    { name: "Heineken, Heineken 0%", amount: "500мл", price: "14 зл" },
+    { name: "Desperados (6 смакових варіантів)", amount: "400мл", price: "13 зл" },
+    { name: "Żywiec APA, IPA, Пшеничне, Пшеничне 0%", amount: "500мл", price: "13 зл" },
+    { name: "Żywiec 0%: М’ята, Лимон, Липа та Айва, Бузина та Яблуко", amount: "500мл", price: "12 зл" },
+    { name: "Braniewo експорт (пляшка)", amount: "500мл", price: "12 зл" }
+  ]
+};
 
-    const titleTranslations = {
-      pl: "Piwo",
-      en: "Beer",
-      de: "Bier"
-    };
+const translations = {
+  pl: {
+    beer: "Piwo",
+    backToCategories: "⬅️ Powrót do kategorii",
+    home: "🏠 Strona główna"
+  },
+  en: {
+    beer: "Beer",
+    backToCategories: "⬅️ Back to categories",
+    home: "🏠 Home"
+  },
+  de: {
+    beer: "Bier",
+    backToCategories: "⬅️ Zurück zu den Kategorien",
+    home: "🏠 Startseite"
+  },
+  ua: {
+    beer: "Пиво",
+    backToCategories: "⬅️ Повернутися до категорій",
+    home: "🏠 Головна"
+  }
+};
 
-    function setLanguage(lang) {
-      localStorage.setItem('lang', lang);
+function setLanguage(lang) {
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = translations[lang][key] || key;
+  });
 
-      const titleElement = document.querySelector('[data-i18n="Piwo"]');
-      titleElement.textContent = titleTranslations[lang] || "Piwo";
+  const container = document.getElementById('menu-container');
+  container.innerHTML = '';
+  menuData[lang].forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'menu-item';
+    div.innerHTML = `<div class="name">${item.name}</div><div class="amount">${item.amount}</div><div class="price">${item.price}</div>`;
+    container.appendChild(div);
+  });
+}
 
-      const items = document.querySelectorAll('.menu-item');
-      const translations = menuTranslations[lang];
-
-      items.forEach((item, index) => {
-        if (translations[index]) {
-          item.querySelector('.name').textContent = translations[index].name;
-          item.querySelector('.ingredients').textContent = translations[index].ingredients;
-        }
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const lang = localStorage.getItem('lang') || 'pl';
-      setLanguage(lang);
-    });
-  </script>
+document.addEventListener('DOMContentLoaded', () => {
+  const lang = localStorage.getItem('lang') || 'pl';
+  setLanguage(lang);
+});
+</script>
 </body>
 </html>
