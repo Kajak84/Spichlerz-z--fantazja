@@ -6,6 +6,39 @@
 <title>Spichlerz z Fantazją</title>
 <style>
 body { font-family: Arial, sans-serif; margin: 0; background-color: #e4d09b; }
+
+ <div class="language-switcher">
+  <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
+  <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
+  <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
+  <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
+</div>
+
+ .language-switcher {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(255,255,255,0.9);
+  padding: 6px 10px;
+  border-radius: 8px;
+  z-index: 9999;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.language-switcher img {
+  width: 28px;
+  height: auto;
+  margin: 0 5px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.language-switcher img:hover {
+  opacity: 1;
+}
+
+ 
 header { background-color: #000; color: white; padding: 20px; text-align: center; }
 .hero { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 20px; }
 .hero img { width: 300px; height: auto; border-radius: 10px; object-fit: cover; }
@@ -21,7 +54,7 @@ footer { background:#000; color:#fff; padding:20px; text-align:center; }
 <body>
 <header>
 <h1>Spichlerz z Fantazją</h1>
-<p>Tradycja, smak i atmosfera w samym sercu Braniewa</p>
+<p data-i18n="subtitle">Tradycja, smak i atmosfera w samym sercu Braniewa</p>
 </header>
 
 <section class="hero">
@@ -32,13 +65,13 @@ footer { background:#000; color:#fff; padding:20px; text-align:center; }
 </section>
 
 <section class="about">
-<h2>O nas</h2>
-<p>Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością... </p>
+<h2 data-i18n="title">O nas</h2>
+<p data-i18n="subtitle"> Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością... </p>
 </section>
 
 
 <section style="text-align:center; padding:40px; background:#fff;">
-<h2>📲 Zeskanuj, aby zobaczyć menu</h2>
+<h2 data-i18n="title">📲 Zeskanuj, aby zobaczyć menu</h2>
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichlerz-z--fantazja%2Fmenu.html" alt="Kod QR do menu" width="250" />
 </section>
 
