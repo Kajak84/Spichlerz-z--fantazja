@@ -5,88 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="pageTitle">Kontakt – Spichlerz z Fantazją</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #fefaf6;
-      color: #3d2b1f;
-      text-align: center;
-    }
+    body {margin: 0; font-family: Arial, sans-serif; background-color: #fefaf6; color: #3d2b1f; text-align: center; }
+    header { background-color: #050200; color: white; padding: 20px 0; }
+    .logo img { width: 180px; margin-top: 20px; }
+    .contact-info { margin: 30px auto; max-width: 600px; font-size: 1.1em; line-height: 1.8; }
+    a { color: #080400; text-decoration: none; }
+    iframe { width: 90%; max-width: 800px; height: 450px; border: none; border-radius: 10px; margin: 30px auto; display: block; }
+    footer { margin-top: 40px; font-size: 0.9em; color: #888; padding-bottom: 20px; }
+    .btn-back { display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #080400; color: white; border: none; border-radius: 5px; text-decoration: none; cursor: pointer; }
+    .btn-back:hover { background-color: #070300; }
 
-    header {
-      background-color: #050200;
-      color: white;
-      padding: 20px 0;
-    }
-
-    .logo img {
-      width: 180px;
-      margin-top: 20px;
-    }
-
-    .contact-info {
-      margin: 30px auto;
-      max-width: 600px;
-      font-size: 1.1em;
-      line-height: 1.8;
-    }
-
-    a {
-      color: #080400;
-      text-decoration: none;
-    }
-
-    iframe {
-      width: 90%;
-      max-width: 800px;
-      height: 450px;
-      border: none;
-      border-radius: 10px;
-      margin: 30px auto;
-      display: block;
-    }
-
-    footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #888;
-      padding-bottom: 20px;
-    }
-
-    .btn-back {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #080400;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .btn-back:hover {
-      background-color: #070300;
-    }
-
-    /* Przełącznik językowy */
+     /* 🔽 Styl przełącznika języka */
     .language-switcher {
       position: fixed;
       top: 10px;
       right: 10px;
       z-index: 999;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 8px 12px;
-      border-radius: 10px;
-      display: flex;
-      gap: 6px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 6px 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
+
     .language-switcher img {
-      width: 32px;
+      width: 28px;
+      margin: 0 5px;
       cursor: pointer;
       opacity: 0.8;
       transition: opacity 0.3s;
     }
+
     .language-switcher img:hover {
       opacity: 1;
     }
@@ -103,7 +51,7 @@
   </div>
 
   <header>
-    <h1 data-i18n="headerTitle">Spichlerz z Fantazją</h1>
+    <h1 data-i18n="hederTitle">Spichlerz z Fantazją</h1>
     <p data-i18n="contact">Kontakt</p>
   </header>
 
@@ -202,9 +150,21 @@
 
     // Załaduj zapisany język lub domyślnie polski
     document.addEventListener('DOMContentLoaded', () => {
-      const savedLang = localStorage.getItem('lang') || 'pl';
-      setLanguage(savedLang);
+      const lang = localStorage.getItem('lang') || 'pl';
+      setLanguage(lang);
     });
+
+    // 🌍 Zmiana języka
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll('[data-i18n]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      localStorage.setItem('lang', lang); // zapisz wybór
+    }
   </script>
 </body>
 </html>
