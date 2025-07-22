@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <header>
-    <h1>Spichlerz z Fantazją</h1>
-   </header>
-  <title>Przekąski – Menu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="pageTitle">Przekąski – Menu</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #e4d09b;
       margin: 0;
       padding: 0 20px 40px;
+      text-align: center;
+      color: #3d2b1f;
     }
     h1 {
-      text-align: center;
       background-color: #030100;
       color: white;
       padding: 20px;
@@ -27,113 +26,171 @@
       border-radius: 16px;
     }
     .menu-item {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 20px;
-      padding: 10px 0;
-      border-bottom: 1px solid #ddd;
-      font-size: 1.1em;
-    }
-    .menu-item .name {
-      font-weight: bold;
-    }
-    .menu-section {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+  display: grid;
+  grid-template-columns: 4fr 3fr 2fr;
+  gap: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1em;
+  max-width: 900px;
+  margin: 0 auto 20px;
+  text-align: left;
+}
+
+.size-price {
+  font-weight: bold;
+  color: #5a3e1b;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.ingredients {
+  font-style: italic;
+  color: #7a6a52;
+}
+
     .button-bar {
       display: flex;
       gap: 10px;
-      margin: 20px;
+      justify-content: center;
+      margin: 20px 0;
     }
-
     .back-button {
-  display: inline-block;
-  margin: 20px;
-  padding: 10px 20px;
-  background: #0f0700;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-}
-.logo {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #0f0700;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+    .back-button:hover {
+      background: #291a07;
+    }
+    .logo {
       position: fixed;
       bottom: 10px;
       right: 10px;
       width: 100px;
       opacity: 0.8;
     }
-
+    .language-switcher {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 6px 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    .language-switcher img {
+      width: 28px;
+      margin: 0 5px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    .language-switcher img:hover {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
 
-    <div class="button-bar">
-    <a href="menu.html" class="back-button">⬅️ Powrót do kategorii</a>
-    <a href="index.html" class="back-button">🏠 Strona główna</a>
+  <!-- 🔁 Przełącznik języka -->
+  <div class="language-switcher">
+    <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
+    <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
+    <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
+    <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
   </div>
 
+  <div class="button-bar">
+    <a href="menu.html" class="back-button" data-i18n="backToCategories">⬅️ Powrót do kategorii</a>
+    <a href="index.html" class="back-button" data-i18n="home">🏠 Strona główna</a>
+  </div>
 
-  <h1>🍟 Przekąski</h1>
-  <img src="menu-img/przekaski.jpg" alt="Przekąski">
+   <h1>🍟 <span data-i18n="snaks">Przekąski</span></h1>
 
+  <img src="menu-img/przekaski.jpg" alt="Przekąski" />
+  
+<!-- Menu items -->
   <div class="menu-section">
     <div class="menu-item">
-      <div class="name">Krewetki torpedo</div>
-      <div class="amount">panierowane z sosem chili-majo, 6szt</div>
+      <div class="name" data-i18n="krew">Krewetki torpedo</div>
+      <div class="amount" data-i18n="panie">panierowane z sosem chili-majo, 6szt</div>
       <div class="price">35 zł</div>
     </div>
 
     <div class="menu-item">
-      <div class="name">Hamburger</div>
-      <div class="amount">wołowina 100 %, 280 g</div>
+      <div class="name" data-i18n="ham">Hamburger</div>
+      <div class="amount" data-i18n="wol">wołowina 100 %, 280 g</div>
       <div class="price">30 zł</div>
     </div>
 
     <div class="menu-item">
-      <div class="name">Kurczakburger</div>
-      <div class="amount">kurczak pamierowany 280 g </div>
+      <div class="name" danie-i18n="kurcz">Kurczakburger</div>
+      <div class="amount" danie-i18n="kur">kurczak pamierowany 280 g </div>
       <div class="price">28 zł</div>
     </div>
   </div>
 
   <div class="menu-section">
     <div class="menu-item">
-      <div class="name">Brokuły w cieście</div>
-      <div class="amount">z sosem czosnkowym 100 g</div>
+      <div class="name" danie-i18n="brok">Brokuły w cieście</div>
+      <div class="amount" danie-i18n="sos" >z sosem czosnkowym 100 g</div>
       <div class="price">15 zł</div>
     </div>
 
 
     <div class="menu-section">
     <div class="menu-item">
-      <div class="name">Krążki cebulowe</div>
-      <div class="amount">onion ring, z sosem czosnkowym 150 g</div>
+      <div class="name" danie-i18n="kra">Krążki cebulowe</div>
+      <div class="amount" danie-i18n="oni">onion ring, z sosem czosnkowym 150 g</div>
       <div class="price">18 zł</div>
     </div>
 
     <div class="menu-section">
     <div class="menu-item">
-      <div class="name">  Łosoś wędzony na grzance</div>
-      <div class="amount">z masłem czosnkowym, 3 szt</div>
+      <div class="name" danie-i18n="los">Łosoś wędzony na grzance</div>
+      <div class="amount" danie-i18n="mas">z masłem czosnkowym, 3 szt</div>
       <div class="price">20 zł</div>
     </div>
 
     <div class="menu-section">
     <div class="menu-item">
-      <div class="name">Smalec swojski</div>
-      <div class="amount">pieczywo ,ogórek kiszony, 250 g</div>
+      <div class="name" danie-i18n="smal">Smalec swojski</div>
+      <div class="amount" danie-i18n="piecz">pieczywo ,ogórek kiszony, 250 g</div>
       <div class="price">20 zł</div>
     </div>
 
     <div class="menu-section">
     <div class="menu-item">
-      <div class="name">Chipsy Lays</div>
-      <div class="amount">różne smaki, 130 g</div>
+      <div class="name" danie-i18n="chip">Chipsy Lays</div>
+      <div class="amount" danie-i18n="roz">różne smaki, 130 g</div>
       <div class="price">15 zł</div>
     </div>
 
+      <p style="max-width: 900px; margin: 0 auto; text-align: left; font-style: italic; font-size: 0.9em;" data-i18n="note"></p>
     
   <img src="logo.jpg" alt="Logo" class="logo">
+
+   <!-- 🔧 Skrypt tłumaczeń -->
+  <script>
+    const translations = { 
+      pl: {  
+        pageTitle: "Przekąski – Menu",
+        backToCategories: "⬅️ Powrót do kategorii",
+        home: "🏠 Strona główna",
+        snaks: "Przekąski",
+        name: "Krewetki torpedo",
+        
+        
 </body>
 </html>
