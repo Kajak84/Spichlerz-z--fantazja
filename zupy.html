@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+<title>Zupy – Menu</title>
+  
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #e4d09b;
+    margin: 0;
+    padding: 0 20px 40px;
+    text-align: center;
+    color: #3d2b1f;
+  }
+  h1 {
+    background-color: #030100;
+    color: white;
+    padding: 20px;
+    margin-top: 0;
+  }
+  img {
+    display: block;
+    max-width: 500px;
+    margin: 50px auto;
+    border-radius: 16px;
+  }
+  .menu-item {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.1em;
+    max-width: 900px;
+    margin: 0 auto 20px;
+    text-align: left;
+  }
+  .name {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+  .button-bar {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #0f0700;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+  }
+  .back-button:hover {
+    background: #291a07;
+  }
+  .logo {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 100px;
+    opacity: 0.8;
+  }
+  .language-switcher {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  .language-switcher img {
+    width: 28px;
+    margin: 0 5px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .language-switcher img:hover {
+    opacity: 1;
+  }
+  .price {
+  font-weight: bold;
+  color: #3d2b1f;
+  text-align: right;
+  white-space: nowrap;
+}
+
+</style>
+</head>
+<body>
+
+  <!-- 🔁 Przełącznik języka -->
+  <div class="language-switcher">
+    <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
+    <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
+    <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
+    <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('uk')" />
+  </div>
+
+  <div class="button-bar">
+    <a href="menu.html" class="back-button" data-i18n="backToCategories">⬅️ Powrót do kategorii</a>
+    <a href="index.html" class="back-button" data-i18n="home">🏠 Strona główna</a>
+  </div>
+
+  <h1>🥣 <span data-i18n="zupy">Zupy</span></h1>
