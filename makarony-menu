@@ -124,9 +124,11 @@
     <a href="index.html" class="back-button" data-i18n="home">🏠 Strona główna</a>
   </div>
 
-  <h1>🥟 <span data-i18n="makarony">Makarony, Naleśniki i Pierogi</span></h1>
+  <h1>🍝🥟🥞 <span data-i18n="makarony">Makarony, Pierogii Naleśniki</span></h1>
 
   <img src="menu-img/makarony.jpg" alt="Makarony,Naleśniki i Pierogi" />
+
+<h1>🍝 <span data-i18n="1">Makarony</span></h1>
 
   <!-- Menu items -->
   <div class="menu-item">
@@ -152,3 +154,35 @@
     <div class="amount" data-i18n="h">peperoncino, kolendra, 400 g</div>
     <div class="price">44 zł</div>
   </div>
+
+<h1>🥟 <span data-i18n="1">Pierogi</span></h1>
+
+ <div class="menu-item">
+    <div class="name" data-i18n="i">Pierogi Ruskie</div>
+    <div class="amount" data-i18n="j">z okrazą, 6 szt</div>
+    <div class="price">30 zł</div>
+  </div>
+
+ <div class="menu-item">
+    <div class="name" data-i18n="k">Pierogi z mięsem</div>
+    <div class="amount" data-i18n="l">z okrasą, 6 szt</div>
+    <div class="price">28 zł</div>
+  </div>
+
+<h1>🥞 <span data-i18n="1">Naleśniki</span></h1>
+
+ <div class="menu-item">
+    <div class="name" data-i18n="ł">Naleśniki</div>
+    <div class="amount" data-i18n="m">z twarożkiem na słodko, 250 g</div>
+    <div class="price">27 zł</div>
+  </div>
+
+<img src="logo.jpg" alt="Logo" class="logo" />
+
+  <!-- 🔧 Skrypt tłumaczeń -->
+  <script>
+    const translations = {
+      pl: {
+        pageTitle: "Danie Główne – Menu",
+        backToCategories: "⬅️ Powrót do kategorii",
+        home: "🏠 Strona główna",
