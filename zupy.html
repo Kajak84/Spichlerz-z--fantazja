@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
   
-<title>Zupy – Menu</title>
+<title data-i18n="pageTitle">Zupy – Menu</title>
   
 <style>
   body {
@@ -29,7 +29,7 @@
   }
   .menu-item {
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 4fr 3fr 2fr;
     gap: 20px;
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
@@ -38,10 +38,22 @@
     margin: 0 auto 20px;
     text-align: left;
   }
+
+  .size-price {
+  font-weight: bold;
+  color: #5a3e1b;
+  }
+  
   .name {
   font-weight: bold;
   font-size: 1.2em;
 }
+
+.ingredients {
+  font-style: italic;
+  color: #7a6a52;
+}
+  
   .button-bar {
     display: flex;
     gap: 10px;
@@ -181,3 +193,118 @@
          pageTitle: "zupy – Menu",
         backToCategories: "⬅️ Powrót do kategorii",
         home: "🏠 Strona główna",
+        zupy: "Zupy",
+        a: "Tajska z krewetkami",
+        sandacz_desc: "krewetki Black Tiger, 350 ml",
+        b: "Tajska z kurczakiem lub wegetariańska",
+        c: "350 ml",
+        d: "Żurek",
+        e: "na białej kiełbasie, 350 ml",
+        f: "Pomidorowa",
+        g: "ze swojskim makaronem, 350 ml",
+        h: "Rosół",
+        i: "e swojskim makaronem, 350 ml",
+        j: "Zupa Dnia",
+        k: "zapytaj Kelnera, 350 ml",
+        l: "Flaki Wołowe",
+        ł: "350 ml",
+        m: "Chłodnik",
+        n: "na botwince, ( sezon letni ), 350 ml",
+        o: "Chłodnik, ziemniaki z okrasą",
+        p: "350 ml, 100 g"
+      },
+      en: {
+  pageTitle: "soups – Menu",
+  backToCategories: "⬅️ Back to categories",
+  home: "🏠 Home",
+  zupy: "Soups",
+  a: "Thai with shrimp",
+  sandacz_desc: "Black Tiger shrimp, 350 ml",
+  b: "Thai with chicken or vegetarian",
+  c: "350 ml",
+  d: "Żurek (sour rye soup)",
+  e: "with white sausage, 350 ml",
+  f: "Tomato soup",
+  g: "with homemade noodles, 350 ml",
+  h: "Chicken broth",
+  i: "with homemade noodles, 350 ml",
+  j: "Soup of the Day",
+  k: "ask the waiter, 350 ml",
+  l: "Beef tripe soup",
+  ł: "350 ml",
+  m: "Cold beet soup",
+  n: "with young beet greens (summer season), 350 ml",
+  o: "Cold beet soup, potatoes with toppings",
+  p: "350 ml, 100 g"
+},
+      de: {
+  pageTitle: "Suppen – Menü",
+  backToCategories: "⬅️ Zurück zu den Kategorien",
+  home: "🏠 Startseite",
+  zupy: "Suppen",
+  a: "Thailändisch mit Garnelen",
+  sandacz_desc: "Black-Tiger-Garnelen, 350 ml",
+  b: "Thailändisch mit Huhn oder vegetarisch",
+  c: "350 ml",
+  d: "Żurek (Sauerteigsuppe)",
+  e: "mit Weißwurst, 350 ml",
+  f: "Tomatensuppe",
+  g: "mit hausgemachten Nudeln, 350 ml",
+  h: "Hühnerbrühe",
+  i: "mit hausgemachten Nudeln, 350 ml",
+  j: "Tagessuppe",
+  k: "fragen Sie den Kellner, 350 ml",
+  l: "Rindermagen-Suppe",
+  ł: "350 ml",
+  m: "Kalte Rote-Bete-Suppe",
+  n: "mit junger Bete (Sommersaison), 350 ml",
+  o: "Kalte Rote-Bete-Suppe, Kartoffeln mit Speckschmalz",
+  p: "350 ml, 100 g"
+},
+uk: {
+  pageTitle: "супи – Меню",
+  backToCategories: "⬅️ Повернутися до категорій",
+  home: "🏠 Головна сторінка",
+  zupy: "Супи",
+  a: "Тайський з креветками",
+  sandacz_desc: "креветки Black Tiger, 350 мл",
+  b: "Тайський з куркою або вегетаріанський",
+  c: "350 мл",
+  d: "Журек",
+  e: "з білою ковбасою, 350 мл",
+  f: "Томатний суп",
+  g: "з домашньою локшиною, 350 мл",
+  h: "Курячий бульйон",
+  i: "з домашньою локшиною, 350 мл",
+  j: "Суп дня",
+  k: "запитайте у офіціанта, 350 мл",
+  l: "Суп з яловичого рубця",
+  ł: "350 мл",
+  m: "Холодний борщ",
+  n: "на буряковому бадиллі (літній сезон), 350 мл",
+  o: "Холодний борщ, картопля з підсмажками",
+  p: "350 мл, 100 г"
+}
+    };
+
+     document.addEventListener("DOMContentLoaded", () => {
+      const lang = localStorage.getItem("lang") || "pl";
+      setLanguage(lang);
+    });
+
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll("[data-i18n]");
+      elements.forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      localStorage.setItem("lang", lang);
+    }
+  </script>
+</body>
+</html>   
+
+      
+
