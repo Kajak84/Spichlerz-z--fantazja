@@ -80,22 +80,141 @@
   <h1> 🧂 Dodatki</h1>
   <img src="menu-img/dodatki.jpg" alt="Dodatki">
 
-   <div class="menu-section">
-    <div class="menu-item">
-      <div class="name">exrta ser 32</div>
-      <div class="amount">50 g</div>
-      <div class="price">10 zł</div>
-    </div>
-
-    <div class="menu-item">
-      <div class="name">extra ser 40</div>
-      <div class="amount">100 g</div>
-      <div class="price">20 zł</div>
-    </div>
-   </div>
+  <div class="menu-item">
+    <div class="name" data-i18n="x"></div>
+    <div class="amount" data-i18n="der">Frytki Juliene / Frytki z Batata, 150g</div>
+    <div class="price">15 zł</div>
+  </div>   
+     <div class="menu-item">
+       <div class="name" data-i18n="x"></div>
+    <div class="amount" data-i18n="d">Frytki - wesołe literki, 100g</div>
+    <div class="price">12 zł</div>
+  </div>      
+        <div class="menu-item">
+          <div class="name" data-i18n="x"></div>
+    <div class="amount" data-i18n="e">Ziemniaki z wody, Ziemniaki opiekane, Ryż pół - dziki, 150g</div>
+    <div class="price">10 zł</div>
+   </div>        
+           <div class="menu-item">
+             <div class="name" data-i18n="x"></div>
+    <div class="amount" data-i18n="f">Sałatka Szopska ze świeżych warzyw, 150g</div>
+    <div class="price">16 zł</div>
+    </div>          
+              <div class="menu-item">
+                <div class="name" data-i18n="x"></div>
+    <div class="amount" data-i18n="g">Zestaw surówek, 150g</div>
+    <div class="price">13 zł</div>
+      </div>           
+                 <div class="menu-item">
+                   <div class="name" data-i18n="x"></div>
+    <div class="amount" data-i18n="h">Pieczywo czosnkowe, 100g</div>
+    <div class="price">3 zł</div>
+     </div>               
+                    <div class="menu-item">
+                      <div class="name" data-i18n="x"></div>
+    <div class="amount" data-i18n="i">Pieczywo serowe, 120g</div>
+    <div class="price">4 zł</div>
+      </div>                 
+                       <div class="menu-item">
+                         <div class="name" data-i18n="x"></div>
+    <div class="amount" data-i18n="j">Pieczywo, 100g</div>
+    <div class="price">2,50 zł</div>
+     </div>                     
+                          <div class="menu-item">
+                            <div class="name" data-i18n="x"></div>
+    <div class="amount" data-i18n="k">Extra sos, 80 ml</div>
+    <div class="price">4 zł</div>
+  </div>
 
   <img src="logo.jpg" alt="Logo" class="logo">
-  
-  
+
+    <script>
+    const translations = {
+      pl: {
+        pageTitle: "Danie Główne – Menu",
+        backToCategories: "⬅️ Powrót do kategorii",
+        home: "🏠 Strona główna",
+         a: "Dodatki do dań i Sałatek",
+        der: "Frytki Juliene / Frytki z Batata, 150g",
+        d: "Frytki - wesołe literki, 100g",
+        e: "Ziemniaki z wody, Ziemniaki opiekane, Ryż pół - dziki, 150g",
+      f: "Sałatka Szopska ze świeżych warzyw, 150g",
+      g: "Zestaw surówek, 150g",
+      h: "Pieczywo czosnkowe, 100g",
+      i: "Pieczywo serowe, 120g",
+      j: "Pieczywo, 100g",
+      k: "Extra sos, 80 ml"
+      },
+
+      en: {
+  pageTitle: "Main Dishes – Menu",
+  backToCategories: "⬅️ Back to categories",
+  home: "🏠 Home",
+  a: "Sides for dishes and salads",
+  der: "Julienne fries / Sweet potato fries, 150g",
+  d: "Fries - fun letters, 100g",
+  e: "Boiled potatoes, roasted potatoes, semi-wild rice, 150g",
+  f: "Shopska salad with fresh vegetables, 150g",
+  g: "Set of coleslaws, 150g",
+  h: "Garlic bread, 100g",
+  i: "Cheese bread, 120g",
+  j: "Bread, 100g",
+  k: "Extra sauce, 80 ml"
+},
+
+     de: {
+  pageTitle: "Hauptgerichte – Menü",
+  backToCategories: "⬅️ Zurück zu den Kategorien",
+  home: "🏠 Startseite",
+  a: "Beilagen zu Gerichten und Salaten",
+  der: "Julienne Pommes / Süßkartoffelpommes, 150g",
+  d: "Pommes - lustige Buchstaben, 100g",
+  e: "Gekochte Kartoffeln, Bratkartoffeln, halb-wilder Reis, 150g",
+  f: "Shopska-Salat mit frischem Gemüse, 150g",
+  g: "Salat-Mix, 150g",
+  h: "Knoblauchbrot, 100g",
+  i: "Käsebrot, 120g",
+  j: "Brot, 100g",
+  k: "Extra Soße, 80 ml"
+},
+
+      ua: {
+  pageTitle: "Основні страви – Меню",
+  backToCategories: "⬅️ Повернутися до категорій",
+  home: "🏠 Головна",
+  a: "Додатки до страв і салатів",
+  der: "Фрі Жульєн / Фрі з батату, 150 г",
+  d: "Фрі – веселі літери, 100 г",
+  e: "Відварена картопля, смажена картопля, напівдикого рису, 150 г",
+  f: "Шопський салат зі свіжих овочів, 150 г",
+  g: "Набір салатів, 150 г",
+  h: "Часниковий хліб, 100 г",
+  i: "Сирний хліб, 120 г",
+  j: "Хліб, 100 г",
+  k: "Додатковий соус, 80 мл"
+}
+    };
+
+      
+document.addEventListener("DOMContentLoaded", () => {
+      const lang = localStorage.getItem("lang") || "pl";
+      setLanguage(lang);
+    });
+
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll("[data-i18n]");
+      elements.forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      localStorage.setItem("lang", lang);
+    }
+  </script>
 </body>
 </html>
+ 
+
+  
+
