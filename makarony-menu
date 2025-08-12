@@ -155,7 +155,7 @@
     <div class="price">44 zł</div>
   </div>
 
-<h1>🥟 <span data-i18n="1">Pierogi</span></h1>
+<h1>🥟 <span data-i18n="2">Pierogi</span></h1>
 
  <div class="menu-item">
     <div class="name" data-i18n="i">Pierogi Ruskie</div>
@@ -169,7 +169,7 @@
     <div class="price">28 zł</div>
   </div>
 
-<h1>🥞 <span data-i18n="1">Naleśniki</span></h1>
+<h1>🥞 <span data-i18n="3">Naleśniki</span></h1>
 
  <div class="menu-item">
     <div class="name" data-i18n="ł">Naleśniki</div>
@@ -183,6 +183,117 @@
   <script>
     const translations = {
       pl: {
-        pageTitle: "Danie Główne – Menu",
+        pageTitle: "Makarony – Menu",
         backToCategories: "⬅️ Powrót do kategorii",
         home: "🏠 Strona główna",
+        makarony: "Makarony, Pierogii Naleśniki",
+        1: "Makarony",
+        a: "Penne Polo & Fungi",
+        b: "makaron, kurczak i grzyby leśne, 400 g",
+        c: "Spaghetti Bolognese",
+        d: "400 g",
+        e: "Spaghetti a'la Carbonara",
+        f: "350 g",
+        g: "Tagiatelle Nero z krewetkami",
+        h: "peperoncino, kolendra, 400 g",
+        2: "Pierogi",
+        i: "Pierogi Ruskie",
+        j: "z okrazą, 6 szt",
+        k: "Pierogi z mięsem",
+        l: "z okrazą, 6 szt",
+        3: "Naleśniki",
+        ł: "Naleśniki",
+        m: "z twarożkiem na słodko, 250 g",
+},
+
+en: {
+  pageTitle: "Pasta – Menu",
+  backToCategories: "⬅️ Back to categories",
+  home: "🏠 Home",
+  makarony: "Pasta, Dumplings and Pancakes",
+  1: "Pasta",
+  a: "Penne Pollo & Fungi",
+  b: "pasta, chicken and wild mushrooms, 400 g",
+  c: "Spaghetti Bolognese",
+  d: "400 g",
+  e: "Spaghetti a'la Carbonara",
+  f: "350 g",
+  g: "Tagliatelle Nero with shrimp",
+  h: "peperoncino, coriander, 400 g",
+  2: "Dumplings",
+  i: "Potato and cheese dumplings",
+  j: "with fried onion, 6 pcs",
+  k: "Meat dumplings",
+  l: "with fried onion, 6 pcs",
+  3: "Pancakes",
+  ł: "Pancakes",
+  m: "with sweet cottage cheese, 250 g",
+},
+
+de: {
+  pageTitle: "Pasta – Menü",
+  backToCategories: "⬅️ Zurück zu den Kategorien",
+  home: "🏠 Startseite",
+  makarony: "Pasta, Teigtaschen und Pfannkuchen",
+  1: "Pasta",
+  a: "Penne Pollo & Fungi",
+  b: "Pasta, Huhn und Waldpilze, 400 g",
+  c: "Spaghetti Bolognese",
+  d: "400 g",
+  e: "Spaghetti a'la Carbonara",
+  f: "350 g",
+  g: "Tagliatelle Nero mit Garnelen",
+  h: "Peperoncino, Koriander, 400 g",
+  2: "Teigtaschen",
+  i: "Russische Teigtaschen",
+  j: "mit Röstzwiebeln, 6 Stk.",
+  k: "Fleisch-Teigtaschen",
+  l: "mit Röstzwiebeln, 6 Stk.",
+  3: "Pfannkuchen",
+  ł: "Pfannkuchen",
+  m: "mit süßem Quark, 250 g",
+},
+
+uk: {
+  pageTitle: "Паста – Меню",
+  backToCategories: "⬅️ Повернутися до категорій",
+  home: "🏠 Головна",
+  makarony: "Паста, вареники та млинці",
+  1: "Паста",
+  a: "Пенне Полло та Фунгі",
+  b: "паста, курка та лісові гриби, 400 г",
+  c: "Спагеті Болоньєзе",
+  d: "400 г",
+  e: "Спагеті а-ля Карбонара",
+  f: "350 г",
+  g: "Тальятелле Неро з креветками",
+  h: "пеперончіно, коріандр, 400 г",
+  2: "Вареники",
+  i: "Вареники з картоплею та сиром",
+  j: "з підсмаженою цибулею, 6 шт.",
+  k: "Вареники з м’ясом",
+  l: "з підсмаженою цибулею, 6 шт.",
+  3: "Млинці",
+  ł: "Млинці",
+  m: "з солодким сиром, 250 г",
+},
+};
+
+ document.addEventListener("DOMContentLoaded", () => {
+      const lang = localStorage.getItem("lang") || "pl";
+      setLanguage(lang);
+    });
+
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll("[data-i18n]");
+      elements.forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      localStorage.setItem("lang", lang);
+    }
+  </script>
+</body>
+</html>
