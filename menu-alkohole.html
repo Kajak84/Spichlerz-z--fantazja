@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Menu – Alkohole mocne</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #e4d09b;
+    margin: 0;
+    padding: 0 20px 40px;
+    text-align: center;
+    color: #3d2b1f;
+  }
+  h1 {
+    background-color: #030100;
+    color: white;
+    padding: 20px;
+    margin-top: 0;
+  }
+  img {
+    display: block;
+    max-width: 500px;
+    margin: 50px auto;
+    border-radius: 16px;
+  }
+  .menu-item {
+    display: grid;
+    grid-template-columns: 6fr 2fr 2fr;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.1em;
+    max-width: 900px;
+    margin: 0 auto 20px;
+    text-align: left;
+  }
+  .name {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  .amount, .price {
+    font-weight: bold;
+    color: #5a3e1b;
+  }
+  .button-bar {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #0f0700;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+  }
+  .back-button:hover {
+    background: #291a07;
+  }
+  .logo {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 100px;
+    opacity: 0.8;
+  }
+  .language-switcher {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  .language-switcher img {
+    width: 28px;
+    margin: 0 5px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .language-switcher img:hover {
+    opacity: 1;
+  }
+  .price {
+  font-weight: bold;
+  color: #3d2b1f;
+  text-align: right;
+  white-space: nowrap;
+}
+
+</style>
+</head>
+<body>
+  
+<div class="language-switcher">
+  <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
+  <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
+  <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
+  <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
+</div>
+
+<div class="button-bar">
+  <a href="menu.html" class="back-button" data-i18n="backToCategories">⬅️ Powrót do kategorii</a>
+  <a href="index.html" class="back-button" data-i18n="home">🏠 Strona główna</a>
+</div>
+
+
+  <h1>🥃 <span data-i18n="alko">Alkohole Mocne</span></h1>
+
+  <img src="menu-img/alkohole_moicne.jpg" alt="Alkohole Mocne">
+
+  <div class="menu-item">
+  <div class="name" data-i18n="a">Wódka  Chopin Rye</div>
+  <div class="b">700ml</div>
+  <div class="price">199zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="c">Wódka Finlandia ( Czysta, Rzurawina )  </div>
+  <div class="d">500ml / 40ml</div>
+  <div class="price">100zł / 10zł </div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="e">Wódka Soplica ( różne smaki )</div>
+  <div class="f">500ml / 40ml</div>
+  <div class="price">100zł / 8zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="g">Wódka Żubrówka Biała</div>
+  <div class="h">500ml / 40ml</div>
+  <div class="price">100zł / 8zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="i">Wódka Amundsen</div>
+  <div class="j">700ml / 500ml / 40ml</div>
+  <div class="price">130zł / 100zł / 8zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="k">Wódka Żubrówka Bison</div>
+  <div class="l">500ml / 40ml</div>
+  <div class="price">100zł / 8zł</div>
+</div>
+
+<div class="menu-item">
+  <div class="name" data-i18n="ł">Tequila Sierra Gold, Silver</div>
+  <div class="m">40ml</div>
+  <div class="price">12zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="n">Gin, Gin Pink</div>
+  <div class="amount">40ml</div>
+  <div class="price">11zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="z">Jagermaister</div>
+  <div class="amount">40ml</div>
+  <div class="price">12zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="zz">Rum Bacardi Black</div>
+  <div class="amount">40ml</div>
+  <div class="price">16zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="r">Rum Bacardi Carta Blanca</div>
+  <div class="amount">40ml</div>
+  <div class="price">12zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="o">Whisky Tullamore</div>
+  <div class="amount">40ml</div>
+  <div class="price">18zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="p">Whisky Ballantines 12 Years</div>
+  <div class="amount">40ml</div>
+  <div class="price">18zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="zzz">Whisky Ballantines Finest</div>
+  <div class="amount">700ml / 500ml / 40ml</div>
+  <div class="price">220zł / 160zł / 13zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="s">Whisky Jack Daniels No 7, Fire, Honey, Apple</div>
+  <div class="amount">40ml</div>
+  <div class="price">18zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="t">Whisky Chivas</div>
+  <div class="amount">40ml</div>
+  <div class="price">20zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="u">Martell VSOP, Hennessy VSOP</div>
+  <div class="amount">40ml</div>
+  <div class="price">35zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="w">Whisky Johnnie Walker Blue Label</div>
+  <div class="amount">700ml</div>
+  <div class="price">1000zł</div>
+</div>
+
+  <div class="menu-item">
+  <div class="name" data-i18n="x">Metaxa *****</div>
+  <div class="amount">40ml</div>
+  <div class="price">15zł</div>
+</div>
+
+
+  <img src="logo.jpg" alt="Logo" class="logo">
+
+    <!-- 🔧 Skrypt tłumaczeń -->
+  <script>
+    const translations = {
+      pl: {
+        pageTitle: "Danie Główne – Menu",
+        backToCategories: "⬅️ Powrót do kategorii",
+        home: "🏠 Strona główna",
+        alko: "Alkohole Mocne",
+        a: "Wódka  Chopin Rye",
+        c: "Wódka Finlandia ( Czysta, Rzurawina )",
+        e: "Wódka Soplica ( różne smaki )",
+        g: "Wódka Żubrówka Biała",
+        i: "Wódka Amundsen",
+        k: "Wódka Żubrówka Bison",
+        ł: "Tequila Sierra Gold, Silver",
+        n: "Gin, Gin Pink",
+        z: "Jagermaister",
+        zz: "Rum Bacardi Black",
+        r: "Rum Bacardi Carta Blanca",
+        o: "Whisky Tullamore",
+        p: "Whisky Ballantines 12 Years",
+        zzz: "Whisky Ballantines Finest",
+        s: "Whisky Jack Daniels No 7, Fire, Honey, Apple",
+        t: "Whisky Chivas",
+        u: "Martell VSOP, Hennessy VSOP",
+        w: "Whisky Johnnie Walker Blue Label",
+        x: "Metaxa *****",
+      },
+en: {
+  "pageTitle": "Main Dishes – Menu",
+  "backToCategories": "⬅️ Back to Categories",
+  "home": "🏠 Home",
+  "alko": "Strong Alcohol",
+  "a": "Chopin Rye Vodka",
+  "c": "Finlandia Vodka ( Classic, Cranberry )",
+  "e": "Soplica Vodka ( various flavors )",
+  "g": "Żubrówka Biała Vodka",
+  "i": "Amundsen Vodka",
+  "k": "Żubrówka Bison Vodka",
+  "ł": "Sierra Gold, Silver Tequila",
+  "n": "Gin, Pink Gin",
+  "z": "Jägermeister",
+  "zz": "Bacardi Black Rum",
+  "r": "Bacardi Carta Blanca Rum",
+  "o": "Tullamore Whiskey",
+  "p": "Ballantine’s 12 Years Whiskey",
+  "zzz": "Ballantine’s Finest Whiskey",
+  "s": "Jack Daniel’s No 7, Fire, Honey, Apple Whiskey",
+  "t": "Chivas Whiskey",
+  "u": "Martell VSOP, Hennessy VSOP",
+  "w": "Johnnie Walker Blue Label Whiskey",
+  "x": "Metaxa *****"
+},
+      de:
+        {
+  "pageTitle": "Hauptgerichte – Menü",
+  "backToCategories": "⬅️ Zurück zu den Kategorien",
+  "home": "🏠 Startseite",
+  "alko": "Starker Alkohol",
+  "a": "Chopin Rye Wodka",
+  "c": "Finlandia Wodka ( Klassisch, Preiselbeere )",
+  "e": "Soplica Wodka ( verschiedene Geschmacksrichtungen )",
+  "g": "Żubrówka Biała Wodka",
+  "i": "Amundsen Wodka",
+  "k": "Żubrówka Bison Wodka",
+  "ł": "Sierra Gold, Silver Tequila",
+  "n": "Gin, Pink Gin",
+  "z": "Jägermeister",
+  "zz": "Bacardi Black Rum",
+  "r": "Bacardi Carta Blanca Rum",
+  "o": "Tullamore Whiskey",
+  "p": "Ballantine’s 12 Jahre Whiskey",
+  "zzz": "Ballantine’s Finest Whiskey",
+  "s": "Jack Daniel’s No 7, Fire, Honey, Apple Whiskey",
+  "t": "Chivas Whiskey",
+  "u": "Martell VSOP, Hennessy VSOP",
+  "w": "Johnnie Walker Blue Label Whiskey",
+  "x": "Metaxa *****"
+},
+      ua:
+        {
+  "pageTitle": "Основні Страви – Меню",
+  "backToCategories": "⬅️ Повернутися до категорій",
+  "home": "🏠 Головна",
+  "alko": "Міцний Алкоголь",
+  "a": "Горілка Chopin Rye",
+  "c": "Горілка Finlandia ( Класична, Журавлина )",
+  "e": "Горілка Soplica ( різні смаки )",
+  "g": "Горілка Żubrówka Biała",
+  "i": "Горілка Amundsen",
+  "k": "Горілка Żubrówka Bison",
+  "ł": "Текіла Sierra Gold, Silver",
+  "n": "Джин, Рожевий Джин",
+  "z": "Jägermeister",
+  "zz": "Ром Bacardi Black",
+  "r": "Ром Bacardi Carta Blanca",
+  "o": "Віскі Tullamore",
+  "p": "Віскі Ballantine’s 12 Років",
+  "zzz": "Віскі Ballantine’s Finest",
+  "s": "Віскі Jack Daniel’s No 7, Fire, Honey, Apple",
+  "t": "Віскі Chivas",
+  "u": "Martell VSOP, Hennessy VSOP",
+  "w": "Віскі Johnnie Walker Blue Label",
+  "x": "Metaxa *****"
+}
+    };
+
+   document.addEventListener("DOMContentLoaded", () => {
+      const lang = localStorage.getItem("lang") || "pl";
+      setLanguage(lang);
+    });
+
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll("[data-i18n]");
+      elements.forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      localStorage.setItem("lang", lang);
+    }
+  </script>
+</body>
+</html> 
+
+
+
+  
+  
