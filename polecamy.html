@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="pageTitle">Polecamy – Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e4d09b;
+      margin: 0;
+      padding: 0 20px 40px;
+      text-align: center;
+      color: #3d2b1f;
+    }
+    h1 {
+      background-color: #030100;
+      color: white;
+      padding: 20px;
+      margin-top: 0;
+    }
+    img {
+      display: block;
+      max-width: 500px;
+      margin: 50px auto;
+      border-radius: 16px;
+    }
+    .menu-item {
+  display: grid;
+  grid-template-columns: 4fr 3fr 2fr;
+  gap: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1em;
+  max-width: 900px;
+  margin: 0 auto 20px;
+  text-align: left;
+}
+
+.size-price {
+  font-weight: bold;
+  color: #5a3e1b;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.ingredients {
+  font-style: italic;
+  color: #7a6a52;
+}
+
+    .button-bar {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .back-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #0f0700;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+    .back-button:hover {
+      background: #291a07;
+    }
+    .logo {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 100px;
+      opacity: 0.8;
+    }
+    .language-switcher {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 6px 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    .language-switcher img {
+      width: 28px;
+      margin: 0 5px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+    .language-switcher img:hover {
+      opacity: 1;
+    }
+    .price {
+  font-weight: bold;
+  color: #3d2b1f;
+  text-align: right;
+  white-space: nowrap;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- 🔁 Przełącznik języka -->
+  <div class="language-switcher">
+    <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
+    <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
+    <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
+    <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
+  </div>
+
+  <div class="button-bar">
+    <a href="menu.html" class="back-button" data-i18n="backToCategories">⬅️ Powrót do kategorii</a>
+    <a href="index.html" class="back-button" data-i18n="home">🏠 Strona główna</a>
+  </div>
+
+  <h1>👩‍🍳 <span data-i18n="pol">Polecamy</span></h1>
+
+  <img src="menu-img/polecamy.jpg" alt="Polecamy" />
+
+  <!-- Menu items -->
+  <div class="menu-item">
+    <div class="name" data-i18n="a">Pierogi z jagodami leśnymi</div>
+    <div class="amount" data-i18n="b">śmietana, owocowa dekoracja, 6 szt</div>
+    <div class="price">37zł</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name" data-i18n="c">Zupa Czernina</div>
+    <div class="amount" data-i18n="d">ze swojskim makaronem, 350ml</div>
+    <div class="price">22zł</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name" data-i18n="e">Kaczka piewczona ( połówka )</div>
+    <div class="amount" data-i18n="f">z jabłkami, kluskami i buraczkami</div>
+    <div class="price">73zł</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name" data-i18n="g">Zrazy z jelenia</div>
+    <div class="amount" data-i18n="h">cebulka, boczek, w sosie grzybowym z kluskamii buraczkami</div>
+    <div class="price">65zł</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name" data-i18n="i">Ragout z dziczyzny</div>
+    <div class="amount" data-i18n="j">gulasz, z borowikami na plackach ziemniaczanych</div>
+    <div class="price">55zł</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="name" data-i18n="k">Pierś kurczaka faszerowana</div>
+    <div class="amount" data-i18n="l">szpinak, pomidor, cukinia, burattą pieczoną w boczku, Gnocchi borowikowe w śmietanie, sałata z sosem vinegret</div>
+    <div class="price">45zł</div>
+  </div>
+
+  <img src="logo.jpg" alt="Logo" class="logo" />
+  
+  <!-- 🔧 Skrypt tłumaczeń -->
+  <script>
+    const translations = {
+      pl: {
+        pageTitle: "Danie Główne – Menu",
+        backToCategories: "⬅️ Powrót do kategorii",
+        home: "🏠 Strona główna",
+        pol: "Polecamy",
+        a: "Pierogi z jagodami leśnymi",
+        b: "śmietana, owocowa dekoracja, 6 szt",
+        c: "Zupa Czernina",
+        d: "ze swojskim makaronem, 350ml",
+        e: "Kaczka piewczona ( połówka )",
+        f: "z jabłkami, kluskami i buraczkami",
+        g: "Zrazy z jelenia",
+        h: "cebulka, boczek, w sosie grzybowym z kluskamii buraczkami",
+        i: "Ragout z dziczyzny",
+        j: "gulasz, z borowikami na plackach ziemniaczanych",
+        k: "Pierś kurczaka faszerowana",
+        l: "szpinak, pomidor, cukinia, burattą pieczoną w boczku, Gnocchi borowikowe w śmietanie, sałata z sosem vinegret",
+      },
+      en = {
+  pageTitle: "Main Course – Menu",
+  backToCategories: "⬅️ Back to Categories",
+  home: "🏠 Home",
+  pol: "We Recommend",
+  a: "Dumplings with wild blueberries",
+  b: "cream, fruit decoration, 6 pcs",
+  c: "Duck blood soup (Czernina)",
+  d: "with homemade noodles, 350ml",
+  e: "Roast duck (half)",
+  f: "with apples, dumplings, and beetroot",
+  g: "Venison roulades",
+  h: "onion, bacon, in mushroom sauce with dumplings and beetroot",
+  i: "Game ragout",
+  j: "stew with porcini mushrooms on potato pancakes",
+  k: "Stuffed chicken breast",
+  l: "spinach, tomato, zucchini, burrata wrapped in bacon, porcini gnocchi in cream, salad with vinaigrette"
+},
+    de = {
+  pageTitle: "Hauptgericht – Menü",
+  backToCategories: "⬅️ Zurück zu den Kategorien",
+  home: "🏠 Startseite",
+  pol: "Wir empfehlen",
+  a: "Teigtaschen mit wilden Heidelbeeren",
+  b: "Sahne, Fruchtdekoration, 6 Stück",
+  c: "Entenblutsuppe (Czernina)",
+  d: "mit hausgemachten Nudeln, 350ml",
+  e: "Gebratene Ente (halbe)",
+  f: "mit Äpfeln, Klößen und Roter Bete",
+  g: "Hirschrouladen",
+  h: "Zwiebel, Speck, in Pilzsauce mit Klößen und Roter Bete",
+  i: "Wildragout",
+  j: "Eintopf mit Steinpilzen auf Kartoffelpuffern",
+  k: "Gefüllte Hähnchenbrust",
+  l: "Spinat, Tomate, Zucchini, Burrata im Speckmantel, Steinpilz-Gnocchi in Sahne, Salat mit Vinaigrette"
+},
+     uk = {
+  pageTitle: "Основна страва – Меню",
+  backToCategories: "⬅️ Повернутися до категорій",
+  home: "🏠 Головна",
+  pol: "Рекомендуємо",
+  a: "Вареники з лісовою чорницею",
+  b: "сметана, фруктова декорація, 6 шт",
+  c: "Суп Чорнина",
+  d: "з домашньою локшиною, 350 мл",
+  e: "Запечена качка (половина)",
+  f: "з яблуками, кльоцками та буряком",
+  g: "Рулетики з оленини",
+  h: "цибуля, бекон, у грибному соусі з кльоцками та буряком",
+  i: "Рагу з дичини",
+  j: "тушковане м’ясо з білими грибами на картопляних млинцях",
+  k: "Фарширована куряча грудка",
+  l: "шпинат, помідор, цукіні, буррата, запечена в беконі, кльоцки з білими грибами у сметані, салат з соусом вінегрет"
+}
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const lang = localStorage.getItem("lang") || "pl";
+      setLanguage(lang);
+    });
+
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll("[data-i18n]");
+      elements.forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      localStorage.setItem("lang", lang);
+    }
+  </script>
+</body>
+</html>
+ 
+
