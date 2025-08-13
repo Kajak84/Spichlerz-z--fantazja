@@ -4,6 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="title">Spichlerz z Fantazją</title>
+  
+  <!-- 🔑 SEO Meta -->
+  <meta name="description" content="Restauracja Spichlerz z Fantazją w Braniewie – tradycja, smak i atmosfera w samym sercu miasta. Zobacz menu, wydarzenia i kontakt.">
+  <meta name="keywords" content="restauracja, Braniewo, menu, Spichlerz z Fantazją, wydarzenia, kontakt">
+  <meta name="author" content="Spichlerz z Fantazją">
+  <meta name="robots" content="index, follow">
+
+  <!-- 🔗 Open Graph & Twitter Card -->
+  <meta property="og:title" content="Spichlerz z Fantazją">
+  <meta property="og:description" content="Tradycja, smak i atmosfera w samym sercu Braniewa">
+  <meta property="og:image" content="https://kajak84.github.io/Spichlerz-z--fantazja/logo.jpg">
+  <meta property="og:url" content="https://kajak84.github.io/Spichlerz-z--fantazja/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Spichlerz z Fantazją">
+  <meta name="twitter:description" content="Tradycja, smak i atmosfera w samym sercu Braniewa">
+  <meta name="twitter:image" content="https://kajak84.github.io/Spichlerz-z--fantazja/logo.jpg">
+
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background-color: #e4d09b; }
     header { background-color: #000; color: white; padding: 20px; text-align: center; }
@@ -17,7 +35,7 @@
     .social-links img:hover { opacity: 1; }
     .logo { position: fixed; bottom: 10px; right: 10px; width: 100px; opacity: 0.8; }
 
-    /* 🔽 Styl przełącznika języka */
+    /* Styl przełącznika języka */
     .language-switcher {
       position: fixed;
       top: 10px;
@@ -28,7 +46,6 @@
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-
     .language-switcher img {
       width: 28px;
       margin: 0 5px;
@@ -36,10 +53,7 @@
       opacity: 0.8;
       transition: opacity 0.3s;
     }
-
-    .language-switcher img:hover {
-      opacity: 1;
-    }
+    .language-switcher img:hover { opacity: 1; }
   </style>
 </head>
 <body>
@@ -58,10 +72,10 @@
   </header>
 
   <section class="hero">
-    <img src="img/wnetrze.jpg" alt="Wnętrze restauracji" />
-    <a href="menu.html"><img src="img/menu.jpg" alt="Menu" /></a>
-    <a href="kontakt.html"><img src="img/kontakt.jpg" alt="Kontakt" /></a>
-    <img src="img/wydarzenia.jpg" alt="Wydarzenia" />
+    <img src="img/wnetrze.jpg" alt="Wnętrze restauracji Spichlerz z Fantazją">
+    <a href="menu.html"><img src="img/menu.jpg" alt="Menu restauracji Spichlerz z Fantazją"></a>
+    <a href="kontakt.html"><img src="img/kontakt.jpg" alt="Kontakt do restauracji Spichlerz z Fantazją"></a>
+    <img src="img/wydarzenia.jpg" alt="Wydarzenia w restauracji Spichlerz z Fantazją">
   </section>
 
   <section class="about">
@@ -74,7 +88,7 @@
     <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichlerz-z--fantazja%2Fmenu.html" alt="Kod QR do menu" width="250" />
   </section>
 
-  <img src="logo.jpg" alt="Logo" class="logo" />
+  <img src="logo.jpg" alt="Logo Spichlerz z Fantazją" class="logo" />
 
   <footer>
     <div class="social-links">
@@ -121,22 +135,18 @@
       }
     };
 
-    // 🔄 Ustawienie języka po załadowaniu strony
     document.addEventListener('DOMContentLoaded', () => {
       const lang = localStorage.getItem('lang') || 'pl';
       setLanguage(lang);
     });
 
-    // 🌍 Zmiana języka
     function setLanguage(lang) {
       const elements = document.querySelectorAll('[data-i18n]');
       elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-          el.textContent = translations[lang][key];
-        }
+        if (translations[lang][key]) el.textContent = translations[lang][key];
       });
-      localStorage.setItem('lang', lang); // zapisz wybór
+      localStorage.setItem('lang', lang);
     }
   </script>
 
