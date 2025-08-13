@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Menu – Aperitif</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #e4d09b;
+    margin: 0;
+    padding: 0 20px 40px;
+    text-align: center;
+    color: #3d2b1f;
+  }
+  h1 {
+    background-color: #030100;
+    color: white;
+    padding: 20px;
+    margin-top: 0;
+  }
+  img {
+    display: block;
+    max-width: 500px;
+    margin: 50px auto;
+    border-radius: 16px;
+  }
+  .menu-item {
+    display: grid;
+    grid-template-columns: 6fr 2fr 2fr;
+    gap: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.1em;
+    max-width: 900px;
+    margin: 0 auto 20px;
+    text-align: left;
+  }
+  .name {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  .amount, .price {
+    font-weight: bold;
+    color: #5a3e1b;
+  }
+  .button-bar {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #0f0700;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s;
+  }
+  .back-button:hover {
+    background: #291a07;
+  }
+  .logo {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 100px;
+    opacity: 0.8;
+  }
+  .language-switcher {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 6px 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  .language-switcher img {
+    width: 28px;
+    margin: 0 5px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .language-switcher img:hover {
+    opacity: 1;
+  }
+  .price {
+  font-weight: bold;
+  color: #3d2b1f;
+  text-align: right;
+  white-space: nowrap;
+}
+
+</style>
+</head>
+<body>
+  
+<div class="language-switcher">
+  <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
+  <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
+  <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
+  <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
+</div>
+
+<div class="button-bar">
+  <a href="menu.html" class="back-button" data-i18n="backToCategories">⬅️ Powrót do kategorii</a>
+  <a href="index.html" class="back-button" data-i18n="home">🏠 Strona główna</a>
+</div>
+
+
+  <h1>🥂 <span data-i18n="aper">Aperitif</span></h1>
+
+  <img src="menu-img/aperitif.jpg" alt="Aperitif">
+
+  <div class="menu-item">
+  <div class="name" data-i18n="a">Malibu</div>
+  <div class="b">40ml</div>
+  <div class="price">10zł</div>
+</div>
+
+   <div class="menu-item">
+  <div class="name" data-i18n="c">Campari</div>
+  <div class="b">40ml</div>
+  <div class="price">10zł</div>
+</div>
+
+   <div class="menu-item">
+  <div class="name" data-i18n="d">Aperol</div>
+  <div class="b">40ml</div>
+  <div class="price">12zł</div>
+</div>
+
+   <div class="menu-item">
+  <div class="name" data-i18n="e">Passoa</div>
+  <div class="b">40ml</div>
+  <div class="price">10zł</div>
+</div>
+
+   <div class="menu-item">
+  <div class="name" data-i18n="f">Cointreau</div>
+  <div class="b">40ml</div>
+  <div class="price">12zł</div>
+</div>
+
+   <div class="menu-item">
+  <div class="name" data-i18n="g">P31</div>
+  <div class="b">40ml</div>
+  <div class="price">12zł</div>
+</div>
+
+   <div class="menu-item">
+  <div class="name" data-i18n="h">Bols - Blue Curacao, Triple Sec, Peach, Melon, Truskawka, Aplle, Banan, Cucumber, Brown Creme </div>
+  <div class="b">40ml</div>
+  <div class="price">12zł</div>
+</div>
+
+  <img src="logo.jpg" alt="Logo" class="logo">
+
+    <!-- 🔧 Skrypt tłumaczeń -->
+  <script>
+    const translations = {
+      pl: {
+        pageTitle: "Danie Główne – Menu",
+        backToCategories: "⬅️ Powrót do kategorii",
+        home: "🏠 Strona główna",
+        aper: "Aperitif",
+        a: "Malibu",
+        c:"Campari",
+        d: "Aperol",
+        e: "Passoa",
+        f: "Cointreau",
+        g: "P31",
+        h: "Bols - Blue Curacao, Triple Sec, Peach, Melon, Truskawka, Aplle, Banan, Cucumber, Brown Creme",
+      },
+en:
+      {
+  "pageTitle": "Main Dishes – Menu",
+  "backToCategories": "⬅️ Back to Categories",
+  "home": "🏠 Home",
+  "aper": "Aperitif",
+  "a": "Malibu",
+  "c": "Campari",
+  "d": "Aperol",
+  "e": "Passoa",
+  "f": "Cointreau",
+  "g": "P31",
+  "h": "Bols – Blue Curacao, Triple Sec, Peach, Melon, Strawberry, Apple, Banana, Cucumber, Brown Creme"
+},
+de:
+  {
+  "pageTitle": "Hauptgerichte – Menü",
+  "backToCategories": "⬅️ Zurück zu den Kategorien",
+  "home": "🏠 Startseite",
+  "aper": "Aperitif",
+  "a": "Malibu",
+  "c": "Campari",
+  "d": "Aperol",
+  "e": "Passoa",
+  "f": "Cointreau",
+  "g": "P31",
+  "h": "Bols – Blue Curacao, Triple Sec, Pfirsich, Melone, Erdbeere, Apfel, Banane, Gurke, Braune Creme"
+},
+      ua: 
+        {
+  "pageTitle": "Основні Страви – Меню",
+  "backToCategories": "⬅️ Повернутися до категорій",
+  "home": "🏠 Головна",
+  "aper": "Аперитив",
+  "a": "Malibu",
+  "c": "Campari",
+  "d": "Aperol",
+  "e": "Passoa",
+  "f": "Cointreau",
+  "g": "P31",
+  "h": "Bols – Блю Кюрасао, Тріпл Сек, Персик, Диня, Полуниця, Яблуко, Банан, Огірок, Коричневий Крем"
+},
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const lang = localStorage.getItem("lang") || "pl";
+      setLanguage(lang);
+    });
+
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll("[data-i18n]");
+      elements.forEach((el) => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      localStorage.setItem("lang", lang);
+    }
+  </script>
+</body>
+</html> 
+
+
