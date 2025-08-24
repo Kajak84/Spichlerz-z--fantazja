@@ -13,28 +13,68 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background-color: #e4d09b; }
     header { background-color: #000; color: white; padding: 20px; text-align: center; }
-    .hero { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 20px; }
-    .hero img { width: 300px; height: auto; border-radius: 10px; object-fit: cover; }
+    
+    /* Hero z przewijaniem */
+    .hero {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 10px;
+      padding: 20px;
+    }
+    .hero img, .hero a img {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      width: 300px;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .hero img:hover, .hero a img:hover { transform: scale(1.05); }
+
     .about { padding: 40px; background-color: #fef3e2; text-align: center; }
     .daily-special { padding: 40px; background-color: #fff9ef; text-align: center; }
+    #daily-special-container p { transition: transform 0.3s; }
+    #daily-special-container p:hover { transform: scale(1.02); }
+
     #qr { text-align:center; padding:40px; background-color: rgba(254, 243, 226, 1); }
     footer { background:#000; color:#FFFFFF; padding:20px; text-align:center; }
     .social-links a { margin: 0 10px; }
     .social-links img { vertical-align: middle; opacity: 0.8; transition: opacity .3s; width: 32px; }
     .social-links img:hover { opacity: 1; }
     .logo { position: fixed; bottom: 10px; right: 10px; width: 100px; opacity: 0.8; }
-    .language-switcher { position: fixed; top: 10px; right: 10px; z-index: 999; background: rgba(255, 255, 255, 0.9); padding: 6px 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-    .language-switcher img { width: 28px; margin: 0 5px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s; }
+
+    .language-switcher {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 6px 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .language-switcher img {
+      width: 28px;
+      margin: 0 5px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.3s, border 0.3s;
+    }
     .language-switcher img:hover { opacity: 1; }
+    .language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
+
+    @media(max-width:480px){ .logo { width: 70px; } }
   </style>
 </head>
 <body>
 
 <div class="language-switcher">
-  <img src="flags/pl.svg" alt="Polski" onclick="setLanguage('pl')" />
-  <img src="flags/gb.svg" alt="English" onclick="setLanguage('en')" />
-  <img src="flags/de.svg" alt="Deutsch" onclick="setLanguage('de')" />
-  <img src="flags/ua.svg" alt="Українська" onclick="setLanguage('ua')" />
+  <img src="flags/pl.svg" alt="pl" onclick="setLanguage('pl')" />
+  <img src="flags/gb.svg" alt="en" onclick="setLanguage('en')" />
+  <img src="flags/de.svg" alt="de" onclick="setLanguage('de')" />
+  <img src="flags/ua.svg" alt="ua" onclick="setLanguage('ua')" />
 </div>
 
 <header>
@@ -69,7 +109,7 @@
 </footer>
 
 <script>
-  // Wczytanie dania dnia z obsługą błędu 404
+  // Wczytywanie dania dnia z obsługą błędu
   fetch('danie_dnia.html')
     .then(response => {
       if (!response.ok) throw new Error('Plik danie_dnia.html nie został znaleziony.');
@@ -77,6 +117,33 @@
     })
     .then(html => document.getElementById('daily-special-container').innerHTML = html)
     .catch(err => document.getElementById('daily-special-container').innerHTML = '<p style="color:red;">Nie udało się wczytać dania dnia.</p>');
+
+  // Obsługa języków
+  function setLanguage(lang) {
+    document.documentElement.lang = lang;
+    const translations = {
+      pl: { title:"Spichlerz z Fantazją", subtitle:"Tradycja, smak i atmosfera w samym sercu Braniewa", aboutTitle:"O nas", aboutText:"Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...", scan:"📲 Zeskanuj, aby zobaczyć menu" },
+      en: { title:"Spichlerz z Fantazją", subtitle:"Tradition, taste and atmosphere in the heart of Braniewo", aboutTitle:"About Us", aboutText:"The 'Spichlerz z Fantazją' restaurant is a unique place that combines history with modernity...", scan:"📲 Scan to see the menu" },
+      de: { title:"Spichlerz z Fantazją", subtitle:"Tradition, Geschmack und Atmosphäre im Herzen von Braniewo", aboutTitle:"Über uns", aboutText:"Das Restaurant 'Spichlerz z Fantazją' ist ein einzigartiger Ort, der Geschichte mit Moderne verbindet...", scan:"📲 Scannen Sie, um das Menü zu sehen" },
+      ua: { title:"Spichlerz z Fantazją", subtitle:"Традиції, смак та атмосфера в самому серці Бранево", aboutTitle:"Про нас", aboutText:"Ресторан 'Spichlerz z Fantazją' – унікальне місце, що поєднує історію з сучасністю...", scan:"📲 Скануйте, щоб побачити меню" }
+    };
+
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(translations[lang][key]) el.textContent = translations[lang][key];
+    });
+
+    document.querySelectorAll('.language-switcher img').forEach(img=>{
+      img.classList.toggle('active', img.alt === lang);
+    });
+
+    localStorage.setItem('lang', lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const savedLang = localStorage.getItem('lang') || 'pl';
+    setLanguage(savedLang);
+  });
 </script>
 
 </body>
