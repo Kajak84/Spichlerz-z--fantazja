@@ -29,6 +29,8 @@
     .hero { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; padding: 20px; }
     .hero img { width: 300px; height: auto; border-radius: 10px; object-fit: cover; }
     .about { padding: 40px; background-color: #fef3e2; text-align: center; }
+    .daily-special { padding: 40px; background-color: #fff9ef; text-align: center; }
+    .daily-special h1 { margin-bottom: 20px; }
     #qr { text-align:center; padding:40px; background-color: rgba(254, 243, 226, 1); }
     footer { background:#000; color:#FFFFFF; padding:20px; text-align:center; }
     .social-links a { margin: 0 10px; }
@@ -84,6 +86,12 @@
     <p data-i18n="aboutText">Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...</p>
   </section>
 
+  <!-- 🔥 Sekcja dania dnia -->
+  <section class="daily-special">
+    <h1 data-i18n="aboutTitledaiyspecial">Nasze danie dnia</h1>
+    <iframe src="danie_dnia.html" width="100%" style="border:none;min-height:200px;"></iframe>
+  </section>
+
   <section id="qr">
     <h2 data-i18n="scan">📲 Zeskanuj, aby zobaczyć menu</h2>
     <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichlerz-z--fantazja%2Fmenu.html" alt="Kod QR do menu" width="250" />
@@ -107,33 +115,39 @@
         subtitle: "Tradycja, smak i atmosfera w samym sercu Braniewa",
         aboutTitle: "O nas",
         aboutText: "Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...",
+        aboutTitledailyspecial:"Nasze danie dnia",
         scan: "📲 Zeskanuj, aby zobaczyć menu",
         footer: "© 2025 Spichlerz z Fantazją – ul. Portowa 6, Braniewo"
       },
-      en: {
-        title: "Granary with Imagination",
-        subtitle: "Tradition, flavor and atmosphere in the heart of Braniewo",
-        aboutTitle: "About us",
-        aboutText: "“Granary with Imagination” is a unique place combining history with modernity...",
-        scan: "📲 Scan to view the menu",
-        footer: "© 2025 Granary with Imagination – Portowa 6, Braniewo"
-      },
-      de: {
-        title: "Speicher mit Fantasie",
-        subtitle: "Tradition, Geschmack und Atmosphäre im Herzen von Braniewo",
-        aboutTitle: "Über uns",
-        aboutText: "Das Restaurant „Speicher mit Fantasie“ ist ein besonderer Ort, der Geschichte mit Moderne verbindet...",
-        scan: "📲 Scannen, um das Menü zu sehen",
-        footer: "© 2025 Speicher mit Fantasie – Portowa 6, Braniewo"
-      },
-      ua: {
-        title: "Комора з фантазією",
-        subtitle: "Традиції, смак та атмосфера в самому серці Бранево",
-        aboutTitle: "Про нас",
-        aboutText: "Ресторан «Комора з фантазією» — це унікальне місце, де поєднується історія з сучасністю...",
-        scan: "📲 Скануйте, щоб переглянути меню",
-        footer: "© 2025 Комора з фантазією – вул. Портова 6, Бранево"
-      }
+     en: {
+    title: "Granary with Imagination",
+    subtitle: "Tradition, flavor, and atmosphere in the heart of Braniewo",
+    aboutTitle: "About Us",
+    aboutText: "The restaurant 'Granary with Imagination' is a unique place, combining history with modernity...",
+    aboutTitledailyspecial: "Our daily special",
+    scan: "📲 Scan to view the menu",
+    footer: "© 2025 Granary with Imagination – 6 Portowa St., Braniewo"
+},
+
+     de: {
+    title: "Kornspeicher mit Fantasie",
+    subtitle: "Tradition, Geschmack und Atmosphäre im Herzen von Braniewo",
+    aboutTitle: "Über uns",
+    aboutText: "Das Restaurant 'Kornspeicher mit Fantasie' ist ein einzigartiger Ort, der Geschichte mit Moderne verbindet...",
+    aboutTitledailyspecial: "Unser Tagesgericht",
+    scan: "📲 Scannen, um die Speisekarte zu sehen",
+    footer: "© 2025 Kornspeicher mit Fantasie – Portowa 6, Braniewo"
+},
+
+     ua: {
+    title: "Комора з Фантазією",
+    subtitle: "Традиції, смак та атмосфера в самому серці Бранево",
+    aboutTitle: "Про нас",
+    aboutText: "Ресторан «Комора з Фантазією» – це унікальне місце, що поєднує історію з сучасністю...",
+    aboutTitledailyspecial: "Наша страва дня",
+    scan: "📲 Скануйте, щоб переглянути меню",
+    footer: "© 2025 Комора з Фантазією – вул. Портова 6, Бранево"
+}
     };
 
     document.addEventListener('DOMContentLoaded', () => {
