@@ -13,11 +13,29 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background-color: #e4d09b; overflow-x: hidden; }
     header { background-color: #000; color: white; padding: 20px; text-align: center; }
-    
-    /* Hero z parallax */
-    .hero { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; padding: 20px; perspective: 1000px; }
-    .hero img, .hero a img { flex: 0 0 auto; scroll-snap-align: start; width: 300px; height: auto; border-radius: 10px; object-fit: cover; transition: transform 0.5s ease, filter 0.5s ease; }
-    .hero img:hover, .hero a img:hover { transform: scale(1.08) rotateY(3deg); filter: brightness(1.1); }
+
+    /* Hero - wyśrodkowane */
+    .hero {
+      display: flex;
+      justify-content: center; /* wyśrodkowanie poziome */
+      align-items: center;     /* wyśrodkowanie pionowe */
+      gap: 20px;
+      flex-wrap: wrap;         /* dla małych ekranów */
+      padding: 40px 20px;
+    }
+
+    .hero a img, .hero img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .hero a img:hover, .hero img:hover {
+      transform: scale(1.08) rotateY(3deg);
+      filter: brightness(1.1);
+    }
 
     .section { padding: 40px; text-align: center; opacity: 0; transform: translateY(30px); transition: all 1s ease; }
     .section.visible { opacity: 1; transform: translateY(0); }
@@ -31,7 +49,9 @@
     .language-switcher img:hover { opacity: 1; }
     .language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
 
-    @media(max-width:480px){ .hero img, .hero a img { width: 200px; } }
+    @media(max-width:480px){
+      .hero a img, .hero img { width: 200px; height: 150px; }
+    }
   </style>
 </head>
 <body>
@@ -48,11 +68,10 @@
   <p data-i18n="subtitle">Tradycja, smak i atmosfera w samym sercu Braniewa</p>
 </header>
 
+<!-- Hero: Menu i Kontakt wyśrodkowane -->
 <section class="hero">
-  <img src="img/wnetrze.jpg" alt="Wnętrze restauracji Spichlerz z Fantazją">
   <a href="menu.html"><img src="img/menu.jpg" alt="Menu restauracji Spichlerz z Fantazją"></a>
   <a href="kontakt.html"><img src="img/kontakt.jpg" alt="Kontakt do restauracji Spichlerz z Fantazją"></a>
-  <img src="img/wydarzenia.jpg" alt="Wydarzenia w restauracji Spichlerz z Fantazją">
 </section>
 
 <section class="section about">
