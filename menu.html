@@ -132,54 +132,17 @@
       opacity: 1;
     }
 
-    /* --- Nowe style dla mobilnego menu poziomego --- */
-    @media (max-width: 768px) {
-      .gallery {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        padding: 15px;
-        gap: 15px;
-      }
-
-      .menu-image {
-        min-width: 200px;
-        flex: 0 0 auto;
-        scroll-snap-align: start;
-      }
-
+    @media (max-width: 480px) {
       .menu-image img {
-        height: 150px;
+        height: 140px;
       }
-
       h1 {
         font-size: 1.5rem;
       }
-
       .label {
         font-size: 1rem;
       }
-
-      .gallery::-webkit-scrollbar {
-        height: 8px;
-      }
-
-      .gallery::-webkit-scrollbar-thumb {
-        background: #050200;
-        border-radius: 4px;
-      }
-
-      .gallery::-webkit-scrollbar-track {
-        background: rgba(0,0,0,0.1);
-      }
     }
-
-    @media (max-width: 480px) {
-      .menu-image img {
-        height: 130px;
-      }
-    }
-
   </style>
 </head>
 <body>
@@ -199,30 +162,100 @@
   <h1 data-i18n="menuCategoriesTitle">Nasze Menu – Wybierz kategorię</h1>
 
   <div class="gallery">
-    <!-- Wstaw wszystkie kategorie tak jak wcześniej -->
     <a href="polecamy.html" class="menu-image">
       <img src="menu-img/polecamy.jpg" alt="Polecamy" />
       <div class="label" data-i18n="polecamy">👩‍🍳 Polecamy</div>
     </a>
+
     <a href="sniadanie.html" class="menu-image">
       <img src="menu-img/sniadanie.jpg" alt="Zestawy Śniadaniowe" />
       <div class="label" data-i18n="sniadanie">🍳 Zestawy Śniadaniowe</div>
     </a>
+
     <a href="salatki.html" class="menu-image">
       <img src="menu-img/salatki.jpg" alt="Sałatki" />
       <div class="label" data-i18n="salatki">🥗 Sałatki</div>
     </a>
-    <!-- Dodaj resztę kategorii w tym samym stylu -->
+
+    <a href="zupy.html" class="menu-image">
+      <img src="menu-img/zupy.jpg" alt="Zupy" />
+      <div class="label" data-i18n="zupy">🥣 Zupy</div>
+    </a>
+
+    <a href="menu-makarony.html" class="menu-image">
+      <img src="menu-img/makarony.jpg" alt="Makarony, naleśniki i pierogi" />
+      <div class="label" data-i18n="makarony">🥟 Makarony, naleśniki i pierogi</div>
+    </a>
+
+    <a href="menu-przekaski.html" class="menu-image">
+      <img src="menu-img/przekaski.jpg" alt="Przekąski" />
+      <div class="label" data-i18n="snacks">🍟 Przekąski</div>
+    </a>
+
+    <a href="menu-glowne.html" class="menu-image">
+      <img src="menu-img/danie.jpg" alt="Dania główne" />
+      <div class="label" data-i18n="mainDishes">🍽 Dania główne</div>
+    </a>
+
+    <a href="menu-dodatki.html" class="menu-image">
+      <img src="menu-img/dodatki.jpg" alt="Dodatki" />
+      <div class="label" data-i18n="extras">🧂 Dodatki</div>
+    </a>
+
+    <a href="menu-pizza.html" class="menu-image">
+      <img src="menu-img/pizza.jpg" alt="Pizza" />
+      <div class="label" data-i18n="pizza">🍕 Pizza</div>
+    </a>
+
+    <a href="menu-napoje.html" class="menu-image">
+      <img src="menu-img/napoje.jpg" alt="Napoje" />
+      <div class="label" data-i18n="drinks">🥤 Napoje</div>
+    </a>
+
+    <a href="menu-hot.html" class="menu-image">
+      <img src="menu-img/napoje gorace.jpg" alt="Napoje Gorące" />
+      <div class="label" data-i18n="hot">🫖 Napoje Gorące</div>
+    </a>
+
+    <a href="menu-desery.html" class="menu-image">
+      <img src="menu-img/deser.jpg" alt="Desery" />
+      <div class="label" data-i18n="desery">🧁 Desery</div>
+    </a>
+
+    <a href="menu-piwo.html" class="menu-image">
+      <img src="menu-img/piwo.jpg" alt="Piwo" />
+      <div class="label" data-i18n="beer">🍺 Piwo</div>
+    </a>
+
+    <a href="menu-alkohole.html" class="menu-image">
+      <img src="menu-img/alkohole_mocne.jpg" alt="Alkohole Mocne" />
+      <div class="label" data-i18n="alkohole_mocne">🥃 Alkohole Mocne</div>
+    </a>
+
+    <a href="menu-aperitif.html" class="menu-image">
+      <img src="menu-img/aperitif.jpg" alt="Aperitif" />
+      <div class="label" data-i18n="aperitif">🥂 Aperitif</div>
+    </a>
+
+    <a href="menu-wino.html" class="menu-image">
+      <img src="menu-img/wino.jpg" alt="Wino" />
+      <div class="label" data-i18n="wine">🍷 Wino</div>
+    </a>
+
+    <a href="menu-drinki.html" class="menu-image">
+      <img src="menu-img/drinki.jpg" alt="Drinki i Koktajle" />
+      <div class="label" data-i18n="drinki">🍸 Drinki i Koktajle</div>
+    </a>
   </div>
 
   <img src="logo.jpg" alt="Logo" class="logo" />
 
   <script>
     const translations = {
-      pl: { menuCategoriesTitle:"Nasze Menu – Wybierz kategorię", backToCategories:"⬅️ Powrót do kategorii", polecamy:"👩‍🍳 Polecamy", home:"🏠 Strona główna", sniadanie:"🍳 Zestawy Śniadaniowe", salatki:"🥗 Sałatki"},
-      en: { menuCategoriesTitle:"Our Menu – Choose a Category", backToCategories:"⬅️ Back to categories", polecamy:"👩‍🍳 Recommendations", home:"🏠 Home", sniadanie:"🍳 Breakfast sets", salatki:"🥗 Salads"},
-      de: { menuCategoriesTitle:"Unsere Speisekarte – Wählen Sie eine Kategorie", backToCategories:"⬅️ Zurück zu den Kategorien", polecamy:"👩‍🍳 Empfehlungen", home:"🏠 Startseite", sniadanie:"🍳 Frühstücksmenüs", salatki:"🥗 Salate"},
-      ua: { menuCategoriesTitle:"Наше меню – Виберіть категорію", backToCategories:"⬅️ Назад до категорій", polecamy:"👩‍🍳 Рекомендації", home:"🏠 Головна", sniadanie:"🍳 Сніданки", salatki:"🥗 Салати"}
+      pl: { menuCategoriesTitle:"Nasze Menu – Wybierz kategorię", backToCategories:"⬅️ Powrót do kategorii", polecamy:"👩‍🍳 Polecamy", home:"🏠 Strona główna", sniadanie:"🍳 Zestawy Śniadaniowe", salatki:"🥗 Sałatki", zupy:"🥣 Zupy", makarony:"🥟 Makarony, naleśniki i pierogi", snacks:"🍟 Przekąski", mainDishes:"🍽 Dania główne", extras:"🧂 Dodatki", pizza:"🍕 Pizza", drinks:"🥤 Napoje", hot:"🫖 Napoje Gorące", desery:"🧁 Desery", beer:"🍺 Piwo", alkohole_mocne:"🥃 Alkohole Mocne", aperitif:"🥂 Aperitif", wine:"🍷 Wino", drinki:"🍸 Drinki i Koktajle"},
+      en: { menuCategoriesTitle:"Our Menu – Choose a Category", backToCategories:"⬅️ Back to categories", polecamy:"👩‍🍳 Recommendations", home:"🏠 Home", sniadanie:"🍳 Breakfast sets", salatki:"🥗 Salads", zupy:"🥣 Soups", makarony:"🥟 Pasta, pancakes & dumplings", snacks:"🍟 Snacks", mainDishes:"🍽 Main dishes", extras:"🧂 Extras", pizza:"🍕 Pizza", drinks:"🥤 Drinks", hot:"🫖 Hot drinks", desery:"🧁 Desserts", beer:"🍺 Beer", alkohole_mocne:"🥃 Spirits", aperitif:"🥂 Aperitif", wine:"🍷 Wine", drinki:"🍸 Cocktails"},
+      de: { menuCategoriesTitle:"Unsere Speisekarte – Wählen Sie eine Kategorie", backToCategories:"⬅️ Zurück zu den Kategorien", polecamy:"👩‍🍳 Empfehlungen", home:"🏠 Startseite", sniadanie:"🍳 Frühstücksmenüs", salatki:"🥗 Salate", zupy:"🥣 Suppen", makarony:"🥟 Pasta, Pfannkuchen & Teigtaschen", snacks:"🍟 Snacks", mainDishes:"🍽 Hauptgerichte", extras:"🧂 Beilagen", pizza:"🍕 Pizza", drinks:"🥤 Getränke", hot:"🫖 Heisse Getränke", desery:"🧁 Desserts", beer:"🍺 Bier", alkohole_mocne:"🥃 Spirituosen", aperitif:"🥂 Aperitif", wine:"🍷 Wein", drinki:"🍸 Cocktails"},
+      ua: { menuCategoriesTitle:"Наше меню – Виберіть категорію", backToCategories:"⬅️ Назад до категорій", polecamy:"👩‍🍳 Рекомендації", home:"🏠 Головна", sniadanie:"🍳 Сніданки", salatki:"🥗 Салати", zupy:"🥣 Супи", makarony:"🥟 Паста, млинці та вареники", snacks:"🍟 Закуски", mainDishes:"🍽 Основні страви", extras:"🧂 Додатки", pizza:"🍕 Піца", drinks:"🥤 Напої", hot:"🫖 Гарячі напої", desery:"🧁 Десерти", beer:"🍺 Пиво", alkohole_mocne:"🥃 Міцні напої", aperitif:"🥂 Аперитив", wine:"🍷 Вино", drinki:"🍸 Коктейлі"}
     };
 
     function setLanguage(lang) {
