@@ -2,8 +2,8 @@ import requests
 import datetime
 import os
 
-PAGE_ID = os.getenv("AFdNb1K9AgSGGRcN8eMJj33")       # ID strony z Facebooka
-ACCESS_TOKEN = os.getenv("EAAfCrK0kMV4BPXtCiLxyWeT8D7ZCTI6xCPeqUCW2cUTpa03VZB5JBmve5HTeFctgsHmWeKsQDgk6BOYDvX9oLAEtZAD5UbFtVmTZARfnFiiU7taXW6p3qrSHSSgtzy77yFhHQZAjhEQ7z5ziR5pe5eqSwDyaRYPlz49bzP9uc6Yt0AFv4bx8PCMFKRXDzW8ylfepuBc66kaNSytiWtz0A8ZCIsbCKSjQ8HjL7R")    # Token API (ustawiony w GitHub Secrets)
+PAGE_ID = os.getenv("FB_PAGE_ID")       # ID strony z Facebooka
+ACCESS_TOKEN = os.getenv("FB_TOKEN")    # Token API (ustawiony w GitHub Secrets)
 
 url = f"https://graph.facebook.com/{PAGE_ID}/posts"
 params = {
