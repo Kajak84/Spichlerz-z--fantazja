@@ -1,48 +1,56 @@
-name: Update Danie Dnia
+name: Automatyczne pobieranie dania dnia z Facebooka
 
 on:
   schedule:
-    # Codziennie o 10:00 polskiego czasu (uwzględniając CET/CEST)
-    - cron: "0 8 * * *"   # Zima (CET=UTC+1) => 10:00 PL
-    - cron: "0 9 * * *"   # Lato (CEST=UTC+2) => 10:00 PL
+    - cron: "0 10 * * *"
   workflow_dispatch:
-    inputs:
-      test:
-        description: "Uruchom test z przykładowym daniem dnia"
-        required: false
-        default: "false"
 
 jobs:
-  update:
+  update-danie:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Install dependencies
-        run: pip install requests
-
-      - name: Run script (test lub normalny)
-        env:
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_TOKEN: ${{ secrets.FB_TOKEN }}
-          TEST: ${{ github.event.inputs.test }}
+      - name: Pobierz najnowszy post z Facebooka
         run: |
-          if [ "$TEST" = "true" ]; then
-            echo '<div class="danie-dnia"><h2>TEST DANIE DNIA</h2><p>To jest tylko przykładowy test.</p></div>' > danie_dnia.html
-          else
-            python update_danie_dnia.py
+          PAGE_ID=1450358605057439
+          TOKEN=${{ secrets.FB_TOKEN }}
+
+          POST=$(curl -s -G \
+            "https://graph.facebook.com/v17.0/$PAGE_ID/posts" \
+            -d "access_token=$TOKEN" \
+            -d "limit=1" \
+            -d "fields=message,id")
+
+          MESSAGE=$(echo $POST | jq -r '.data[0].message')
+          POST_ID=$(echo $POST | jq -r '.data[0].id')
+
+          if [ -z "$MESSAGE" ]; then
+            echo "Brak nowego posta, pomijam commit."
+            exit 0
           fi
 
-      - name: Commit and push changes
+          LAST_POST_FILE="last_post_id.txt"
+          if [ -f $LAST_POST_FILE ] && [ "$(cat $LAST_POST_FILE)" == "$POST_ID" ]; then
+            echo "Post już został przetworzony, pomijam commit."
+            exit 0
+          fi
+
+          echo "$POST_ID" > $LAST_POST_FILE
+          echo "<html><body><h1>Danie dnia</h1><p>$MESSAGE</p></body></html>" > danie_dnia.html
+
+      - name: Commit i push zmian
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git add danie_dnia.html
-          git commit -m "🔄 Aktualizacja dania dnia"
-          git push
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add danie_dnia.html last_post_id.txt
+          if git diff --cached --quiet; then
+            echo "Brak zmian do commita"
+          else
+            git commit -m "Automatyczna aktualizacja dania dnia $(date +'%Y-%m-%d')"
+            git push
+          fi
