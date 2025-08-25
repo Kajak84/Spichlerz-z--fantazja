@@ -28,7 +28,7 @@
     .language-switcher img { width: 28px; margin: 0 5px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s, border 0.3s; }
     .language-switcher img:hover { opacity: 1; }
     .language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
-    @media(max-width:480px){ .hero a img { width: 200px; } iframe, .fb-post { width: 100% !important; } }
+    @media(max-width:480px){ .hero a img { width: 200px; } iframe { width: 100% !important; height: 500px !important; } }
   </style>
 </head>
 <body>
@@ -63,7 +63,7 @@
   <h1>Nasze danie dnia</h1>
   <div id="daily-special-container">
     <!-- Facebook Post -->
-    <div class="fb-post" data-href="https://www.facebook.com/fantazjabraniewo/posts/pfbid02NTrEipFoi88WP5iEpdJdVGUzWYtSSdTCkAdo5TwzHszsrcRj4PfA79jrhvRdhb4sl" data-width="500"></div>
+    <div class="fb-post" data-href="https://www.facebook.com/fantazjabraniewo/posts/NUMER_POSTU" data-width="500"></div>
   </div>
 </section>
 
@@ -78,9 +78,7 @@
 
 <!-- Facebook SDK -->
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" 
-  src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v17.0">
-</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v17.0"></script>
 
 <script>
   const sections = document.querySelectorAll('.section');
@@ -103,6 +101,18 @@
   }
 
   document.addEventListener('DOMContentLoaded', ()=>setLanguage(localStorage.getItem('lang')||'pl'));
+
+  // Responsywne posty FB
+  function resizeFacebookPosts() {
+    const container = document.getElementById('daily-special-container');
+    const fbPosts = container.querySelectorAll('.fb-post');
+    fbPosts.forEach(post => {
+      post.setAttribute('data-width', container.offsetWidth);
+    });
+    if (window.FB) FB.XFBML.parse(container);
+  }
+  window.addEventListener('load', resizeFacebookPosts);
+  window.addEventListener('resize', resizeFacebookPosts);
 </script>
 
 </body>
