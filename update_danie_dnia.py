@@ -1,37 +1,56 @@
-name: Update Danie Dnia
+import requests
+import datetime
+import os
+import sys
 
-on:
-  schedule:
-    - cron: "0 10 * * *"   # codziennie o 10:00 (UTC!)
-  workflow_dispatch:       # ręczne uruchomienie
+PAGE_ID = os.getenv("FB_PAGE_ID")       # ID strony z Facebooka
+ACCESS_TOKEN = os.getenv("FB_TOKEN")    # Token API (ustawiony w GitHub Secrets)
 
-jobs:
-  update-danie:
-    runs-on: ubuntu-latest
+if not PAGE_ID or not ACCESS_TOKEN:
+    print("❌ Brak FB_PAGE_ID lub FB_TOKEN w zmiennych środowiskowych")
+    sys.exit(1)
 
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+url = f"https://graph.facebook.com/{PAGE_ID}/posts"
+params = {
+    "fields": "message,full_picture,created_time",
+    "limit": 1,
+    "access_token": ACCESS_TOKEN
+}
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
+print("ℹ️ Pobieram dane z Facebook Graph API...")
+response = requests.get(url, params=params)
 
-      - name: Install dependencies
-        run: pip install requests
+if response.status_code != 200:
+    print(f"❌ Błąd pobierania danych: {response.status_code} {response.text}")
+    tekst = "Brak aktualnego dania dnia – zapraszamy później!"
+    zdjecie = ""
+else:
+    data = response.json()
+    if "data" not in data or not data["data"]:
+        print("❌ Brak postów w odpowiedzi API")
+        tekst = "Brak aktualnego dania dnia – zapraszamy później!"
+        zdjecie = ""
+    else:
+        latest_post = data['data'][0]
+        tekst = latest_post.get("message", "Brak treści")
+        zdjecie = latest_post.get("full_picture", "")
+        created_time = latest_post.get("created_time", "brak daty")
 
-      - name: Run update script
-        env:
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_TOKEN: ${{ secrets.FB_TOKEN }}
-        run: |
-          python update_danie_dnia.py
+        # Logi
+        print(f"✅ Pobrano post z dnia: {created_time}")
+        print(f"📝 Tekst: {tekst[:80]}{'...' if len(tekst) > 80 else ''}")
+        print(f"🖼️ Zdjęcie: {'TAK' if zdjecie else 'BRAK'}")
 
-      - name: Commit changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add danie_dnia.html || echo "Brak zmian"
-          git commit -m "Aktualizacja dania dnia" || echo "Brak zmian do commitowania"
-          git push
+# Generowanie pliku HTML
+html = f"""
+<div class="danie-dnia">
+  <h2>Danie dnia ({datetime.date.today().strftime('%d.%m.%Y')})</h2>
+  <p>{tekst}</p>
+  {f'<img src="{zdjecie}" alt="danie dnia" style="max-width:100%;">' if zdjecie else ''}
+</div>
+"""
+
+with open("danie_dnia.html", "w", encoding="utf-8") as f:
+    f.write(html)
+
+print("🎉 Zaktualizowano plik danie_dnia.html")
