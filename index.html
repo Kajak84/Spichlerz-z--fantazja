@@ -28,7 +28,7 @@
     .language-switcher img { width: 28px; margin: 0 5px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s, border 0.3s; }
     .language-switcher img:hover { opacity: 1; }
     .language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
-    @media(max-width:480px){ .hero a img { width: 200px; } iframe, .fb-post { width: 100% !important; max-width: 100%; } }
+    @media(max-width:480px){ .hero a img { width: 200px; } iframe, .fb-post { width: 100% !important; } }
   </style>
 </head>
 <body>
@@ -62,19 +62,10 @@
 <section class="section daily-special">
   <h1>Nasze danie dnia</h1>
   <div id="daily-special-container">
-    <iframe 
-      src="https://www.facebook.com/plugins/post.php?href=<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Ffantazjabraniewo%2Fposts%2Fpfbid0jRgpPaFzXHGXSWQaFWSSuL4U2YJFrLQVPQwrisDhxxpSHGdHn9QmBzrpw9mGsH8al&show_text=true&width=500" width="500" height="587" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>&show_text=true&width=500" 
-      width="500" 
-      height="600" 
-      style="border:none;overflow:hidden" 
-      scrolling="no" 
-      frameborder="0" 
-      allowfullscreen="true" 
-      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
-    </iframe>
+    <!-- Facebook Post -->
+    <div class="fb-post" data-href="https://www.facebook.com/fantazjabraniewo/posts/pfbid0jRgpPaFzXHGXSWQaFWSSuL4U2YJFrLQVPQwrisDhxxpSHGdHn9QmBzrpw9mGsH8al" data-width="500"></div>
   </div>
 </section>
-
 
 <section class="section" id="qr">
   <h2 data-i18n="scan">📲 Zeskanuj, aby zobaczyć menu</h2>
