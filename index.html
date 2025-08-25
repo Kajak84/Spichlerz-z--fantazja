@@ -13,28 +13,41 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background-color: #e4d09b; overflow-x: hidden; }
     header { background-color: #000; color: white; padding: 20px; text-align: center; }
-
-    /* Hero - wyśrodkowane */
-    .hero {
+    
+    /* Nowy hero-image */
+    .hero-image {
+      width: 100%;
       display: flex;
-      justify-content: center; /* wyśrodkowanie poziome */
-      align-items: center;     /* wyśrodkowanie pionowe */
-      gap: 20px;
-      flex-wrap: wrap;         /* dla małych ekranów */
-      padding: 40px 20px;
+      justify-content: center;
+      margin: 20px 0;
     }
 
-    .hero a img, .hero img {
-      width: 300px;
-      height: 200px;
+    .hero-image img {
+      width: 100%;
+      max-height: 400px;
       object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.5s ease, filter 0.5s ease;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
 
-    .hero a img:hover, .hero img:hover {
-      transform: scale(1.08) rotateY(3deg);
-      filter: brightness(1.1);
+    /* Hero: menu/kontakt */
+    .hero { 
+      display: flex; 
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px; 
+      padding: 20px; 
+    }
+    .hero a img { 
+      width: 300px; 
+      height: auto; 
+      border-radius: 10px; 
+      object-fit: cover; 
+      transition: transform 0.5s ease, filter 0.5s ease; 
+    }
+    .hero a img:hover { 
+      transform: scale(1.08) rotateY(3deg); 
+      filter: brightness(1.1); 
     }
 
     .section { padding: 40px; text-align: center; opacity: 0; transform: translateY(30px); transition: all 1s ease; }
@@ -49,9 +62,7 @@
     .language-switcher img:hover { opacity: 1; }
     .language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
 
-    @media(max-width:480px){
-      .hero a img, .hero img { width: 200px; height: 150px; }
-    }
+    @media(max-width:480px){ .hero a img { width: 200px; } }
   </style>
 </head>
 <body>
@@ -68,7 +79,12 @@
   <p data-i18n="subtitle">Tradycja, smak i atmosfera w samym sercu Braniewa</p>
 </header>
 
-<!-- Hero: Menu i Kontakt wyśrodkowane -->
+<!-- Zdjęcie restauracji -->
+<section class="hero-image">
+  <img src="Spichlerz_Mariacki_ul_Portowa_Braniewo_7726036.jpg" alt="Restauracja Spichlerz z Fantazją">
+</section>
+
+<!-- Menu i kontakt -->
 <section class="hero">
   <a href="menu.html"><img src="img/menu.jpg" alt="Menu restauracji Spichlerz z Fantazją"></a>
   <a href="kontakt.html"><img src="img/kontakt.jpg" alt="Kontakt do restauracji Spichlerz z Fantazją"></a>
@@ -101,7 +117,7 @@
   }, { threshold: 0.2 });
   sections.forEach(sec => observer.observe(sec));
 
-  // Wczytywanie dania dnia z animacją
+  // Wczytywanie dania dnia
   fetch('danie_dnia.html')
     .then(res => res.ok ? res.text() : Promise.reject('Nie znaleziono'))
     .then(html => {
