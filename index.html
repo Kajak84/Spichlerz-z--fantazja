@@ -13,8 +13,24 @@
   <style>
     body { font-family: Arial, sans-serif; margin: 0; background-color: #e4d09b; overflow-x: hidden; }
     header { background-color: #000; color: white; padding: 20px; text-align: center; }
-    .hero-image { width: 100%; display: flex; justify-content: center; margin: 20px 0; }
-    .hero-image img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+    
+    /* HERO IMAGE - zawsze widoczny obraz */
+    .hero-image {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      overflow: hidden;
+      height: 400px; /* wysokość sekcji, dopasuj wg potrzeb */
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* obraz zawsze widoczny */
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
     .hero { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px; }
     .hero a img { width: 300px; height: auto; border-radius: 10px; object-fit: cover; transition: transform 0.5s ease, filter 0.5s ease; }
     .hero a img:hover { transform: scale(1.08) rotateY(3deg); filter: brightness(1.1); }
@@ -28,7 +44,12 @@
     .language-switcher img { width: 28px; margin: 0 5px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s, border 0.3s; }
     .language-switcher img:hover { opacity: 1; }
     .language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
-    @media(max-width:480px){ .hero a img { width: 200px; } iframe { width: 100% !important; height: 500px !important; } }
+
+    @media(max-width:480px){
+      .hero a img { width: 200px; }
+      iframe { width: 100% !important; height: 500px !important; }
+      .hero-image { height: 250px; } /* mniejsza wysokość na telefonach */
+    }
   </style>
 </head>
 <body>
@@ -62,21 +83,19 @@
 <section class="section daily-special">
   <h1 data-i18n="nasz">Nasze danie dnia</h1>
   <div id="daily-special-container">
-    <!-- Facebook Post -->
     <div class="fb-post" data-href="https://www.facebook.com/fantazjabraniewo/posts/pfbid02NTrEipFoi88WP5iEpdJdVGUzWYtSSdTCkAdo5TwzHszsrcRj4PfA79jrhvRdhb4sl" data-width="600"></div>
   </div>
 </section>
 
 <section class="section" id="qr">
   <h2 data-i18n="scan">📲 Zeskanuj, aby zobaczyć menu</h2>
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichlerz-z--fantazja%2Fmenu.html" alt="Kod QR do menu">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichler-z--fantazja%2Fmenu.html" alt="Kod QR do menu">
 </section>
 
 <footer>
   &copy; 2025 Spichlerz z Fantazją
 </footer>
 
-<!-- Facebook SDK -->
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v17.0"></script>
 
@@ -93,7 +112,7 @@
       pl:{ title:"Spichlerz z Fantazją", subtitle:"Tradycja, smak i atmosfera w samym sercu Braniewa", aboutTitle:"O nas", aboutText:"Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...", nasz: "Nasze danie dnia", scan:"📲 Zeskanuj, aby zobaczyć menu" },
       en:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, taste and atmosphere in the heart of Braniewo", aboutTitle:"About Us", aboutText:"The 'Spichlerz z Fantazją' restaurant is a unique place that combines history with modernity...", nasz: "Our dish of the day", scan:"📲 Scan to see the menu" },
       de:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, Geschmack und Atmosphäre im Herzen von Braniewo", aboutTitle:"Über uns", aboutText:"Das Restaurant 'Spichlerz z Fantazją' ist ein einzigartiger Ort, der Geschichte mit Moderne verbindet...", nasz: "Unser Tagesgericht", scan:"📲 Scannen Sie, um das Menü zu sehen" },
-      ua:{ title:"Spichlerz z Fantazją", subtitle:"Традиції, смак та атмосфера в самому серці Бранево", aboutTitle:"Про нас", aboutText:"Ресторан 'Spichlerз з Fantazją' – унікальне місце, що поєднує історію з сучасністю...", nasz: "Наша страва дня", scan:"📲 Скануйте, щоб побачити меню" }
+      ua:{ title:"Spichlerz z Fantazją", subtitle:"Традиції, смак та атмосфера в самому серці Бранево", aboutTitle:"Про нас", aboutText:"Ресторан 'Спичлерз з Fantazją' – унікальне місце, що поєднує історію з сучасністю...", nasz: "Наша страва дня", scan:"📲 Скануйте, щоб побачити меню" }
     };
     document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=translations[lang][el.getAttribute('data-i18n')]);
     document.querySelectorAll('.language-switcher img').forEach(img=>img.classList.toggle('active', img.alt===lang));
@@ -102,13 +121,10 @@
 
   document.addEventListener('DOMContentLoaded', ()=>setLanguage(localStorage.getItem('lang')||'pl'));
 
-  // Responsywne posty FB
   function resizeFacebookPosts() {
     const container = document.getElementById('daily-special-container');
     const fbPosts = container.querySelectorAll('.fb-post');
-    fbPosts.forEach(post => {
-      post.setAttribute('data-width', container.offsetWidth);
-    });
+    fbPosts.forEach(post => { post.setAttribute('data-width', container.offsetWidth); });
     if (window.FB) FB.XFBML.parse(container);
   }
   window.addEventListener('load', resizeFacebookPosts);
