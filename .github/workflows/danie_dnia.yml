@@ -1,35 +1,48 @@
-name: Aktualizacja dania dnia
+name: Update Danie Dnia
 
 on:
   schedule:
-    - cron: "0 10 * * *" # codziennie o 9:00 czasu polskiego (UTC+2)
-  workflow_dispatch: # ręczne uruchomienie
+    # Codziennie o 10:00 polskiego czasu (uwzględniając CET/CEST)
+    - cron: "0 8 * * *"   # Zima (CET=UTC+1) => 10:00 PL
+    - cron: "0 9 * * *"   # Lato (CEST=UTC+2) => 10:00 PL
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "Uruchom test z przykładowym daniem dnia"
+        required: false
+        default: "false"
 
 jobs:
   update:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: "3.10"
 
       - name: Install dependencies
         run: pip install requests
 
-      - name: Run bot
+      - name: Run script (test lub normalny)
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_TOKEN: ${{ secrets.FB_TOKEN }}
-        run: python bot_danie_dnia.py
-
-      - name: Commit changes
+          TEST: ${{ github.event.inputs.test }}
         run: |
-          git config user.name "DanieDniaBot"
-          git config user.email "bot@users.noreply.github.com"
+          if [ "$TEST" = "true" ]; then
+            echo '<div class="danie-dnia"><h2>TEST DANIE DNIA</h2><p>To jest tylko przykładowy test.</p></div>' > danie_dnia.html
+          else
+            python update_danie_dnia.py
+          fi
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
           git add danie_dnia.html
-          git commit -m "Aktualizacja dania dnia"
+          git commit -m "🔄 Aktualizacja dania dnia"
           git push
