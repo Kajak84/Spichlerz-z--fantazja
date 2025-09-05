@@ -1,6 +1,4 @@
-# Zezwalaj na indeksowanie całej strony
 User-agent: *
-Disallow:
+Allow: /
 
-# Lokalizacja sitemap.xml
 Sitemap: https://kajak84.github.io/Spichlerz-z--fantazja/sitemap.xml
