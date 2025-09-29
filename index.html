@@ -125,11 +125,7 @@
 <div class="leaves-area" aria-hidden="true"></div>
 
 <template id="leaf-template">
-  <div class="leaf">
-    <svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true">
-      <path d="M55.3 24.7c-7.9-7.9-22.3-6.7-31.4 2.4S15.4 48 23.3 55.9c7.9 7.9 22.3 6.7 31.4-2.4 9.1-9.1 10.3-23.5 0.6-28.8z" fill="currentColor" />
-    </svg>
-  </div>
+  <div class="leaf"></div>
 </template>
 
 <script>
@@ -163,7 +159,7 @@
   window.addEventListener('load', resizeFacebookPosts);
   window.addEventListener('resize', resizeFacebookPosts);
 
-  // Spadające liście (nieskończona pętla)
+  // Spadające liście (nieskończona pętla z różnymi kształtami)
   (function(){
     const config = {
       colors: ['#b24b2f','#d97a3a','#f2c96d','#7a3f2a','#9c5b3a'],
@@ -171,7 +167,13 @@
       maxSize: 60,
       minDuration: 8,
       maxDuration: 18,
-      maxSway: 50
+      maxSway: 50,
+      svgs: [
+        '<svg viewBox="0 0 64 64" width="100%" height="100%"><path d="M55.3 24.7c-7.9-7.9-22.3-6.7-31.4 2.4S15.4 48 23.3 55.9c7.9 7.9 22.3 6.7 31.4-2.4 9.1-9.1 10.3-23.5 0.6-28.8z" fill="currentColor"/></svg>',
+        '<svg viewBox="0 0 64 64" width="100%" height="100%"><path d="M32 2C22 12 12 22 12 34s10 22 20 28c10-6 20-16 20-28S42 12 32 2z" fill="currentColor"/></svg>',
+        '<svg viewBox="0 0 64 64" width="100%" height="100%"><path d="M20 10c10 0 20 10 24 18s2 20-8 24-22 2-28-8-2-22 12-34z" fill="currentColor"/></svg>',
+        '<svg viewBox="0 0 64 64" width="100%" height="100%"><path d="M32 8c12 4 24 12 22 24s-16 20-26 22S4 48 6 34 20 4 32 8z" fill="currentColor"/></svg>'
+      ]
     };
     const area = document.querySelector('.leaves-area');
     const tpl = document.getElementById('leaf-template');
@@ -182,27 +184,29 @@
       const size = Math.round(rand(config.minSize, config.maxSize));
       const left = Math.round(rand(0, 100));
       const duration = rand(config.minDuration, config.maxDuration);
-      const delay = 0;
       const swayDuration = rand(3, 7);
       const swayOffset = Math.round(rand(-config.maxSway, config.maxSway));
       const startRot = Math.round(rand(-45,45)) + 'deg';
       const spinDeg = Math.round(rand(180, 1080)) + 'deg';
       const color = config.colors[Math.floor(rand(0, config.colors.length))];
+      const svg = config.svgs[Math.floor(rand(0, config.svgs.length))];
+
       node.style.left = left + '%';
       node.style.width = size + 'px';
       node.style.color = color;
       node.style.setProperty('--start-rot', startRot);
       node.style.setProperty('--spin-deg', spinDeg);
       node.style.setProperty('--sway-offset', swayOffset + 'px');
-      node.style.animation = `fall ${duration}s linear ${delay}s forwards`;
+      node.style.animation = `fall ${duration}s linear forwards`;
+
       const swayWrap = document.createElement('div');
       swayWrap.style.width = '100%';
       swayWrap.style.height = '100%';
       swayWrap.style.display = 'block';
       swayWrap.style.animation = `sway ${swayDuration}s ease-in-out infinite`;
-      swayWrap.appendChild(node.querySelector('svg'));
-      node.innerHTML = '';
+      swayWrap.innerHTML = svg;
       node.appendChild(swayWrap);
+
       area.appendChild(node);
       setTimeout(()=>{ try{ node.remove() }catch(e){} }, (duration+1)*1000);
     }
