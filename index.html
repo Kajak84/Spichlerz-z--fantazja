@@ -29,21 +29,22 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
 .language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
 @media(max-width:480px){ .hero a img { width: 200px; } iframe { width: 100% !important; height: 500px !important; } .hero-image { height: 250px; } }
 
-/* SPADAJĄCE LIŚCIE */
-.leaves-area { position:fixed; inset:0; pointer-events:none; z-index:999; }
-.leaf { position:absolute; top:-10vh; will-change: transform, opacity; opacity:0.85; }
+/* ŚNIEŻYNKI */
+.snow-area { position:fixed; inset:0; pointer-events:none; z-index:999; }
+.snowflake { position:absolute; top:-10vh; will-change: transform, opacity; opacity:0.9; }
 @keyframes fall {
-  0%{ transform: translateY(-10vh) rotate(var(--start-rot)); opacity:0.8; }
-  50%{ transform: translateY(50vh) rotate(calc(var(--start-rot) + var(--spin-deg)/2)); opacity:0.9; }
-  100%{ transform: translateY(calc(100vh - 10px)) rotate(calc(var(--start-rot) + var(--spin-deg))); opacity:1; }
+  0%{ transform: translateY(-10vh) rotate(0deg); opacity:0.9; }
+  100%{ transform: translateY(calc(100vh - 20px)) rotate(360deg); opacity:1; }
 }
 @keyframes sway {
-  0%{ transform: translateX(0) rotate(0deg); }
-  25%{ transform: translateX(var(--sway-offset)) rotate(10deg); }
-  50%{ transform: translateX(0) rotate(-10deg); }
-  75%{ transform: translateX(calc(-1 * var(--sway-offset))) rotate(5deg); }
-  100%{ transform: translateX(0) rotate(0deg); }
+  0%{ transform: translateX(0); }
+  50%{ transform: translateX(20px); }
+  100%{ transform: translateX(0); }
 }
+
+/* BAŁWAN */
+#snowman { position:fixed; bottom:0; left:50%; transform:translateX(-50%); z-index:998; pointer-events:none; text-align:center; }
+#snowman svg { width:200px; }
 </style>
 </head>
 <body>
@@ -93,8 +94,26 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v17.0"></script>
 
-<div class="leaves-area" aria-hidden="true"></div>
-<template id="leaf-template"><div class="leaf"></div></template>
+<!-- Śnieżynki -->
+<div class="snow-area" aria-hidden="true"></div>
+<template id="snow-template"><div class="snowflake">❄</div></template>
+
+<!-- Bałwan -->
+<div id="snowman">
+<svg viewBox="0 0 200 300">
+  <circle cx="100" cy="220" r="70" fill="#ffffff" stroke="#cccccc" stroke-width="4" />
+  <circle cx="100" cy="130" r="50" fill="#ffffff" stroke="#cccccc" stroke-width="4" />
+  <circle cx="100" cy="60" r="35" fill="#ffffff" stroke="#cccccc" stroke-width="4" />
+  <circle cx="88" cy="50" r="5" fill="#000" />
+  <circle cx="112" cy="50" r="5" fill="#000" />
+  <polygon points="100,60 100,70 130,60" fill="orange" />
+  <circle cx="100" cy="115" r="6" fill="#000" />
+  <circle cx="100" cy="135" r="6" fill="#000" />
+  <circle cx="100" cy="155" r="6" fill="#000" />
+  <line x1="50" y1="130" x2="0" y2="100" stroke="#552200" stroke-width="6" />
+  <line x1="150" y1="130" x2="200" y2="100" stroke="#552200" stroke-width="6" />
+</svg>
+</div>
 
 <script>
 const sections = document.querySelectorAll('.section');
@@ -106,90 +125,4 @@ sections.forEach(sec => observer.observe(sec));
 function setLanguage(lang) {
   document.documentElement.lang = lang;
   const translations = {
-    pl:{ title:"Spichlerz z Fantazją", subtitle:"Tradycja, smak i atmosfera w samym sercu Braniewa", aboutTitle:"O nas", aboutText:"Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...", nasz: "Nasze danie dnia", scan:"📲 Zeskanuj, aby zobaczyć menu" },
-    en:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, taste and atmosphere in the heart of Braniewo", aboutTitle:"About Us", aboutText:"The 'Spichlerz z Fantazją' restaurant is a unique place that combines history with modernity...", nasz: "Our dish of the day", scan:"📲 Scan to see the menu" },
-    de:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, Geschmack und Atmosphäre im Herzen von Braniewo", aboutTitle:"Über uns", aboutText:"Das Restaurant 'Spichlerz z Fantazją' ist ein einzigartiger Ort, der Geschichte mit Moderne verbindet...", nasz: "Unser Tagesgericht", scan:"📲 Scannen Sie, um das Menü zu sehen" },
-    ua:{ title:"Spichlerz z Fantazją", subtitle:"Традиції, смак та атмосфера в самому серці Бранево", aboutTitle:"Про нас", aboutText:"Ресторан 'Спичлерз z Fantazją' – унікальне місце, що поєднує історію з сучасністю...", nasz: "Наша страва дня", scan:"📲 Скануйте, щоб побачити меню" }
-  };
-  document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=translations[lang][el.getAttribute('data-i18n')]);
-  document.querySelectorAll('.language-switcher img').forEach(img=>img.classList.toggle('active', img.alt===lang));
-  localStorage.setItem('lang', lang);
-}
-document.addEventListener('DOMContentLoaded', ()=>setLanguage(localStorage.getItem('lang')||'pl'));
-
-function resizeFacebookPosts() {
-  const container = document.getElementById('daily-special-container');
-  const fbPosts = container.querySelectorAll('.fb-post');
-  fbPosts.forEach(post => { post.setAttribute('data-width', container.offsetWidth); });
-  if (window.FB) FB.XFBML.parse(container);
-}
-window.addEventListener('load', resizeFacebookPosts);
-window.addEventListener('resize', resizeFacebookPosts);
-
-// Spadające liście - realistyczne, powiewające
-(function(){
-  const config = {
-    colors: ['#b24b2f','#d97a3a','#f2c96d','#7a3f2a','#9c5b3a'],
-    minSize: 28,
-    maxSize: 70,
-    minDuration: 10,
-    maxDuration: 20,
-    maxSway: 60,
-    svgs: [
-      '<svg viewBox="0 0 64 64"><path d="M32 2l6 12 12-6-6 12 12 6-12 6 6 12-12-6-6 12-6-12-12 6 6-12-12-6 12-6-6-12 12 6z" fill="currentColor"/></svg>',
-      '<svg viewBox="0 0 64 64"><path d="M32 4c-6 4-12 8-14 14s0 14 6 20c6 6 14 10 20 6s8-14 6-20-8-10-18-20z" fill="currentColor"/></svg>',
-      '<svg viewBox="0 0 64 64"><path d="M22 6c10 0 20 8 22 16s-2 20-12 24-22 0-26-12S12 6 22 6z" fill="currentColor"/></svg>',
-      '<svg viewBox="0 0 64 64"><path d="M18 4c12 4 24 12 26 22s-6 20-16 22-20-4-22-14S6 0 18 4z" fill="currentColor"/></svg>',
-      '<svg viewBox="0 0 64 64"><path d="M32 2c6 6 12 14 14 22s-2 20-10 24-18 2-22-8 0-22 8-32 4-10 10-6z" fill="currentColor"/></svg>'
-    ]
-  };
-  const area = document.querySelector('.leaves-area');
-  const tpl = document.getElementById('leaf-template');
-
-  function rand(min, max){ return Math.random()*(max-min)+min }
-
-  function createLeaf(){
-    const node = tpl.content.firstElementChild.cloneNode(true);
-    const size = Math.round(rand(config.minSize, config.maxSize));
-    const left = Math.round(rand(0, 100));
-    const duration = rand(config.minDuration, config.maxDuration);
-    const swayDuration = rand(5, 12);
-    const swayOffset = Math.round(rand(20, config.maxSway));
-    const startRot = Math.round(rand(-45,45)) + 'deg';
-    const spinDeg = Math.round(rand(180, 720)) + 'deg';
-    const color = config.colors[Math.floor(rand(0, config.colors.length))];
-    const svg = config.svgs[Math.floor(rand(0, config.svgs.length))];
-
-    node.style.left = left + '%';
-    node.style.width = size + 'px';
-    node.style.color = color;
-    node.style.setProperty('--start-rot', startRot);
-    node.style.setProperty('--spin-deg', spinDeg);
-    node.style.setProperty('--sway-offset', swayOffset + 'px');
-    node.style.animation = `fall ${duration}s linear forwards`;
-
-    const swayWrap = document.createElement('div');
-    swayWrap.style.width = '100%';
-    swayWrap.style.height = '100%';
-    swayWrap.style.display = 'block';
-    swayWrap.style.animation = `sway ${swayDuration}s ease-in-out infinite`;
-    swayWrap.innerHTML = svg;
-    node.appendChild(swayWrap);
-
-    area.appendChild(node);
-
-    // Po zakończeniu animacji ustaw liść na dole
-  setTimeout(() => {
-    node.style.top = 'auto';
-    node.style.bottom = '0px';
-    node.style.animation = 'none';
-    swayWrap.style.animation = 'sway 3s ease-in-out infinite'; // lekko się kołysze na dywanie
-  }, duration*1000);
-  }
-
-  setInterval(createLeaf, 800);
-})();
-</script>
-
-</body>
-</html>
+    pl:{ title:"Spichlerz z Fantazją", subtitle:"Tradycja, smak i atmosfera w samym sercu Braniewa", aboutTitle:"O nas", about
