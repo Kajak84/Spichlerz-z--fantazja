@@ -23,38 +23,96 @@ header { background-color: #000; color: white; padding: 20px; text-align: center
 .daily-special { background-color: #fff9ef; }
 #qr { background-color: rgba(254, 243, 226, 1); }
 footer { background:#000; color:#FFF; padding:20px; text-align:center; }
-.language-switcher { position: fixed; top: 10px; right: 10px; z-index: 999; background: rgba(255, 255, 255, 0.9); padding: 6px 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
-.language-switcher img { width: 28px; margin: 0 5px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s, border 0.3s; }
+
+/* Przełącznik języka */
+.language-switcher {
+  position: fixed; top: 10px; right: 10px; z-index: 999;
+  background: rgba(255,255,255,0.9); padding: 6px 10px; border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.language-switcher img {
+  width: 28px; margin: 0 5px; cursor: pointer; opacity: 0.8;
+  transition: opacity 0.3s, border 0.3s;
+}
 .language-switcher img:hover { opacity: 1; }
 .language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
-@media(max-width:480px){ .hero a img { width: 200px; } iframe { width: 100% !important; height: 500px !important; } .hero-image { height: 250px; } }
 
-/* ŚNIEŻYNKI */
-.snow-area { position:fixed; inset:0; pointer-events:none; z-index:999; }
-.snowflake { position:absolute; top:-10vh; will-change: transform, opacity; opacity:0.9; }
-@keyframes fall {
-  0%{ transform: translateY(-10vh) rotate(0deg); opacity:0.9; }
-  100%{ transform: translateY(calc(100vh - 20px)) rotate(360deg); opacity:1; }
+/* Przełącznik pór roku */
+.season-switcher {
+  position: fixed;
+  top: 60px;
+  right: 10px;
+  background: rgba(255,255,255,0.9);
+  padding: 6px 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  z-index: 999;
+  display: flex;
+  gap: 5px;
 }
-@keyframes sway {
-  0%{ transform: translateX(0); }
-  50%{ transform: translateX(20px); }
-  100%{ transform: translateX(0); }
+.season-switcher button {
+  font-size: 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform .2s;
+}
+.season-switcher button:hover { transform: scale(1.2); }
+
+/* Śnieg */
+.snowflake {
+  position: absolute;
+  top: -10px;
+  color: white;
+  opacity: .9;
+  animation: snowfall linear infinite;
+}
+@keyframes snowfall {
+  0% { transform: translateY(-10vh); }
+  100% { transform: translateY(110vh); }
 }
 
-/* BAŁWAN */
-#snowman { position:fixed; bottom:0; left:50%; transform:translateX(-50%); z-index:998; pointer-events:none; text-align:center; }
-#snowman svg { width:200px; }
+/* Wiosenne listki */
+@keyframes springFall {
+  0% { transform: translateY(-10vh) rotate(-10deg); }
+  100% { transform: translateY(110vh) rotate(20deg); }
+}
+
+/* Bałwan */
+.snowman {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 80px;
+  z-index: 999;
+  display: none;
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.4));
+}
+@media(max-width:600px){
+  .snowman { font-size: 60px; }
+}
 </style>
 </head>
 <body>
 
+<!-- Przełącznik języka -->
 <div class="language-switcher">
   <img src="flags/pl.svg" alt="pl" onclick="setLanguage('pl')" />
   <img src="flags/gb.svg" alt="en" onclick="setLanguage('en')" />
   <img src="flags/de.svg" alt="de" onclick="setLanguage('de')" />
   <img src="flags/ua.svg" alt="ua" onclick="setLanguage('ua')" />
 </div>
+
+<!-- Przełącznik pór roku -->
+<div class="season-switcher">
+  <button onclick="setSeason('spring')">🌿</button>
+  <button onclick="setSeason('summer')">🌞</button>
+  <button onclick="setSeason('autumn')">🍂</button>
+  <button onclick="setSeason('winter')">❄️</button>
+</div>
+
+<!-- Bałwan -->
+<div class="snowman">⛄</div>
 
 <header>
   <h1 data-i18n="title">Spichlerz z Fantazją</h1>
@@ -94,35 +152,112 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v17.0"></script>
 
-<!-- Śnieżynki -->
-<div class="snow-area" aria-hidden="true"></div>
-<template id="snow-template"><div class="snowflake">❄</div></template>
+<!-- Obszary efektów -->
+<div class="snow-area"></div>
+<div class="spring-area"></div>
 
-<!-- Bałwan -->
-<div id="snowman">
-<svg viewBox="0 0 200 300">
-  <circle cx="100" cy="220" r="70" fill="#ffffff" stroke="#cccccc" stroke-width="4" />
-  <circle cx="100" cy="130" r="50" fill="#ffffff" stroke="#cccccc" stroke-width="4" />
-  <circle cx="100" cy="60" r="35" fill="#ffffff" stroke="#cccccc" stroke-width="4" />
-  <circle cx="88" cy="50" r="5" fill="#000" />
-  <circle cx="112" cy="50" r="5" fill="#000" />
-  <polygon points="100,60 100,70 130,60" fill="orange" />
-  <circle cx="100" cy="115" r="6" fill="#000" />
-  <circle cx="100" cy="135" r="6" fill="#000" />
-  <circle cx="100" cy="155" r="6" fill="#000" />
-  <line x1="50" y1="130" x2="0" y2="100" stroke="#552200" stroke-width="6" />
-  <line x1="150" y1="130" x2="200" y2="100" stroke="#552200" stroke-width="6" />
-</svg>
-</div>
+<!-- Jesień – Twoje liście -->
+<div class="leaves-area" aria-hidden="true"></div>
+<template id="leaf-template"><div class="leaf"></div></template>
 
 <script>
+/* Animacja sekcji */
 const sections = document.querySelectorAll('.section');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.2 });
 sections.forEach(sec => observer.observe(sec));
 
+/* Języki */
 function setLanguage(lang) {
   document.documentElement.lang = lang;
   const translations = {
-    pl:{ title:"Spichlerz z Fantazją", subtitle:"Tradycja, smak i atmosfera w samym sercu Braniewa", aboutTitle:"O nas", about
+    pl:{ title:"Spichlerz z Fantazją", subtitle:"Tradycja, smak i atmosfera w samym sercu Braniewa", aboutTitle:"O nas", aboutText:"Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce...", nasz:"Nasze danie dnia", scan:"📲 Zeskanuj, aby zobaczyć menu" },
+    en:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, taste and atmosphere...", aboutTitle:"About Us", aboutText:"The 'Spichlerz z Fantazją' restaurant is a unique place...", nasz:"Our dish of the day", scan:"📲 Scan to see the menu" },
+    de:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, Geschmack und Atmosphäre...", aboutTitle:"Über uns", aboutText:"Das Restaurant 'Spichlerz z Fantazją' ist ein einzigartiger Ort...", nasz:"Unser Tagesgericht", scan:"📲 Scannen Sie, um das Menü zu sehen" },
+    ua:{ title:"Spichlerz z Fantazją", subtitle:"Традиції, смак та атмосфера...", aboutTitle:"Про нас", aboutText:"Ресторан 'Spichlerz z Fantazją' – унікальне місце...", nasz:"Наша страва дня", scan:"📲 Скануйте, щоб побачити меню" }
+  };
+  document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=translations[lang][el.getAttribute('data-i18n')]);
+  localStorage.setItem('lang', lang);
+}
+document.addEventListener('DOMContentLoaded', ()=>setLanguage(localStorage.getItem('lang')||'pl'));
+
+/* Facebook auto-resize */
+function resizeFacebookPosts() {
+  const container = document.getElementById('daily-special-container');
+  const fbPosts = container.querySelectorAll('.fb-post');
+  fbPosts.forEach(post => { post.setAttribute('data-width', container.offsetWidth); });
+  if (window.FB) FB.XFBML.parse(container);
+}
+window.addEventListener('load', resizeFacebookPosts);
+window.addEventListener('resize', resizeFacebookPosts);
+
+/* --- PRZEŁĄCZNIK PÓR ROKU --- */
+let activeSeason = localStorage.getItem('season') || 'summer';
+
+function setSeason(season) {
+  activeSeason = season;
+  localStorage.setItem('season', season);
+
+  toggleSnow(season === 'winter');
+  toggleSpring(season === 'spring');
+  toggleLeaves(season === 'autumn');
+  toggleSnowman(season === 'winter');
+}
+
+/* --- ZIMA --- */
+function toggleSnow(on) {
+  const area = document.querySelector('.snow-area');
+  if (!on) return area.innerHTML = '';
+
+  function createSnow() {
+    if (activeSeason !== 'winter') return;
+    const flake = document.createElement('div');
+    flake.className = 'snowflake';
+    flake.textContent = '❄';
+    flake.style.left = Math.random()*100 + 'vw';
+    flake.style.fontSize = (Math.random()*1.2+0.8) + 'em';
+    flake.style.animationDuration = (Math.random()*6+5) + 's';
+    area.appendChild(flake);
+    setTimeout(()=>flake.remove(),8000);
+  }
+  setInterval(createSnow,150);
+}
+
+/* Bałwan */
+function toggleSnowman(on){
+  document.querySelector('.snowman').style.display = on ? 'block':'none';
+}
+
+/* --- WIOSNA --- */
+function toggleSpring(on){
+  const area = document.querySelector('.spring-area');
+  if(!on) return area.innerHTML='';
+
+  function createLeaf(){
+    if(activeSeason!=='spring') return;
+    const leaf=document.createElement('div');
+    leaf.textContent='🌿';
+    leaf.style.position='absolute';
+    leaf.style.left=Math.random()*100+'vw';
+    leaf.style.top='-10vh';
+    leaf.style.fontSize=(Math.random()*1+1)+'em';
+    leaf.style.animation=`springFall ${Math.random()*6+6}s linear`;
+    area.appendChild(leaf);
+    setTimeout(()=>leaf.remove(),9000);
+  }
+  setInterval(createLeaf,500);
+}
+
+/* --- JESIEŃ (Twoje liście) --- */
+function toggleLeaves(on){
+  document.querySelector('.leaves-area').style.display = on ? 'block' : 'none';
+}
+
+/* Start po odświeżeniu */
+document.addEventListener('DOMContentLoaded',()=>setSeason(activeSeason));
+
+</script>
+
+</body>
+</html>
