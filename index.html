@@ -21,7 +21,33 @@ header { background-color: #000; color: white; padding: 20px; text-align: center
 .section { padding: 40px; text-align: center; opacity: 0; transform: translateY(30px); transition: all 1s ease; }
 .section.visible { opacity: 1; transform: translateY(0); }
 .about { background-color: #fef3e2; }
-.daily-special, #qr {
+
+/* Sekcja "Danie dnia" z ciemnym ciepłym tłem */
+.daily-special {
+    background: radial-gradient(circle at top left, #333 0%, #000 100%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7), inset 0 0 50px rgba(255,200,100,0.1);
+}
+.daily-special h1 { margin-bottom: 30px; font-size: 32px; }
+.daily-special .fb-post {
+    width: 100% !important;
+    max-width: 600px;
+    margin: 20px auto 0 auto;
+    background-color: rgba(0,0,0,0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#qr {
     background-color: #000; 
     color: #fff; 
     width: 100%;
@@ -31,14 +57,19 @@ header { background-color: #000; color: white; padding: 20px; text-align: center
     z-index: 5;
     position: relative;
 }
-#daily-special-container .fb-post { width: 100% !important; max-width: 600px; margin: 0 auto; background-color: rgba(0,0,0,0.6); }
 #qr img { margin-top: 20px; border: 3px solid #1e90ff; border-radius: 10px; }
 footer { background:#000; color:#FFF; padding:20px; text-align:center; }
+
 .language-switcher { position: fixed; top: 10px; right: 10px; z-index: 10; background: rgba(255, 255, 255, 0.9); padding: 6px 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
 .language-switcher img { width: 28px; margin: 0 5px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s, border 0.3s; }
 .language-switcher img:hover { opacity: 1; }
 .language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
-@media(max-width:480px){ .hero a img { width: 200px; } iframe { width: 100% !important; height: 500px !important; } .hero-image { height: 250px; } }
+
+@media(max-width:480px){ 
+  .hero a img { width: 200px; } 
+  iframe { width: 100% !important; height: 500px !important; } 
+  .hero-image { height: 250px; } 
+}
 
 .effects-area { 
     position: fixed; inset:0; pointer-events:none; z-index:0; perspective: 1000px; overflow: hidden;
@@ -90,10 +121,10 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
   <p data-i18n="aboutText">Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...</p>
 </section>
 
-section class="section daily-special">
+<section class="section daily-special">
   <h1 data-i18n="nasz">Nasze danie dnia</h1>
   <div id="daily-special-container">
-    <div class="fb-post" data-href="https://www.facebook.com/fantazjabraniewo/posts/pfbid034hmqy9KWUjNbwGVzAVxT71Cq98F1vPRfh9Jp4JkbKXG4327Y9ZDPfxso7MirKCml" data-width="600"></div>
+    <!-- Posty z FB będą wczytywane tutaj dynamicznie -->
   </div>
 </section>
 
@@ -187,50 +218,44 @@ function setLanguage(lang) {
 }
 document.addEventListener('DOMContentLoaded', ()=>setLanguage(localStorage.getItem('lang')||'pl'));
 
-    // Ładowanie postów #danie dnia ręcznie
+// Ładowanie dania dnia
 function loadDailySpecial() {
-  const container = document.getElementById('daily-special-container');
-  container.innerHTML = '';
+    const container = document.getElementById('daily-special-container');
+    container.innerHTML = '';
 
-  const manualPosts = [
-   https://www.facebook.com/fantazjabraniewo/posts/pfbid02jNnS1qZejgHooatJYWoJLwydv16gw4n23XgQqZFrfNbmFijNHPaNuHWunrpGonrQl
-  ];
+    const manualPosts = [
+        "https://www.facebook.com/fantazjabraniewo/posts/pfbid02jNnS1qZejgHooatJYWoJLwydv16gw4n23XgQqZFrfNbmFijNHPaNuHWunrpGonrQl"
+    ];
 
-  if(manualPosts.length > 0) {
-    manualPosts.forEach(url => {
-      const div = document.createElement('div');
-      div.className = 'fb-post';
-      div.setAttribute('data-href', url);
-      div.setAttribute('data-width', '600');
-      container.appendChild(div);
-    });
-  } else {
-    const now = new Date();
-    const day = now.getDay(); // 0 = niedziela, 6 = sobota
-    let message = '';
-    if(day === 0 || day === 6){
-      message = 'W weekendy nie serwujemy dania dnia.';
+    if (manualPosts.length > 0) {
+        manualPosts.forEach(url => {
+            const div = document.createElement('div');
+            div.className = 'fb-post';
+            div.setAttribute('data-href', url);
+            div.setAttribute('data-width', '600');
+            container.appendChild(div);
+        });
     } else {
-      message = 'Danie dnia jeszcze nie zostało opublikowane.';
+        const now = new Date();
+        const day = now.getDay();
+        let message = '';
+        if (day === 0 || day === 6) {
+            message = 'W weekendy nie serwujemy dania dnia.';
+        } else {
+            message = 'Danie dnia jeszcze nie zostało opublikowane.';
+        }
+        const div = document.createElement('div');
+        div.style.color = '#fff';
+        div.style.fontSize = '22px';
+        div.style.padding = '20px';
+        div.textContent = message;
+        container.appendChild(div);
     }
-    const div = document.createElement('div');
-    div.style.color = '#000';
-    div.style.fontSize = '22px';
-    div.style.padding = '20px';
-    div.textContent = message;
-    container.appendChild(div);
-  }
 
-
-      if (window.FB) FB.XFBML.parse(container);
-    })
-    .catch(err => {
-      console.error('Błąd ładowania postów:', err);
-      const container = document.getElementById('daily-special-container');
-      container.innerHTML = '<div style="color:#fff; padding:20px; font-size:22px;">Nie udało się wczytać dania dnia.</div>';
-    });
+    if (window.FB) FB.XFBML.parse(container);
 }
-window.addEventListener('load', loadDanieDnia);
+
+window.addEventListener('load', loadDailySpecial);
 </script>
 
 <div id="fb-root"></div>
