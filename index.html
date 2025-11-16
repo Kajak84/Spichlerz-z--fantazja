@@ -185,23 +185,51 @@ function setLanguage(lang) {
 }
 document.addEventListener('DOMContentLoaded', ()=>setLanguage(localStorage.getItem('lang')||'pl'));
 
-// Load #daniednia posts (server API)
+// Load #daniednia posts (server API) z logiką weekendową
 function loadDanieDnia() {
   fetch('/api/danie-dnia')
     .then(res => res.json())
     .then(posts => {
       const container = document.getElementById('daily-special-container');
       container.innerHTML = '';
-      posts.forEach(url => {
+
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const day = now.getDay(); // 0 = niedziela, 6 = sobota
+
+      if (posts.length > 0) {
+        posts.forEach(url => {
+          const div = document.createElement('div');
+          div.className = 'fb-post';
+          div.setAttribute('data-href', url);
+          div.setAttribute('data-width', '600');
+          container.appendChild(div);
+        });
+      } else {
+        let message = '';
+        if (day === 0 || day === 6) {
+          message = 'W weekendy nie serwujemy dania dnia.';
+        } else if (hours >= 10 && minutes >= 30) {
+          message = 'Danie dnia jeszcze nie zostało opublikowane.';
+        } else {
+          message = 'Danie dnia będzie dostępne po 10:30.';
+        }
         const div = document.createElement('div');
-        div.className = 'fb-post';
-        div.setAttribute('data-href', url);
-        div.setAttribute('data-width', '600');
+        div.style.color = '#fff';
+        div.style.fontSize = '22px';
+        div.style.padding = '20px';
+        div.textContent = message;
         container.appendChild(div);
-      });
-      if(window.FB) FB.XFBML.parse(container);
+      }
+
+      if (window.FB) FB.XFBML.parse(container);
     })
-    .catch(err => console.error('Błąd ładowania postów:', err));
+    .catch(err => {
+      console.error('Błąd ładowania postów:', err);
+      const container = document.getElementById('daily-special-container');
+      container.innerHTML = '<div style="color:#fff; padding:20px; font-size:22px;">Nie udało się wczytać dania dnia.</div>';
+    });
 }
 window.addEventListener('load', loadDanieDnia);
 </script>
