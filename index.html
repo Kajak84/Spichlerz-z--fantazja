@@ -18,40 +18,55 @@ header { background:#000; color:white; padding:20px; text-align:center; }
 .about { background:#fef3e2; }
 
 .daily-special {
-    background: radial-gradient(circle at top left, #333 0%, #000 100%);
-    color:#fff; display:flex; justify-content:center; align-items:center; flex-direction:column;
-    padding:60px 20px; text-align:center; border-radius:12px; max-width:800px; margin:0 auto 40px auto;
-    box-shadow:0 10px 30px rgba(0,0,0,0.7), inset 0 0 50px rgba(255,200,100,0.1);
+    background: #000; /* czarne tło */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* pionowe wycentrowanie */
+    align-items: center;     /* poziome wycentrowanie */
+    padding: 60px 20px;
+    text-align: center;
+    width: 100vw;   /* pełna szerokość ekranu */
+    height: 100vh;  /* pełna wysokość ekranu */
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: hidden;
 }
-.daily-special h1 { margin-bottom:10px; font-size:32px; }
-.daily-special p { font-size:18px; font-style:italic; margin-bottom:30px; }
-.daily-special .fb-post { width:100% !important; max-width:600px; margin:20px auto 0 auto; background:rgba(0,0,0,0.6); padding:20px; border-radius:10px; }
+
+.daily-special h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.daily-special p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+}
+
+.daily-special .fb-post {
+    width: 90% !important;
+    max-width: 600px;
+    margin: 20px auto 0 auto;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+}
 
 #qr { background:#000; color:#fff; width:100%; text-align:center; padding:40px 20px; margin:0 auto; z-index:5; position:relative; }
 #qr img { margin-top:20px; border:3px solid #1e90ff; border-radius:10px; }
 footer { background:#000; color:#FFF; padding:20px; text-align:center; }
-
-.effects-area { position:fixed; inset:0; pointer-events:none; z-index:0; perspective:1000px; overflow:hidden; }
-.effect-item { position:absolute; top:-50px; pointer-events:none; transform-style:preserve-3d; will-change: transform, opacity; font-size:0; }
-@keyframes floatFall {
-    0% { transform: translate3d(var(--x), -50px, var(--z)) rotate(0deg); opacity:0; }
-    25% { transform: translate3d(calc(var(--x) + var(--dx)), 25vh, var(--z2)) rotate(60deg); opacity:0.7; }
-    50% { transform: translate3d(calc(var(--x) - var(--dx)), 50vh, var(--z)) rotate(120deg); opacity:0.85; }
-    75% { transform: translate3d(calc(var(--x) + var(--dx)/2), 75vh, var(--z2)) rotate(240deg); opacity:0.9; }
-    100% { transform: translate3d(var(--x2), 110vh, var(--z2)) rotate(360deg); opacity:1; }
-}
 
 .language-switcher { position: fixed; top:10px; right:10px; z-index:10; background: rgba(255,255,255,0.9); padding:6px 10px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.2);}
 .language-switcher img { width:28px; margin:0 5px; cursor:pointer; opacity:0.8; transition:opacity 0.3s, border 0.3s;}
 .language-switcher img:hover{opacity:1;}
 .language-switcher img.active{border:2px solid #000; opacity:1; border-radius:4px;}
 
-.season-switcher { position: fixed; top:50px; right:10px; z-index:10; background: rgba(255,255,255,0.9); padding:10px 14px; border-radius:14px; box-shadow:0 3px 8px rgba(0,0,0,0.3); display:flex; gap:10px; font-size:24px;}
-.season-switcher div { cursor:pointer; transition: transform 0.3s; }
-.season-switcher div:hover { transform: scale(1.2); }
-.season-switcher .active { border-bottom:3px solid black; }
-
-@media(max-width:480px){ .hero a img{width:200px;} .hero-image{height:250px;} iframe{width:100%!important;height:500px!important;} }
+@media(max-width:480px){ 
+  .hero a img{width:200px;} 
+  .hero-image{height:250px;} 
+  iframe{width:100%!important;height:500px!important;} 
+}
 </style>
 </head>
 <body>
@@ -82,6 +97,7 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
   <p data-i18n="aboutText">Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...</p>
 </section>
 
+<!-- Pełnoekranowa sekcja Danie dnia -->
 <section class="section daily-special">
   <h1 data-i18n="nasz">Nasze danie dnia</h1>
   <p>Tradycja, smak i atmosfera w samym sercu Braniewa</p>
@@ -99,64 +115,11 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
 
 <footer>&copy; 2025 Spichlerz z Fantazją</footer>
 
-<div class="effects-area" id="effects"></div>
-<div class="season-switcher" id="seasonSwitcher">
-  <div data-season="spring">🌸</div>
-  <div data-season="summer">🦋</div>
-  <div data-season="autumn">🍂</div>
-  <div data-season="winter">❄️</div>
-</div>
+<div id="fb-root"></div>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v17.0"></script>
 
 <script>
-// Efekty tła 3D
-const effectsArea = document.getElementById("effects");
-let interval3D = null;
-const maxElements = 50;
-
-function rand(min,max){ return Math.random()*(max-min)+min; }
-
-function create3DEffect(season){
-    if(effectsArea.children.length >= maxElements) return;
-    const el = document.createElement('div');
-    el.className='effect-item';
-    const x=rand(0, window.innerWidth)+'px';
-    const z=rand(-200,200)+'px';
-    const x2=rand(0, window.innerWidth)+'px';
-    const z2=rand(-200,200)+'px';
-    const dx=rand(20,100)+'px';
-    el.style.setProperty('--x', x);
-    el.style.setProperty('--z', z);
-    el.style.setProperty('--x2', x2);
-    el.style.setProperty('--z2', z2);
-    el.style.setProperty('--dx', dx);
-    el.style.animation=`floatFall ${rand(10,18)}s linear forwards`;
-    switch(season){
-        case 'spring': el.innerHTML='<svg viewBox="0 0 64 64" width="24" height="24" fill="#ff69b4"><circle cx="32" cy="32" r="6"/></svg>'; break;
-        case 'summer': el.innerHTML='<svg viewBox="0 0 64 64" width="28" height="28" fill="#ffcc00"><path d="M32 2c5 8 15 10 16 18s-8 14-16 14-16-6-16-14 11-10 16-18z"/></svg>'; break;
-        case 'autumn': const colors=['#d9822b','#f0a040','#a0522d']; el.innerHTML=`<svg viewBox="0 0 64 64" width="22" height="22" fill='${colors[Math.floor(Math.random()*colors.length)]}'><path d="M32 2c6 10 20 20 14 32s-20 10-26 0 0-22 12-32z"/></svg>`; break;
-        case 'winter': el.innerHTML='<svg viewBox="0 0 64 64" width="18" height="18" fill="#dff8ff"><path d="M32 2l6 12 12-6-6 12 12 6-12 6 6 12-12-6-6 12-6-12-12 6 6-12-12-6 12-6-6-12 12 6z"/></svg>'; break;
-    }
-    effectsArea.appendChild(el);
-    setTimeout(()=>el.remove(),18000);
-}
-
-function startSeason3D(season){
-    if(interval3D) clearInterval(interval3D);
-    interval3D=setInterval(()=>create3DEffect(season),350);
-    localStorage.setItem('season',season);
-}
-
-document.querySelectorAll("#seasonSwitcher div").forEach(btn=>{
-    btn.onclick=()=>{
-        document.querySelectorAll("#seasonSwitcher div").forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        startSeason3D(btn.dataset.season);
-    };
-});
-const saved=localStorage.getItem("season")||"spring";
-document.querySelectorAll("#seasonSwitcher div").forEach(b=>{ if(b.dataset.season===saved)b.classList.add("active"); });
-startSeason3D(saved);
-
 // Language
 function setLanguage(lang) {
   document.documentElement.lang=lang;
@@ -172,30 +135,33 @@ function setLanguage(lang) {
 }
 document.addEventListener('DOMContentLoaded', ()=>setLanguage(localStorage.getItem('lang')||'pl'));
 
-// Danie dnia z fallbackiem
+// Danie dnia z pełnym ekranem
 function loadDailySpecial() {
     const container = document.getElementById('daily-special-container');
     const fallback = document.getElementById('fallback-dish');
     const manualPosts = [
         "https://www.facebook.com/fantazjabraniewo/posts/pfbid02jNnS1qZejgHooatJYWoJLwydv16gw4n23XgQqZFrfNbmFijNHPaNuHWunrpGonrQl"
     ];
-    if(window.FB && manualPosts.length>0){
-        manualPosts.forEach(url=>{
-            const div=document.createElement('div');
-            div.className='fb-post';
-            div.setAttribute('data-href',url);
-            div.setAttribute('data-width','600');
+    
+    if(manualPosts.length > 0) {
+        if(fallback) fallback.style.display = 'none';
+        manualPosts.forEach(url => {
+            const div = document.createElement('div');
+            div.className = 'fb-post';
+            div.setAttribute('data-href', url);
+            div.setAttribute('data-width', '600');
             container.appendChild(div);
         });
-        FB.XFBML.parse(container);
-        if(fallback) fallback.style.display='none';
+
+        if(window.FB) {
+            FB.XFBML.parse(container);
+        } else {
+            setTimeout(() => { if(window.FB) FB.XFBML.parse(container); }, 2000);
+        }
     }
 }
 window.addEventListener('load', loadDailySpecial);
 </script>
-
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v17.0"></script>
 
 </body>
 </html>
