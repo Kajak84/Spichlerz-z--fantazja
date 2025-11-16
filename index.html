@@ -85,7 +85,11 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
 <section class="section daily-special">
   <h1 data-i18n="nasz">Nasze danie dnia</h1>
   <p>Tradycja, smak i atmosfera w samym sercu Braniewa</p>
-  <div id="daily-special-container"></div>
+  <div id="daily-special-container">
+      <div id="fallback-dish" style="color:#fff; font-size:22px; padding:20px;">
+          Nasze danie dnia jest tradycyjne i smaczne!
+      </div>
+  </div>
 </section>
 
 <section id="qr">
@@ -104,45 +108,41 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
 </div>
 
 <script>
-// 3D efekty liści, motyli, płatków śniegu
+// Efekty tła 3D
 const effectsArea = document.getElementById("effects");
 let interval3D = null;
-const maxElements = 50; // ograniczenie ilości elementów jednocześnie
+const maxElements = 50;
 
 function rand(min,max){ return Math.random()*(max-min)+min; }
 
 function create3DEffect(season){
     if(effectsArea.children.length >= maxElements) return;
     const el = document.createElement('div');
-    el.className = 'effect-item';
-    const x = rand(0, window.innerWidth)+'px';
-    const z = rand(-200,200)+'px';
-    const x2 = rand(0, window.innerWidth)+'px';
-    const z2 = rand(-200,200)+'px';
-    const dx = rand(20,100)+'px'; 
+    el.className='effect-item';
+    const x=rand(0, window.innerWidth)+'px';
+    const z=rand(-200,200)+'px';
+    const x2=rand(0, window.innerWidth)+'px';
+    const z2=rand(-200,200)+'px';
+    const dx=rand(20,100)+'px';
     el.style.setProperty('--x', x);
     el.style.setProperty('--z', z);
     el.style.setProperty('--x2', x2);
     el.style.setProperty('--z2', z2);
     el.style.setProperty('--dx', dx);
-    el.style.animation = `floatFall ${rand(10,18)}s linear forwards`;
-
+    el.style.animation=`floatFall ${rand(10,18)}s linear forwards`;
     switch(season){
-        case 'spring': el.innerHTML = `<svg viewBox="0 0 64 64" width="24" height="24" fill="#ff69b4"><circle cx="32" cy="32" r="6"/></svg>`; break;
-        case 'summer': el.innerHTML = `<svg viewBox="0 0 64 64" width="28" height="28" fill="#ffcc00"><path d="M32 2c5 8 15 10 16 18s-8 14-16 14-16-6-16-14 11-10 16-18z"/></svg>`; break;
-        case 'autumn': 
-            const colors=['#d9822b','#f0a040','#a0522d'];
-            el.innerHTML = `<svg viewBox="0 0 64 64" width="22" height="22" fill='${colors[Math.floor(Math.random()*colors.length)]}'><path d="M32 2c6 10 20 20 14 32s-20 10-26 0 0-22 12-32z"/></svg>`; break;
-        case 'winter': el.innerHTML = `<svg viewBox="0 0 64 64" width="18" height="18" fill="#dff8ff"><path d="M32 2l6 12 12-6-6 12 12 6-12 6 6 12-12-6-6 12-6-12-12 6 6-12-12-6 12-6-6-12 12 6z"/></svg>`; break;
+        case 'spring': el.innerHTML='<svg viewBox="0 0 64 64" width="24" height="24" fill="#ff69b4"><circle cx="32" cy="32" r="6"/></svg>'; break;
+        case 'summer': el.innerHTML='<svg viewBox="0 0 64 64" width="28" height="28" fill="#ffcc00"><path d="M32 2c5 8 15 10 16 18s-8 14-16 14-16-6-16-14 11-10 16-18z"/></svg>'; break;
+        case 'autumn': const colors=['#d9822b','#f0a040','#a0522d']; el.innerHTML=`<svg viewBox="0 0 64 64" width="22" height="22" fill='${colors[Math.floor(Math.random()*colors.length)]}'><path d="M32 2c6 10 20 20 14 32s-20 10-26 0 0-22 12-32z"/></svg>`; break;
+        case 'winter': el.innerHTML='<svg viewBox="0 0 64 64" width="18" height="18" fill="#dff8ff"><path d="M32 2l6 12 12-6-6 12 12 6-12 6 6 12-12-6-6 12-6-12-12 6 6-12-12-6 12-6-6-12 12 6z"/></svg>'; break;
     }
-
     effectsArea.appendChild(el);
     setTimeout(()=>el.remove(),18000);
 }
 
 function startSeason3D(season){
     if(interval3D) clearInterval(interval3D);
-    interval3D = setInterval(()=>create3DEffect(season),350);
+    interval3D=setInterval(()=>create3DEffect(season),350);
     localStorage.setItem('season',season);
 }
 
@@ -153,19 +153,18 @@ document.querySelectorAll("#seasonSwitcher div").forEach(btn=>{
         startSeason3D(btn.dataset.season);
     };
 });
-
-const saved = localStorage.getItem("season")||"spring";
-document.querySelectorAll("#seasonSwitcher div").forEach(b=>{ if(b.dataset.season===saved) b.classList.add("active"); });
+const saved=localStorage.getItem("season")||"spring";
+document.querySelectorAll("#seasonSwitcher div").forEach(b=>{ if(b.dataset.season===saved)b.classList.add("active"); });
 startSeason3D(saved);
 
 // Language
 function setLanguage(lang) {
-  document.documentElement.lang = lang;
+  document.documentElement.lang=lang;
   const translations = {
-    pl:{ title:"Spichlerz z Fantazją", subtitle:"Tradycja, smak i atmosfera w samym sercu Braniewa", aboutTitle:"O nas", aboutText:"Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...", nasz: "Nasze danie dnia", scan:"📲 Zeskanuj, aby zobaczyć menu" },
-    en:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, taste and atmosphere in the heart of Braniewo", aboutTitle:"About Us", aboutText:"The 'Spichlerz z Fantazją' restaurant is a unique place that combines history with modernity...", nasz: "Our dish of the day", scan:"📲 Scan to see the menu" },
-    de:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, Geschmack und Atmosphäre im Herzen von Braniewo", aboutTitle:"Über uns", aboutText:"Das Restaurant 'Spichlerz z Fantazją' ist ein einzigartiger Ort, der Geschichte mit Moderne verbindet...", nasz: "Unser Tagesgericht", scan:"📲 Scannen Sie, um das Menü zu sehen" },
-    ua:{ title:"Spichlerz z Fantazją", subtitle:"Традиції, смак та атмосфера в самому серці Бранево", aboutTitle:"Про нас", aboutText:"Ресторан 'Спичлерз z Fantazją' – унікальне місце, що поєднує історію з сучасністю...", nasz: "Наша страва дня", scan:"📲 Скануйте, щоб побачити меню" }
+    pl:{ title:"Spichlerz z Fantazją", subtitle:"Tradycja, smak i atmosfera w samym sercu Braniewa", aboutTitle:"O nas", aboutText:"Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...", nasz:"Nasze danie dnia", scan:"📲 Zeskanuj, aby zobaczyć menu" },
+    en:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, taste and atmosphere in the heart of Braniewo", aboutTitle:"About Us", aboutText:"The 'Spichlerz z Fantazją' restaurant is a unique place that combines history with modernity...", nasz:"Our dish of the day", scan:"📲 Scan to see the menu" },
+    de:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, Geschmack und Atmosphäre im Herzen von Braniewo", aboutTitle:"Über uns", aboutText:"Das Restaurant 'Spichlerz z Fantazją' ist ein einzigartiger Ort, der Geschichte mit Moderne verbindet...", nasz:"Unser Tagesgericht", scan:"📲 Scannen Sie, um das Menü zu sehen" },
+    ua:{ title:"Spichlerz z Fantazją", subtitle:"Традиції, смак та атмосфера в самому серці Бранево", aboutTitle:"Про нас", aboutText:"Ресторан 'Спичлерз z Fantazją' – унікальне місце, що поєднує історію з сучасністю...", nasz:"Наша страва дня", scan:"📲 Скануйте, щоб побачити меню" }
   };
   document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=translations[lang][el.getAttribute('data-i18n')]);
   document.querySelectorAll('.language-switcher img').forEach(img=>img.classList.toggle('active', img.alt===lang));
@@ -176,36 +175,21 @@ document.addEventListener('DOMContentLoaded', ()=>setLanguage(localStorage.getIt
 // Danie dnia z fallbackiem
 function loadDailySpecial() {
     const container = document.getElementById('daily-special-container');
-    container.innerHTML = '';
-
+    const fallback = document.getElementById('fallback-dish');
     const manualPosts = [
         "https://www.facebook.com/fantazjabraniewo/posts/pfbid02jNnS1qZejgHooatJYWoJLwydv16gw4n23XgQqZFrfNbmFijNHPaNuHWunrpGonrQl"
     ];
-
-    if (manualPosts.length > 0) {
-        manualPosts.forEach(url => {
-            const div = document.createElement('div');
-            div.className = 'fb-post';
-            div.setAttribute('data-href', url);
-            div.setAttribute('data-width', '600');
+    if(window.FB && manualPosts.length>0){
+        manualPosts.forEach(url=>{
+            const div=document.createElement('div');
+            div.className='fb-post';
+            div.setAttribute('data-href',url);
+            div.setAttribute('data-width','600');
             container.appendChild(div);
         });
-    } else {
-        const now = new Date();
-        const day = now.getDay();
-        let message = '';
-        if (day === 0 || day === 6) message = 'W weekendy nie serwujemy dania dnia.';
-        else message = 'Danie dnia jeszcze nie zostało opublikowane.';
-        const div = document.createElement('div');
-        div.style.color = '#fff';
-        div.style.fontSize = '22px';
-        div.style.padding = '20px';
-        div.textContent = message;
-        container.appendChild(div);
+        FB.XFBML.parse(container);
+        if(fallback) fallback.style.display='none';
     }
-
-    // fallback FB parse
-    if (window.FB) FB.XFBML.parse(container);
 }
 window.addEventListener('load', loadDailySpecial);
 </script>
