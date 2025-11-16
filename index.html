@@ -11,7 +11,7 @@
 
 <style>
 body { font-family: Arial, sans-serif; margin: 0; background-color: #e4d09b; overflow-x: hidden; }
-header, .hero-image, .hero, .section, footer { position: relative; z-index: 10; }
+header, .hero-image, .hero, .section, footer, #daily-special-container, #qr img { position: relative; z-index: 5; }
 header { background-color: #000; color: white; padding: 20px; text-align: center; }
 .hero-image { width: 100%; display: flex; justify-content: center; margin: 20px 0; overflow: hidden; height: 400px; }
 .hero-image img { width: 100%; height: 100%; object-fit: contain; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
@@ -21,20 +21,38 @@ header { background-color: #000; color: white; padding: 20px; text-align: center
 .section { padding: 40px; text-align: center; opacity: 0; transform: translateY(30px); transition: all 1s ease; }
 .section.visible { opacity: 1; transform: translateY(0); }
 .about { background-color: #fef3e2; }
-.daily-special { background-color: #fff9ef; position: relative; z-index: 10; }
-#qr { background-color: rgba(254, 243, 226, 1); position: relative; z-index: 10; }
-#qr img { display: inline-block; z-index: 10; position: relative; }
+.daily-special, #qr {
+    background-color: #000; /* czarne tło */
+    color: #fff; /* białe napisy */
+    width: 100%;
+    text-align: center;
+    padding: 40px 20px;
+    margin: 0 auto;
+    z-index: 5;
+    position: relative;
+    border-radius: 0;
+}
+#daily-special-container .fb-post {
+    width: 100% !important;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgba(0,0,0,0.6);
+}
+#qr img {
+    margin-top: 20px;
+    border: 3px solid #1e90ff;
+    border-radius: 10px;
+}
 footer { background:#000; color:#FFF; padding:20px; text-align:center; }
-.language-switcher { position: fixed; top: 10px; right: 10px; z-index: 999; background: rgba(255, 255, 255, 0.9); padding: 6px 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+.language-switcher { position: fixed; top: 10px; right: 10px; z-index: 10; background: rgba(255, 255, 255, 0.9); padding: 6px 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
 .language-switcher img { width: 28px; margin: 0 5px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s, border 0.3s; }
 .language-switcher img:hover { opacity: 1; }
 .language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
 @media(max-width:480px){ .hero a img { width: 200px; } iframe { width: 100% !important; height: 500px !important; } .hero-image { height: 250px; } }
-
-.effects-area { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
-.effect-item { position: absolute; z-index: 1; pointer-events: none; will-change: transform; transform-style: preserve-3d; }
-@keyframes fallFullScreen { 0% { transform: translateY(-20vh) rotateX(0deg) rotateY(0deg); } 100% { transform: translateY(110vh) rotateX(360deg) rotateY(360deg); } }
-.season-switcher { position: fixed; top: 50px; right: 10px; z-index: 9999; background: rgba(255, 255, 255, 0.9); padding: 10px 14px; border-radius: 14px; box-shadow: 0 3px 8px rgba(0,0,0,0.3); display: flex; gap: 10px; font-size: 24px; }
+.effects-area { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.effect-item { position: absolute; z-index: 0; pointer-events: none; }
+@keyframes fall { 0% { transform: translateY(-20vh); } 100% { transform: translateY(110vh); } }
+.season-switcher { position: fixed; top: 50px; right: 10px; z-index: 10; background: rgba(255, 255, 255, 0.9); padding: 10px 14px; border-radius: 14px; box-shadow: 0 3px 8px rgba(0,0,0,0.3); display: flex; gap: 10px; font-size: 24px; }
 .season-switcher div { cursor: pointer; transition: transform 0.3s; }
 .season-switcher div:hover { transform: scale(1.2); }
 .season-switcher .active { border-bottom: 3px solid black; }
@@ -68,16 +86,16 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
   <p data-i18n="aboutText">Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...</p>
 </section>
 
-<section class="section daily-special">
+<section class="daily-special">
   <h1 data-i18n="nasz">Nasze danie dnia</h1>
-  <div id="daily-special-container" style="position: relative; z-index: 10;">
+  <div id="daily-special-container">
     <div class="fb-post" data-href="https://www.facebook.com/fantazjabraniewo/posts/pfbid034hmqy9KWUjNbwGVzAVxT71Cq98F1vPRfh9Jp4JkbKXG4327Y9ZDPfxso7MirKCml" data-width="600"></div>
   </div>
 </section>
 
-<section class="section" id="qr">
+<section id="qr">
   <h2 data-i18n="scan">📲 Zeskanuj, aby zobaczyć menu</h2>
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichlerz-z--fantazja%2Fmenu.html" alt="Kod QR do menu" style="position: relative; z-index: 10;">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichlerz-z--fantazja%2Fmenu.html" alt="Kod QR do menu">
 </section>
 
 <footer>
@@ -104,9 +122,7 @@ function createEffect(season){
   el.style.height = size+"px";
   el.style.left = rand(0,100)+"%";
   el.style.top = "-10%";
-  el.style.position = "absolute";
-  el.style.zIndex = "1";
-  el.style.animation = `fallFullScreen ${rand(6,12)}s linear forwards`;
+  el.style.animation = `fall ${rand(6,12)}s linear forwards`;
 
   switch(season){
     case "spring": el.innerHTML = "<svg viewBox='0 0 64 64' fill='#ff69b4'><path d='M32 2c4 6 10 10 10 16s-6 10-10 10-10-4-10-10 6-10 10-16z'/></svg>"; break;
@@ -130,7 +146,9 @@ const saved = localStorage.getItem("season")||"spring";
 buttons.forEach(b=>{ if(b.dataset.season===saved) b.classList.add("active"); });
 startSeason(saved);
 
+// Facebook embed parse
 window.addEventListener('load', () => { if(window.FB) FB.XFBML.parse(document.getElementById('daily-special-container')); });
+window.addEventListener('resize', () => { if(window.FB) FB.XFBML.parse(document.getElementById('daily-special-container')); });
 </script>
 
 <div id="fb-root"></div>
