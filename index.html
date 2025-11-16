@@ -11,38 +11,33 @@
 
 <style>
 body { font-family: Arial, sans-serif; margin: 0; background-color: #e4d09b; overflow-x: hidden; }
+header, .hero-image, .hero, .section, footer { position: relative; z-index: 10; }
 header { background-color: #000; color: white; padding: 20px; text-align: center; }
 .hero-image { width: 100%; display: flex; justify-content: center; margin: 20px 0; overflow: hidden; height: 400px; }
 .hero-image img { width: 100%; height: 100%; object-fit: contain; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
 .hero { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px; }
 .hero a img { width: 300px; height: auto; border-radius: 10px; object-fit: cover; transition: transform 0.5s ease, filter 0.5s ease; }
 .hero a img:hover { transform: scale(1.08) rotateY(3deg); filter: brightness(1.1); }
-.section { padding: 40px; text-align: center; opacity: 0; transform: translateY(30px); transition: all 1s ease; position: relative; z-index: 2; }
+.section { padding: 40px; text-align: center; opacity: 0; transform: translateY(30px); transition: all 1s ease; }
 .section.visible { opacity: 1; transform: translateY(0); }
 .about { background-color: #fef3e2; }
-.daily-special { background-color: #fff9ef; }
-#qr { background-color: rgba(254, 243, 226, 1); }
-footer { background:#000; color:#FFF; padding:20px; text-align:center; position: relative; z-index: 2; }
+.daily-special { background-color: #fff9ef; position: relative; z-index: 10; }
+#qr { background-color: rgba(254, 243, 226, 1); position: relative; z-index: 10; }
+#qr img { display: inline-block; z-index: 10; position: relative; }
+footer { background:#000; color:#FFF; padding:20px; text-align:center; }
 .language-switcher { position: fixed; top: 10px; right: 10px; z-index: 999; background: rgba(255, 255, 255, 0.9); padding: 6px 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
 .language-switcher img { width: 28px; margin: 0 5px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s, border 0.3s; }
 .language-switcher img:hover { opacity: 1; }
 .language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
 @media(max-width:480px){ .hero a img { width: 200px; } iframe { width: 100% !important; height: 500px !important; } .hero-image { height: 250px; } }
 
-/* SPADAJĄCE LIŚCIE */
-.leaves-area { position:fixed; inset:0; pointer-events:none; z-index:999; }
-.leaf { position:absolute; top:-10vh; will-change: transform, opacity; opacity:0.85; }
-@keyframes fall { 0%{ transform: translateY(-10vh) rotate(var(--start-rot)); opacity:0.8; } 50%{ transform: translateY(50vh) rotate(calc(var(--start-rot) + var(--spin-deg)/2)); opacity:0.9; } 100%{ transform: translateY(calc(100vh - 10px)) rotate(calc(var(--start-rot) + var(--spin-deg))); opacity:1; } }
-@keyframes sway { 0%{ transform: translateX(0) rotate(0deg); } 25%{ transform: translateX(var(--sway-offset)) rotate(10deg); } 50%{ transform: translateX(0) rotate(-10deg); } 75%{ transform: translateX(calc(-1 * var(--sway-offset))) rotate(5deg); } 100%{ transform: translateX(0) rotate(0deg); } }
-
-/* --- PRZEŁĄCZNIK PÓR ROKU --- */
+.effects-area { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+.effect-item { position: absolute; z-index: 1; pointer-events: none; will-change: transform; transform-style: preserve-3d; }
+@keyframes fallFullScreen { 0% { transform: translateY(-20vh) rotateX(0deg) rotateY(0deg); } 100% { transform: translateY(110vh) rotateX(360deg) rotateY(360deg); } }
 .season-switcher { position: fixed; top: 50px; right: 10px; z-index: 9999; background: rgba(255, 255, 255, 0.9); padding: 10px 14px; border-radius: 14px; box-shadow: 0 3px 8px rgba(0,0,0,0.3); display: flex; gap: 10px; font-size: 24px; }
 .season-switcher div { cursor: pointer; transition: transform 0.3s; }
 .season-switcher div:hover { transform: scale(1.2); }
 .season-switcher .active { border-bottom: 3px solid black; }
-.effects-area { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
-.effect-item { position: absolute; will-change: transform; user-select: none; }
-@keyframes fallFullScreen { 0% { transform: translateY(-10vh); } 100% { transform: translateY(110vh); } }
 </style>
 </head>
 <body>
@@ -75,24 +70,21 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; position:
 
 <section class="section daily-special">
   <h1 data-i18n="nasz">Nasze danie dnia</h1>
-  <div id="daily-special-container">
+  <div id="daily-special-container" style="position: relative; z-index: 10;">
     <div class="fb-post" data-href="https://www.facebook.com/fantazjabraniewo/posts/pfbid034hmqy9KWUjNbwGVzAVxT71Cq98F1vPRfh9Jp4JkbKXG4327Y9ZDPfxso7MirKCml" data-width="600"></div>
   </div>
 </section>
 
 <section class="section" id="qr">
   <h2 data-i18n="scan">📲 Zeskanuj, aby zobaczyć menu</h2>
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichlerz-z--fantazja%2Fmenu.html" alt="Kod QR do menu">
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichlerz-z--fantazja%2Fmenu.html" alt="Kod QR do menu" style="position: relative; z-index: 10;">
 </section>
 
 <footer>
   &copy; 2025 Spichlerz z Fantazją
 </footer>
 
-<!-- WARSTWA ANIMACJI 3D SPADAJĄCE NA CAŁEJ STRONIE -->
 <div class="effects-area" id="effects"></div>
-
-<!-- PRZEŁĄCZNIK PÓR ROKU -->
 <div class="season-switcher" id="seasonSwitcher">
   <div data-season="spring">🌸</div>
   <div data-season="summer">🦋</div>
@@ -102,37 +94,43 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; position:
 
 <script>
 const effectsArea = document.getElementById("effects");
-let currentSeason = "spring";
+let currentInterval = null;
 function rand(min,max){ return Math.random()*(max-min)+min; }
-function createEffect(type){
+function createEffect(season){
   const el = document.createElement("div");
   el.className = "effect-item";
-  const size = rand(20,60);
+  const size = rand(20,50);
   el.style.width = size+"px";
   el.style.height = size+"px";
-  el.style.left = rand(0,100)+"vw";
-  el.style.top = "-10vh";
-  el.style.animation = `fallFullScreen ${rand(6,14)}s linear forwards`;
+  el.style.left = rand(0,100)+"%";
+  el.style.top = "-10%";
+  el.style.position = "absolute";
+  el.style.zIndex = "1";
+  el.style.animation = `fallFullScreen ${rand(6,12)}s linear forwards`;
 
-  if(type=="spring") el.innerHTML="<svg viewBox='0 0 64 64' fill='#ffb7d1'><path d='M32 2c10 8 18 18 18 28s-8 18-18 18S14 40 14 30 22 10 32 2z'/></svg>";
-  if(type=="summer") el.innerHTML="<svg viewBox='0 0 64 64' fill='#7ad1f8'><path d='M32 4l8 12 14 2-10 10 2 14-14-6-14 6 2-14L10 18l14-2z'/></svg>";
-  if(type=="autumn") el.innerHTML="<svg viewBox='0 0 64 64' fill='#d9822b'><path d='M22 6c10 0 20 10 22 18s-2 20-12 24-22-2-26-12S12 6 22 6z'/></svg>";
-  if(type=="winter") el.innerHTML="<svg viewBox='0 0 64 64' fill='#dff8ff'><path d='M32 2l6 12 12-6-6 12 12 6-12 6 6 12-12-6-6 12-6-12-12 6 6-12-12-6 12-6-6-12 12 6z'/></svg>";
+  switch(season){
+    case "spring": el.innerHTML = "<svg viewBox='0 0 64 64' fill='#ff69b4'><path d='M32 2c4 6 10 10 10 16s-6 10-10 10-10-4-10-10 6-10 10-16z'/></svg>"; break;
+    case "summer": el.innerHTML = "<svg viewBox='0 0 64 64' fill='#ffcc00'><path d='M32 4c2 2 6 2 8 4s4 6 2 8-6 2-8 0-4-6-2-8z'/></svg>"; break;
+    case "autumn": const colors=['#d9822b','#f0a040','#a0522d']; el.innerHTML = `<svg viewBox='0 0 64 64' fill='${colors[Math.floor(Math.random()*colors.length)]}'><path d='M22 6c10 0 20 10 22 18s-2 20-12 24-22-2-26-12S12 6 22 6z'/></svg>`; break;
+    case "winter": el.innerHTML = "<svg viewBox='0 0 64 64' fill='#dff8ff'><path d='M32 2l6 12 12-6-6 12 12 6-12 6 6 12-12-6-6 12-6-12-12 6 6-12-12-6 12-6-6-12 12 6z'/></svg>"; break;
+  }
 
   effectsArea.appendChild(el);
-  setTimeout(()=>el.remove(),14000);
+  setTimeout(()=>el.remove(),15000);
 }
 function startSeason(season){
-  currentSeason=season;
-  effectsArea.innerHTML="";
+  if(currentInterval) clearInterval(currentInterval);
+  effectsArea.innerHTML = "";
+  currentInterval = setInterval(()=>createEffect(season),400);
   localStorage.setItem("season",season);
-  setInterval(()=>createEffect(season),500);
 }
 const buttons=document.querySelectorAll("#seasonSwitcher div");
 buttons.forEach(btn=>{ btn.onclick=()=>{ buttons.forEach(b=>b.classList.remove("active")); btn.classList.add("active"); startSeason(btn.dataset.season); }; });
 const saved = localStorage.getItem("season")||"spring";
 buttons.forEach(b=>{ if(b.dataset.season===saved) b.classList.add("active"); });
 startSeason(saved);
+
+window.addEventListener('load', () => { if(window.FB) FB.XFBML.parse(document.getElementById('daily-special-container')); });
 </script>
 
 <div id="fb-root"></div>
