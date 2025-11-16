@@ -10,134 +10,39 @@
 <meta name="robots" content="index, follow">
 
 <style>
-body { 
-  font-family: Arial, sans-serif; 
-  margin: 0; 
-  background-color: #e4d09b; 
-  overflow-x: hidden;
-  perspective: 1000px; /* 3D dla wszystkich elementów */
-}
-
+body { font-family: Arial, sans-serif; margin: 0; background-color: #e4d09b; overflow-x: hidden; }
 header { background-color: #000; color: white; padding: 20px; text-align: center; }
-
-.hero-image { 
-  width: 100%; 
-  display: flex; 
-  justify-content: center; 
-  margin: 20px 0; 
-  overflow: hidden; 
-  height: 400px; 
-  transform-style: preserve-3d;
-}
-.hero-image img { 
-  width: 100%; 
-  height: 100%; 
-  object-fit: contain; 
-  border-radius: 12px; 
-  transform: translateZ(40px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
-}
-
-.hero { 
-  display: flex; 
-  justify-content: center; 
-  flex-wrap: wrap; 
-  gap: 20px; 
-  padding: 20px; 
-  transform-style: preserve-3d;
-}
-.hero a img { 
-  width: 300px; 
-  height: auto; 
-  border-radius: 10px; 
-  object-fit: cover; 
-  transition: transform 0.5s ease, filter 0.5s ease; 
-  transform: translateZ(25px);
-}
-.hero a img:hover { 
-  transform: scale(1.1) rotateY(12deg) translateZ(60px); 
-  filter: brightness(1.1); 
-}
-
-.section { 
-  padding: 40px; 
-  text-align: center; 
-  opacity: 0; 
-  transform: translateY(30px); 
-  transition: all 1s ease; 
-}
+.hero-image { width: 100%; display: flex; justify-content: center; margin: 20px 0; overflow: hidden; height: 400px; }
+.hero-image img { width: 100%; height: 100%; object-fit: contain; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.hero { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px; }
+.hero a img { width: 300px; height: auto; border-radius: 10px; object-fit: cover; transition: transform 0.5s ease, filter 0.5s ease; }
+.hero a img:hover { transform: scale(1.08) rotateY(3deg); filter: brightness(1.1); }
+.section { padding: 40px; text-align: center; opacity: 0; transform: translateY(30px); transition: all 1s ease; }
 .section.visible { opacity: 1; transform: translateY(0); }
-
 .about { background-color: #fef3e2; }
 .daily-special { background-color: #fff9ef; }
 #qr { background-color: rgba(254, 243, 226, 1); }
-
 footer { background:#000; color:#FFF; padding:20px; text-align:center; }
-
-/* Przełącznik języka */
-.language-switcher { 
-  position: fixed; 
-  top: 10px; 
-  right: 10px; 
-  z-index: 999; 
-  background: rgba(255, 255, 255, 0.9); 
-  padding: 6px 10px; 
-  border-radius: 8px; 
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2); 
-}
+.language-switcher { position: fixed; top: 10px; right: 10px; z-index: 999; background: rgba(255, 255, 255, 0.9); padding: 6px 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
 .language-switcher img { width: 28px; margin: 0 5px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s, border 0.3s; }
 .language-switcher img:hover { opacity: 1; }
 .language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
+@media(max-width:480px){ .hero a img { width: 200px; } iframe { width: 100% !important; height: 500px !important; } .hero-image { height: 250px; } }
 
-/* 🌿 Spadające liście 3D */
-.leaves-area { 
-  position:fixed; 
-  inset:0; 
-  pointer-events:none; 
-  z-index:900; 
-  transform-style: preserve-3d;
-}
-.leaf { 
-  position:absolute;
-  top:-10vh; 
-  will-change: transform, opacity; 
-  opacity:0.85; 
-}
+/* SPADAJĄCE LIŚCIE */
+.leaves-area { position:fixed; inset:0; pointer-events:none; z-index:999; }
+.leaf { position:absolute; top:-10vh; will-change: transform, opacity; opacity:0.85; }
+@keyframes fall { 0%{ transform: translateY(-10vh) rotate(var(--start-rot)); opacity:0.8; } 50%{ transform: translateY(50vh) rotate(calc(var(--start-rot) + var(--spin-deg)/2)); opacity:0.9; } 100%{ transform: translateY(calc(100vh - 10px)) rotate(calc(var(--start-rot) + var(--spin-deg))); opacity:1; } }
+@keyframes sway { 0%{ transform: translateX(0) rotate(0deg); } 25%{ transform: translateX(var(--sway-offset)) rotate(10deg); } 50%{ transform: translateX(0) rotate(-10deg); } 75%{ transform: translateX(calc(-1 * var(--sway-offset))) rotate(5deg); } 100%{ transform: translateX(0) rotate(0deg); } }
 
-/* ❄ Padający śnieg */
-.snow-area {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 950;
-}
-
-.snowflake {
-  position: absolute;
-  top: -10px;
-  width: 6px;
-  height: 6px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.9;
-  filter: blur(1px);
-  animation: snowFall linear infinite;
-}
-
-@keyframes snowFall {
-  0% { transform: translateY(-10px) translateX(0); opacity: 1; }
-  100% { transform: translateY(100vh) translateX(30px); opacity: 0.3; }
-}
-
-/* ⛄ Bałwan */
-.snowman {
-  position: fixed;
-  bottom: 0;
-  left: 20px;
-  width: 160px;
-  z-index: 999;
-  transform: translateZ(120px);
-}
+/* --- PRZEŁĄCZNIK PÓR ROKU --- */
+.season-switcher { position: fixed; top: 50px; right: 10px; z-index: 9999; background: rgba(255, 255, 255, 0.9); padding: 10px 14px; border-radius: 14px; box-shadow: 0 3px 8px rgba(0,0,0,0.3); display: flex; gap: 10px; font-size: 24px; }
+.season-switcher div { cursor: pointer; transition: transform 0.3s; }
+.season-switcher div:hover { transform: scale(1.2); }
+.season-switcher .active { border-bottom: 3px solid black; }
+.effects-area { position: fixed; inset: 0; pointer-events: none; z-index: 9000; overflow: hidden; }
+.effect-item { position: absolute; will-change: transform; user-select: none; }
+@keyframes fallFullScreen { 0% { transform: translateY(-10vh); } 100% { transform: translateY(110vh); } }
 </style>
 </head>
 <body>
@@ -184,122 +89,53 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
   &copy; 2025 Spichlerz z Fantazją
 </footer>
 
-<!-- FACEBOOK -->
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v17.0"></script>
+<!-- WARSTWA ANIMACJI 3D SPADAJĄCE NA CAŁEJ STRONIE -->
+<div class="effects-area" id="effects"></div>
 
-<!-- 🌿 Liście -->
-<div class="leaves-area"></div>
-<template id="leaf-template"><div class="leaf"></div></template>
-
-<!-- ❄ Śnieg -->
-<div class="snow-area"></div>
-
-<!-- ⛄ Bałwan 3D -->
-<img class="snowman" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Snowman_icon.svg/240px-Snowman_icon.svg.png">
+<!-- PRZEŁĄCZNIK PÓR ROKU -->
+<div class="season-switcher" id="seasonSwitcher">
+  <div data-season="spring">🌸</div>
+  <div data-season="summer">🦋</div>
+  <div data-season="autumn">🍂</div>
+  <div data-season="winter">❄️</div>
+</div>
 
 <script>
-/* OBSERWACJA SEKCJI */
-const sections = document.querySelectorAll('.section');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
-}, { threshold: 0.2 });
-sections.forEach(sec => observer.observe(sec));
+const effectsArea = document.getElementById("effects");
+let currentSeason = "spring";
+function rand(min,max){ return Math.random()*(max-min)+min; }
+function createEffect(type){
+  const el = document.createElement("div");
+  el.className = "effect-item";
+  const size = rand(20,60);
+  el.style.width = size+"px";
+  el.style.height = size+"px";
+  el.style.left = rand(0,100)+"vw";
+  el.style.top = "-10vh";
+  el.style.animation = `fallFullScreen ${rand(6,14)}s linear forwards`;
 
-/* JĘZYKI */
-function setLanguage(lang) {
-  document.documentElement.lang = lang;
-  const translations = {
-    pl:{ title:"Spichlerz z Fantazją", subtitle:"Tradycja, smak i atmosfera w samym sercu Braniewa", aboutTitle:"O nas", aboutText:"Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...", nasz: "Nasze danie dnia", scan:"📲 Zeskanuj, aby zobaczyć menu" },
-    en:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, taste and atmosphere in the heart of Braniewo", aboutTitle:"About Us", aboutText:"The 'Spichlerz z Fantazją' restaurant is a unique place that combines history with modernity...", nasz: "Our dish of the day", scan:"📲 Scan to see the menu" },
-    de:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, Geschmack und Atmosphäre im Herzen von Braniewo", aboutTitle:"Über uns", aboutText:"Das Restaurant 'Spichlerz z Fantazją' ist ein einzigartiger Ort, der Geschichte mit Moderne verbindet...", nasz: "Unser Tagesgericht", scan:"📲 Scannen Sie, um das Menü zu sehen" },
-    ua:{ title:"Spichlerz z Fantazją", subtitle:"Традиції, смак та атмосфера в самому серці Бранево", aboutTitle:"Про нас", aboutText:"Ресторан 'Спичлерz z Fantazją' – унікальне місце, що поєднує історію з сучасністю...", nasz: "Наша страва дня", scan:"📲 Скануйте, щоб побачити меню" }
-  };
-  document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=translations[lang][el.getAttribute('data-i18n')]);
-  document.querySelectorAll('.language-switcher img').forEach(img=>img.classList.toggle('active', img.alt===lang));
-  localStorage.setItem('lang', lang);
+  if(type=="spring") el.innerHTML="<svg viewBox='0 0 64 64' fill='#ffb7d1'><path d='M32 2c10 8 18 18 18 28s-8 18-18 18S14 40 14 30 22 10 32 2z'/></svg>";
+  if(type=="summer") el.innerHTML="<svg viewBox='0 0 64 64' fill='#7ad1f8'><path d='M32 4l8 12 14 2-10 10 2 14-14-6-14 6 2-14L10 18l14-2z'/></svg>";
+  if(type=="autumn") el.innerHTML="<svg viewBox='0 0 64 64' fill='#d9822b'><path d='M22 6c10 0 20 10 22 18s-2 20-12 24-22-2-26-12S12 6 22 6z'/></svg>";
+  if(type=="winter") el.innerHTML="<svg viewBox='0 0 64 64' fill='#dff8ff'><path d='M32 2l6 12 12-6-6 12 12 6-12 6 6 12-12-6-6 12-6-12-12 6 6-12-12-6 12-6-6-12 12 6z'/></svg>";
+
+  effectsArea.appendChild(el);
+  setTimeout(()=>el.remove(),14000);
 }
-document.addEventListener('DOMContentLoaded', ()=>setLanguage(localStorage.getItem('lang')||'pl'));
-
-
-/* FB RESIZE */
-function resizeFacebookPosts() {
-  const container = document.getElementById('daily-special-container');
-  const fbPosts = container.querySelectorAll('.fb-post');
-  fbPosts.forEach(post => { post.setAttribute('data-width', container.offsetWidth); });
-  if (window.FB) FB.XFBML.parse(container);
+function startSeason(season){
+  currentSeason=season;
+  effectsArea.innerHTML="";
+  localStorage.setItem("season",season);
+  setInterval(()=>createEffect(season),500);
 }
-window.addEventListener('load', resizeFacebookPosts);
-window.addEventListener('resize', resizeFacebookPosts);
-
-
-/* 🌿 LIŚCIE 3D */
-(function(){
-  const config = {
-    colors: ['#b24b2f','#d97a3a','#f2c96d','#7a3f2a','#9c5b3a'],
-    minSize: 28,
-    maxSize: 70,
-    minDuration: 10,
-    maxDuration: 20,
-    maxSway: 60,
-    svgs: [
-      '<svg viewBox="0 0 64 64"><path d="M32 2l6 12 12-6-6 12 12 6-12 6 6 12-12-6-6 12-6-12-12 6 6-12-12-6 12-6-6-12 12 6z" fill="currentColor"/></svg>',
-      '<svg viewBox="0 0 64 64"><path d="M32 4c-6 4-12 8-14 14s0 14 6 20c6 6 14 10 20 6s8-14 6-20-8-10-18-20z" fill="currentColor"/></svg>',
-      '<svg viewBox="0 0 64 64"><path d="M22 6c10 0 20 8 22 16s-2 20-12 24-22 0-26-12S12 6 22 6z" fill="currentColor"/></svg>',
-      '<svg viewBox="0 0 64 64"><path d="M18 4c12 4 24 12 26 22s-6 20-16 22-20-4-22-14S6 0 18 4z" fill="currentColor"/></svg>',
-      '<svg viewBox="0 0 64 64"><path d="M32 2c6 6 12 14 14 22s-2 20-10 24-18 2-22-8 0-22 8-32 4-10 10-6z" fill="currentColor"/></svg>'
-    ]
-  };
-  const area = document.querySelector('.leaves-area');
-  const tpl = document.getElementById('leaf-template');
-
-  function rand(min, max){ return Math.random()*(max-min)+min }
-
-  function createLeaf(){
-    const node = tpl.content.firstElementChild.cloneNode(true);
-    const size = Math.round(rand(config.minSize, config.maxSize));
-    const left = Math.round(rand(0, 100));
-    const duration = rand(config.minDuration, config.maxDuration);
-    const startRot = Math.round(rand(-45,45)) + 'deg';
-    const spinDeg = Math.round(rand(180, 720)) + 'deg';
-    const color = config.colors[Math.floor(rand(0, config.colors.length))];
-    const z = rand(-200, 200); /* GŁĘBIA 3D */
-
-    node.style.left = left + '%';
-    node.style.width = size + 'px';
-    node.style.color = color;
-    node.style.transform = `translateZ(${z}px)`;
-    node.style.setProperty('--start-rot', startRot);
-    node.style.setProperty('--spin-deg', spinDeg);
-    node.style.animation = `fall ${duration}s linear forwards`;
-
-    node.innerHTML = config.svgs[Math.floor(rand(0, config.svgs.length))];
-    area.appendChild(node);
-
-    setTimeout(() => node.remove(), duration*1000);
-  }
-
-  setInterval(createLeaf, 700);
-})();
-
-/* ❄ ŚNIEG */
-(function() {
-  const area = document.querySelector('.snow-area');
-
-  function createSnowflake(){
-    const flake = document.createElement('div');
-    flake.className = 'snowflake';
-    flake.style.left = Math.random()*100 + '%';
-    flake.style.animationDuration = (3 + Math.random()*7) + 's';
-    flake.style.opacity = (0.5 + Math.random()*0.5);
-    flake.style.transform = `translateZ(${Math.random()*200}px)`;
-    area.appendChild(flake);
-    setTimeout(()=>flake.remove(), 10000);
-  }
-
-  setInterval(createSnowflake, 80);
-})();
+const buttons=document.querySelectorAll("#seasonSwitcher div");
+buttons.forEach(btn=>{ btn.onclick=()=>{ buttons.forEach(b=>b.classList.remove("active")); btn.classList.add("active"); startSeason(btn.dataset.season); }; });
+const saved = localStorage.getItem("season")||"spring";
+buttons.forEach(b=>{ if(b.dataset.season===saved) b.classList.add("active"); });
+startSeason(saved);
 </script>
 
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v17.0"></script>
 </body>
 </html>
