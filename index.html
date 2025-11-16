@@ -17,12 +17,12 @@ header { background-color: #000; color: white; padding: 20px; text-align: center
 .hero { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 20px; }
 .hero a img { width: 300px; height: auto; border-radius: 10px; object-fit: cover; transition: transform 0.5s ease, filter 0.5s ease; }
 .hero a img:hover { transform: scale(1.08) rotateY(3deg); filter: brightness(1.1); }
-.section { padding: 40px; text-align: center; opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+.section { padding: 40px; text-align: center; opacity: 0; transform: translateY(30px); transition: all 1s ease; position: relative; z-index: 2; }
 .section.visible { opacity: 1; transform: translateY(0); }
 .about { background-color: #fef3e2; }
 .daily-special { background-color: #fff9ef; }
 #qr { background-color: rgba(254, 243, 226, 1); }
-footer { background:#000; color:#FFF; padding:20px; text-align:center; }
+footer { background:#000; color:#FFF; padding:20px; text-align:center; position: relative; z-index: 2; }
 .language-switcher { position: fixed; top: 10px; right: 10px; z-index: 999; background: rgba(255, 255, 255, 0.9); padding: 6px 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
 .language-switcher img { width: 28px; margin: 0 5px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s, border 0.3s; }
 .language-switcher img:hover { opacity: 1; }
@@ -40,7 +40,7 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
 .season-switcher div { cursor: pointer; transition: transform 0.3s; }
 .season-switcher div:hover { transform: scale(1.2); }
 .season-switcher .active { border-bottom: 3px solid black; }
-.effects-area { position: fixed; inset: 0; pointer-events: none; z-index: 9000; overflow: hidden; }
+.effects-area { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
 .effect-item { position: absolute; will-change: transform; user-select: none; }
 @keyframes fallFullScreen { 0% { transform: translateY(-10vh); } 100% { transform: translateY(110vh); } }
 </style>
@@ -74,9 +74,9 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
 </section>
 
 <section class="section daily-special">
-  <h2 data-i18n="nasz">Nasze danie dnia</h2>
+  <h1 data-i18n="nasz">Nasze danie dnia</h1>
   <div id="daily-special-container">
-    <div class="fb-post" data-href="https://www.facebook.com/fantazjabraniewo/posts/pfbid02jNnS1qZejgHooatJYWoJLwydv16gw4n23XgQqZFrfNbmFijNHPaNuHWunrpGonrQl" data-width="600"></div>
+    <div class="fb-post" data-href="https://www.facebook.com/fantazjabraniewo/posts/pfbid034hmqy9KWUjNbwGVzAVxT71Cq98F1vPRfh9Jp4JkbKXG4327Y9ZDPfxso7MirKCml" data-width="600"></div>
   </div>
 </section>
 
