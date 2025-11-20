@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Spichlerz z Fantazją</title>
+<title data-i18n="title">Spichlerz z Fantazją</title>
+<meta name="description" content="Restauracja Spichlerz z Fantazją w Braniewie – tradycja, smak i atmosfera w samym sercu miasta. Zobacz menu, wydarzenia i kontakt.">
+<meta name="keywords" content="restauracja, Braniewo, menu, Spichlerz z Fantazją, wydarzenia, kontakt">
+<meta name="author" content="Spichlerz z Fantazją">
+<meta name="robots" content="index, follow">
 
 <style>
 body { font-family: Arial, sans-serif; margin: 0; background-color: #e4d09b; overflow-x: hidden; }
@@ -20,17 +24,22 @@ header { background-color: #000; color: white; padding: 20px; text-align: center
 #qr { background-color: rgba(254, 243, 226, 1); }
 footer { background:#000; color:#FFF; padding:20px; text-align:center; }
 
-.language-switcher { position: fixed; top: 10px; right: 10px; z-index: 999; background: rgba(255, 255, 255, 0.9); padding: 6px 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+/* LANGUAGE SWITCHER */
+.language-switcher { position: fixed; top: 10px; right: 10px; z-index: 1002; background: rgba(255, 255, 255, 0.9); padding: 6px 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+.language-switcher img { width: 28px; margin: 0 5px; cursor: pointer; opacity: 0.8; transition: opacity 0.3s, border 0.3s; vertical-align:middle; }
+.language-switcher img:hover { opacity: 1; }
+.language-switcher img.active { border: 2px solid #000; opacity: 1; border-radius: 4px; }
 
-/* === SWITCHER PÓR ROKU === */
+/* SEASON SWITCHER */
 .season-switcher {
   position: fixed;
   top: 60px;
   right: 10px;
-  z-index: 999;
+  z-index: 1002;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
+  background: transparent;
 }
 .season-switcher button {
   padding: 6px 10px;
@@ -38,30 +47,29 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
   border: none;
   cursor: pointer;
   font-size: 14px;
-  background: rgba(255,255,255,0.9);
-  transition: 0.3s;
+  background: rgba(255,255,255,0.95);
+  transition: 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.12);
 }
-.season-switcher button:hover {
-  background: #000;
-  color: #fff;
-}
+.season-switcher button:hover { background: #000; color: #fff; }
 
-/* === LIŚCIE === */
-.leaves-area { position:fixed; inset:0; pointer-events:none; z-index:998; }
-.leaf { position:absolute; top:-10vh; will-change: transform, opacity; opacity:0.85; }
-
+/* SPADAJĄCE LIŚCIE */
+.leaves-area { position:fixed; inset:0; pointer-events:none; z-index:999; }
+.leaf { position:absolute; top:-10vh; will-change: transform, opacity; opacity:0.95; display:block; }
 @keyframes fall {
   0%{ transform: translateY(-10vh) rotate(var(--start-rot)); opacity:0.8; }
+  50%{ transform: translateY(50vh) rotate(calc(var(--start-rot) + var(--spin-deg)/2)); opacity:0.9; }
   100%{ transform: translateY(calc(100vh - 10px)) rotate(calc(var(--start-rot) + var(--spin-deg))); opacity:1; }
 }
-
 @keyframes sway {
   0%{ transform: translateX(0) rotate(0deg); }
-  50%{ transform: translateX(var(--sway-offset)) rotate(10deg); }
+  25%{ transform: translateX(var(--sway-offset)) rotate(10deg); }
+  50%{ transform: translateX(0) rotate(-10deg); }
+  75%{ transform: translateX(calc(-1 * var(--sway-offset))) rotate(5deg); }
   100%{ transform: translateX(0) rotate(0deg); }
 }
 
-/* === ŚNIEG === */
+/* ŚNIEG */
 .snowflake {
   position: fixed;
   top: -10px;
@@ -69,28 +77,38 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
   font-size: 12px;
   user-select: none;
   pointer-events: none;
-  opacity: 0.9;
-  filter: drop-shadow(0 0 3px white);
-  animation: snowFall linear forwards, snowSway ease-in-out infinite;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.6));
+  z-index: 1001;
+  animation-timing-function: linear;
+  will-change: transform, opacity;
 }
 
 @keyframes snowFall {
-  0% { transform: translateY(-10vh); }
-  100% { transform: translateY(100vh); }
+  0% { transform: translateY(-10vh); opacity:0.9; }
+  100% { transform: translateY(100vh); opacity:1; }
 }
-
 @keyframes snowSway {
   0% { transform: translateX(0); }
   50% { transform: translateX(20px); }
   100% { transform: translateX(0); }
 }
 
+/* RESPONSIVE */
+@media(max-width:480px){ .hero a img { width: 200px; } iframe { width: 100% !important; height: 500px !important; } .hero-image { height: 250px; } }
 </style>
 </head>
 <body>
 
-<!-- PRZEŁĄCZNIK PÓR ROKU -->
-<div class="season-switcher">
+<div class="language-switcher" aria-hidden="false">
+  <img src="flags/pl.svg" alt="pl" onclick="setLanguage('pl')" />
+  <img src="flags/gb.svg" alt="en" onclick="setLanguage('en')" />
+  <img src="flags/de.svg" alt="de" onclick="setLanguage('de')" />
+  <img src="flags/ua.svg" alt="ua" onclick="setLanguage('ua')" />
+</div>
+
+<!-- SEASON SWITCHER (ręczne sterowanie pór roku) -->
+<div class="season-switcher" aria-hidden="false">
   <button onclick="setSeason('spring')">🌸 Wiosna</button>
   <button onclick="setSeason('summer')">🌿 Lato</button>
   <button onclick="setSeason('autumn')">🍂 Jesień</button>
@@ -98,8 +116,8 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
 </div>
 
 <header>
-  <h1>Spichlerz z Fantazją</h1>
-  <p>Tradycja, smak i atmosfera w samym sercu Braniewa</p>
+  <h1 data-i18n="title">Spichlerz z Fantazją</h1>
+  <p data-i18n="subtitle">Tradycja, smak i atmosfera w samym sercu Braniewa</p>
 </header>
 
 <section class="hero-image">
@@ -107,121 +125,153 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
 </section>
 
 <section class="hero">
-  <a href="menu.html"><img src="img/menu.jpg" alt="Menu"></a>
-  <a href="kontakt.html"><img src="img/kontakt.jpg" alt="Kontakt"></a>
+  <a href="menu.html"><img src="img/menu.jpg" alt="Menu restauracji Spichlerz z Fantazją"></a>
+  <a href="kontakt.html"><img src="img/kontakt.jpg" alt="Kontakt do restauracji Spichlerz z Fantazją"></a>
 </section>
 
 <section class="section about">
-  <h2>O nas</h2>
-  <p>Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...</p>
+  <h2 data-i18n="aboutTitle">O nas</h2>
+  <p data-i18n="aboutText">Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...</p>
 </section>
 
 <section class="section daily-special">
-  <h1>Nasze danie dnia</h1>
+  <h1 data-i18n="nasz">Nasze danie dnia</h1>
+  <div id="daily-special-container">
+    <div class="fb-post" data-href="https://www.facebook.com/fantazjabraniewo/posts/pfbid034hmqy9KWUjNbwGVzAVxT71Cq98F1vPRfh9Jp4JkbKXG4327Y9ZDPfxso7MirKCml" data-width="600"></div>
+  </div>
 </section>
 
 <section class="section" id="qr">
-  <h2>📲 Zeskanuj, aby zobaczyć menu</h2>
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichlerz-z--fantazja%2Fmenu.html">
+  <h2 data-i18n="scan">📲 Zeskanuj, aby zobaczyć menu</h2>
+  <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https%3A%2F%2Fkajak84.github.io%2FSpichlerz-z--fantazja%2Fmenu.html" alt="Kod QR do menu">
 </section>
 
 <footer>
   &copy; 2025 Spichlerz z Fantazją
 </footer>
 
-<!-- LIŚCIE -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/pl_PL/sdk.js#xfbml=1&version=v17.0"></script>
+
+<!-- ELEMENTY ANIMACJI -->
 <div class="leaves-area" aria-hidden="true"></div>
 <template id="leaf-template"><div class="leaf"></div></template>
 
 <script>
-// =============================
-//   AUTO WYKRYWANIE SEZONU
-// =============================
+/* -------- Intersection observer dla sekcji (bez zmian) -------- */
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.2 });
+sections.forEach(sec => observer.observe(sec));
+
+/* -------- TŁUMACZENIA (bez zmian, tylko używane dalej) -------- */
+function setLanguage(lang) {
+  document.documentElement.lang = lang;
+  const translations = {
+    pl:{ title:"Spichlerz z Fantazją", subtitle:"Tradycja, smak i atmosfera w samym sercu Braniewa", aboutTitle:"O nas", aboutText:"Restauracja „Spichlerz z Fantazją” to wyjątkowe miejsce, łączące historię z nowoczesnością...", nasz: "Nasze danie dnia", scan:"📲 Zeskanuj, aby zobaczyć menu" },
+    en:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, taste and atmosphere in the heart of Braniewo", aboutTitle:"About Us", aboutText:"The 'Spichlerz z Fantazją' restaurant is a unique place that combines history with modernity...", nasz: "Our dish of the day", scan:"📲 Scan to see the menu" },
+    de:{ title:"Spichlerz z Fantazją", subtitle:"Tradition, Geschmack und Atmosphäre im Herzen von Braniewo", aboutTitle:"Über uns", aboutText:"Das Restaurant 'Spichlerz z Fantazją' ist ein einzigartiger Ort, der Geschichte mit Moderne verbindet...", nasz: "Unser Tagesgericht", scan:"📲 Scannen Sie, um das Menü zu sehen" },
+    ua:{ title:"Spichlerz z Fantazją", subtitle:"Традиції, смак та атмосфера в самому серці Бранево", aboutTitle:"Про нас", aboutText:"Ресторан 'Спичлерз z Fantazją' – унікальне місце, що поєднує історію з сучасністю...", nasz: "Наша страва дня", scan:"📲 Скануйте, щоб побачити меню" }
+  };
+  const elems = document.querySelectorAll('[data-i18n]');
+  elems.forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang] && translations[lang][key]) el.textContent = translations[lang][key];
+  });
+  document.querySelectorAll('.language-switcher img').forEach(img=>img.classList.toggle('active', img.alt===lang));
+  localStorage.setItem('lang', lang);
+}
+document.addEventListener('DOMContentLoaded', ()=>setLanguage(localStorage.getItem('lang')||'pl'));
+
+/* -------- Resize Facebook posts (bez zmian) -------- */
+function resizeFacebookPosts() {
+  const container = document.getElementById('daily-special-container');
+  const fbPosts = container.querySelectorAll('.fb-post');
+  fbPosts.forEach(post => { post.setAttribute('data-width', container.offsetWidth); });
+  if (window.FB) FB.XFBML.parse(container);
+}
+window.addEventListener('load', resizeFacebookPosts);
+window.addEventListener('resize', resizeFacebookPosts);
+
+/* -------- SEZONY: automatyczne wykrywanie i konfiguracja -------- */
 function autoDetectSeason() {
   const month = new Date().getMonth() + 1;
-  if (month >= 3 && month <= 5) return "spring";
-  if (month >= 6 && month <= 8) return "summer";
-  if (month >= 9 && month <= 11) return "autumn";
-  return "winter";
+  if (month >= 3 && month <= 5) return "spring";    // marzec–maj
+  if (month >= 6 && month <= 8) return "summer";    // czerwiec–sierpień
+  if (month >= 9 && month <= 11) return "autumn";   // wrzesień–listopad
+  return "winter";                                  // grudzień–luty
 }
 
-// =============================
-//   KONFIGURACJE PÓR ROKU
-// =============================
+/* konfiguracje dla każdej pory roku (kolory, SVGy, rozmiary) */
 const seasons = {
   spring: {
     colors: ['#a4d792', '#c8f0c2', '#8cd47e', '#dfffe4'],
     svgs: [
-      '<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="10" fill="currentColor"/></svg>',
-      '<svg viewBox="0 0 64 64"><path d="M32 6l10 10-10 10-10-10z" fill="currentColor"/></svg>'
+      '<svg viewBox="0 0 64 64" width="100%" height="100%"><circle cx="32" cy="32" r="10" fill="currentColor"/></svg>',
+      '<svg viewBox="0 0 64 64" width="100%" height="100%"><path d="M32 6l10 10-10 10-10-10z" fill="currentColor"/></svg>'
     ],
     minSize: 20, maxSize: 40
   },
-
   summer: {
     colors: ['#3fa34d','#2e7d32','#76c893','#4caf50'],
     svgs: [
-      '<svg viewBox="0 0 64 64"><path d="M32 4c8 12 16 24 0 40S8 16 16 4z" fill="currentColor"/></svg>'
+      '<svg viewBox="0 0 64 64" width="100%" height="100%"><path d="M32 4c8 12 16 24 0 40S8 16 16 4z" fill="currentColor"/></svg>'
     ],
     minSize: 25, maxSize: 50
   },
-
   autumn: {
     colors: ['#b24b2f','#d97a3a','#f2c96d','#7a3f2a','#9c5b3a'],
     svgs: [
-      '<svg viewBox="0 0 64 64"><path d="M22 6c10 0 20 8 22 16s-2 20-12 24-22 0-26-12S12 6 22 6z" fill="currentColor"/></svg>'
+      '<svg viewBox="0 0 64 64" width="100%" height="100%"><path d="M22 6c10 0 20 8 22 16s-2 20-12 24-22 0-26-12S12 6 22 6z" fill="currentColor"/></svg>',
+      '<svg viewBox="0 0 64 64" width="100%" height="100%"><path d="M32 2l6 12 12-6-6 12 12 6-12 6 6 12-12-6-6 12-6-12-12 6 6-12-12-6 12-6-6-12 12 6z" fill="currentColor"/></svg>'
     ],
     minSize: 28, maxSize: 70
   },
-
   winter: {
     colors: ['#ffffff','#cfe8ff','#d6f0ff','#e0f7ff'],
     svgs: [
-      '<svg viewBox="0 0 64 64"><path d="M32 6l6 10 10 6-10 6-6 10-6-10-10-6 10-6z" fill="currentColor"/></svg>'
+      '<svg viewBox="0 0 64 64" width="100%" height="100%"><path d="M32 6l6 10 10 6-10 6-6 10-6-10-10-6 10-6z" fill="currentColor"/></svg>',
+      '<svg viewBox="0 0 64 64" width="100%" height="100%"><path d="M32 2l4 14 14 4-14 4-4 14-4-14-14-4 14-4z" fill="currentColor"/></svg>'
     ],
-    minSize: 20, maxSize: 40
+    minSize: 18, maxSize: 40
   }
 };
 
-let currentSeason = localStorage.getItem("season") || autoDetectSeason();
+let currentSeason = localStorage.getItem('season') || autoDetectSeason();
 
-// =============================
-//   ZMIANA PORY ROKU
-// =============================
+/* funkcja zmiany sezonu (ręcznie) */
 function setSeason(season) {
   currentSeason = season;
-  localStorage.setItem("season", season);
+  localStorage.setItem('season', season);
   clearLeaves();
 }
 
-// =============================
-//   USUWANIE STARYCH LIŚCI
-// =============================
+/* usuwa wszystkie obecne liście (i elementy, które tworzymy) */
 function clearLeaves() {
   document.querySelectorAll('.leaf').forEach(l => l.remove());
+  // także usuń śnieżynki (jeśli jakieś są)
+  document.querySelectorAll('.snowflake').forEach(s => s.remove());
 }
 
-// =============================
-//   GENERATOR LIŚCI
-// =============================
-(function () {
+/* -------- GENERATOR LIŚCI (działa permanentnie, tworzy liście wg currentSeason) -------- */
+(function(){
   const area = document.querySelector('.leaves-area');
   const tpl = document.getElementById('leaf-template');
 
-  function rand(min, max){ return Math.random()*(max-min)+min }
+  function rand(min, max){ return Math.random()*(max-min)+min; }
 
-  function createLeaf() {
-    const cfg = seasons[currentSeason];
+  function createLeaf(){
+    const cfg = seasons[currentSeason] || seasons.autumn;
     const node = tpl.content.firstElementChild.cloneNode(true);
 
     const size = Math.round(rand(cfg.minSize, cfg.maxSize));
     const left = Math.round(rand(0, 100));
-
-    const duration = rand(10, 20);
-
+    const duration = rand(8, 20);
+    const swayDuration = rand(5, 12);
+    const swayOffset = Math.round(rand(20, 60));
     const startRot = Math.round(rand(-45,45)) + 'deg';
-    const spinDeg  = Math.round(rand(180, 720)) + 'deg';
-
+    const spinDeg = Math.round(rand(180, 720)) + 'deg';
     const color = cfg.colors[Math.floor(rand(0, cfg.colors.length))];
     const svg = cfg.svgs[Math.floor(rand(0, cfg.svgs.length))];
 
@@ -230,47 +280,99 @@ function clearLeaves() {
     node.style.color = color;
     node.style.setProperty('--start-rot', startRot);
     node.style.setProperty('--spin-deg', spinDeg);
-    node.style.setProperty('--sway-offset', Math.round(rand(20, 60)) + 'px');
+    node.style.setProperty('--sway-offset', swayOffset + 'px');
     node.style.animation = `fall ${duration}s linear forwards`;
 
-    const wrap = document.createElement('div');
-    wrap.style.width = '100%';
-    wrap.style.height = '100%';
-    wrap.style.animation = `sway ${rand(5,12)}s ease-in-out infinite`;
-    wrap.innerHTML = svg;
+    const swayWrap = document.createElement('div');
+    swayWrap.style.width = '100%';
+    swayWrap.style.height = '100%';
+    swayWrap.style.display = 'block';
+    swayWrap.style.animation = `sway ${swayDuration}s ease-in-out infinite`;
+    swayWrap.innerHTML = svg;
+    node.appendChild(swayWrap);
 
-    node.appendChild(wrap);
     area.appendChild(node);
 
-    setTimeout(() => node.remove(), duration * 1000);
+    // Po zakończeniu animacji usuń liść, żeby DOM nie rósł w nieskończoność
+    setTimeout(() => {
+      if (node && node.parentNode) node.remove();
+    }, duration*1000 + 200);
+
   }
 
-  setInterval(createLeaf, 900);
+  // Tworzymy liść co 700ms, ale w trybie zimowym możemy tworzyć mniej liści i więcej śniegu
+  setInterval(() => {
+    if (currentSeason === 'winter') {
+      // w zimie tworzymy mniej liści — zostawimy głównie śnieg
+      if (Math.random() < 0.15) createLeaf();
+    } else {
+      createLeaf();
+    }
+  }, 700);
 })();
-  
-// =============================
-//   ŚNIEG ZIMĄ
-// =============================
-function createSnowflake() {
-  if (currentSeason !== "winter") return;
 
-  const flake = document.createElement("div");
-  flake.classList.add("snowflake");
-  flake.textContent = "❄";
+/* -------- ŚNIEG w zimie -------- */
+(function(){
+  function rand(min,max){ return Math.random()*(max-min)+min; }
 
-  const size = Math.random() * 10 + 10;
-  const left = Math.random() * 100;
+  function createSnowflake(){
+    if (currentSeason !== 'winter') return;
+    const flake = document.createElement('div');
+    flake.className = 'snowflake';
+    // używamy emoji śnieżynki; możesz zmienić na SVG jeśli wolisz
+    flake.textContent = '❄';
 
-  flake.style.left = left + "vw";
-  flake.style.fontSize = size + "px";
-  flake.style.animationDuration = (Math.random() * 10 + 10) + "s";
+    const size = Math.round(rand(10, 24));
+    const left = Math.round(rand(0, 100));
+    const duration = rand(8, 20);
+    const sway = rand(3, 8);
 
-  document.body.appendChild(flake);
+    flake.style.left = left + 'vw';
+    flake.style.fontSize = size + 'px';
+    flake.style.opacity = (rand(0.6,1)).toFixed(2);
+    flake.style.animationDuration = duration + 's';
+    // dodajemy osobne sway (efekt bocznego ruchu)
+    flake.style.animationName = 'snowFall';
+    flake.style.transition = 'transform 0.2s linear';
+    document.body.appendChild(flake);
 
-  setTimeout(() => flake.remove(), 15000);
-}
+    // dodatkowa delikatna animacja boczna
+    flake.animate([
+      { transform: 'translateX(0px)' },
+      { transform: `translateX(${Math.round(rand(-40,40))}px)` },
+      { transform: 'translateX(0px)' }
+    ], { duration: sway*1000, iterations: Infinity, direction: 'alternate', easing: 'ease-in-out' });
 
-setInterval(createSnowflake, 200);
+    // sprzątanie po czasie trwania animacji
+    setTimeout(()=> {
+      if (flake && flake.parentNode) flake.remove();
+    }, (duration+1) * 1000);
+  }
+
+  // co 180ms próbujemy dodać nową płatkę; createSnowflake sprawdza currentSeason
+  setInterval(createSnowflake, 180);
+})();
+
+/* Uwaga: currentSeason może zmieniać się ręcznie — clearLeaves usuwa stare elementy.
+   Automatyczny wybór sezonu ustawia currentSeason podczas załadowania strony. */
+document.addEventListener('DOMContentLoaded', ()=>{
+  // ustaw domyślny sezon jeśli nie ma w localStorage
+  if(!localStorage.getItem('season')) {
+    currentSeason = autoDetectSeason();
+  } else {
+    currentSeason = localStorage.getItem('season');
+  }
+  // ustaw aktywność flag języka (jeśli była ustawiona wcześniej)
+  const lang = localStorage.getItem('lang') || 'pl';
+  setLanguage(lang);
+});
+
+/* --- opcjonalne: jeśli chcesz umożliwić "automatyczne" ustawianie pory roku zamiast wyboru użytkownika,
+   możesz odkomentować poniższe i usunąć zapis do localStorage w setSeason.
+   Tutaj zostawiamy zapis, żeby użytkownik mógł nadpisać auto-wykrywanie. */
+
+/* -------- KONIEC SKRYPTU -------- */
 </script>
+
 </body>
 </html>
