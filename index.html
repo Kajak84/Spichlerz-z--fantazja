@@ -97,6 +97,10 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
   50% { transform: translateX(20px); }
   100% { transform: translateX(0); }
 }
+  .hidden {
+  display: none !important;
+}
+
 
 /* RESPONSIVE */
 @media(max-width:480px){ .hero a img { width: 200px; } iframe { width: 100% !important; height: 500px !important; } .hero-image { height: 250px; } }
@@ -145,12 +149,15 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
   </div>
 </section>
 
-  <section class="section catering-special">
-  <h1 data-i18n="nasza">Catering Świąteczny</h1>
-  <div id="catering-special-container">
-    <div class="fb-post" data-href="https://www.facebook.com/fantazjabraniewo/posts/pfbid0iFAQuYhPFGZiSbEEVJZCwmLiMKqtfG2Np5AVuNW1rqnS1zZmwsP94sRoaaoYjK5sl" data-width="600"></div>
+ <section id="catering-zima" class="section hidden">
+  <h1 data-i18n="catering_s">Catering Świąteczny</h1>
+
+  <div class="fb-post"
+       data-href="https://www.facebook.com/fantazjabraniewo/posts/pfbid0iFAQuYhPFGZiSbEEVJZCwmLiMKqtfG2Np5AVuNW1rqnS1zZmwsP94sRoaaoYjK5sl"
+       data-width="600">
   </div>
 </section>
+
 
 <section class="section" id="qr">
   <h2 data-i18n="scan">📲 Zeskanuj, aby zobaczyć menu</h2>
