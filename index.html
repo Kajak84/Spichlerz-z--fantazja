@@ -45,6 +45,23 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
   gap: 6px;
   background: transparent;
 }
+  // Pokazuj Catering Świąteczny tylko zimą
+(function () {
+    const month = new Date().getMonth() + 1;  // 1–12
+    const isWinter = month === 12 || month ===  || month === ;
+
+    const section = document.getElementById("catering-zima");
+
+    if (section && isWinter) {
+        section.classList.remove("hidden");
+        // Po odsłonięciu trzeba przetworzyć embed FB
+        if (window.FB && FB.XFBML) {
+            FB.XFBML.parse(section);
+        }
+    }
+})();
+
+
 .season-switcher button {
   padding: 6px 10px;
   border-radius: 6px;
