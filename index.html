@@ -1,4 +1,4 @@
-iące<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="UTF-8" />
@@ -49,7 +49,7 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
   display: none !important;
 }
 
-  // Pokazuj Catering Świąteczny tylko zimą
+  
 (function () {
     const month = new Date().getMonth() + 1;  // miesiące 1–12
     const isWinter = month === 12 ;
@@ -121,6 +121,34 @@ footer { background:#000; color:#FFF; padding:20px; text-align:center; }
   .hidden {
   display: none !important;
 }
+  <script>
+// Pokazuj Catering Świąteczny tylko w grudniu + animacja
+document.addEventListener("DOMContentLoaded", function () {
+    const month = new Date().getMonth() + 1; // miesiące 1–12
+    const isDecember = month === 12;
+    const section = document.getElementById("catering-zima");
+
+    if (section && isDecember) {
+        // pokaż sekcję
+        section.classList.remove("hidden");
+
+        // animacja wejścia
+        section.style.opacity = "0";
+        section.style.transform = "translateY(30px)";
+        setTimeout(() => {
+            section.style.transition = "all 1s ease";
+            section.style.opacity = "1";
+            section.style.transform = "translateY(0)";
+        }, 50);
+
+        // załaduj post z Facebooka
+        if (window.FB && FB.XFBML) {
+            FB.XFBML.parse(section);
+        }
+    }
+});
+</script>
+
 
 
 /* RESPONSIVE */
